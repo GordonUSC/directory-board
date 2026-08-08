@@ -6,8 +6,8 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#5B3DF5">
-<meta property="og:title" content="The Directory - Production Board for Eric">
-<meta property="og:description" content="Scope, timeline, priorities. Every lever yours to pull.">
+<meta property="og:title" content="The Directory - Production Board">
+<meta property="og:description" content="Eric's board for the M0 kickoff. Please argue with it.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E%F0%9F%8E%AC%3C/text%3E%3C/svg%3E">
 <title>The Directory &middot; Production Board</title>
 <style>
@@ -221,11 +221,13 @@ a{color:var(--brand)}
 
 <header>
   <p class="hi">GGP &middot; The Directory &amp; Pipeline &middot; Production Board v1</p>
-  <h1>Hi Eric! Here is the whole scope,<br>and every lever is yours to pull.</h1>
-  <p class="sub">This is Production Plan v1 turned into something you can actually work. <b>Move anything between Must, Should, Could, and Next release</b> and the budget, the schedule load, the risk index, the team load, and the verdict all recalculate. Model a coalition seat closing and watch what it unlocks. Add whatever we missed and it will size itself. Then export straight into Monday, or generate the proposal for Alan or Sinjin from wherever you left the board. <b>Nothing here is decided, and this is not your document until you have torn into it.</b> Thank you for taking this on. 😊</p>
+  <h1>Hi team! Here's the whole build,<br>and here's what I need from you.</h1>
+  <p class="sub">First, thank you. Take-Two put $30,000 behind this as our inaugural lead sponsor, Alan and Sinjin started the whole thing in a conversation, and Gordon and Darby have already built a 53-entry catalog that genuinely works. My job now is to produce it without breaking any of that, and this board is how I'd like us to run it. <b>Every item moves between Must, Should, Could, and Next release</b>, and when it moves, the budget, the schedule, the team load, and the risk all move with it. Model a coalition seat closing and you'll see exactly what it buys us. Add anything I've missed and it'll size itself. Then we export to Monday, or generate the proposal for Alan or Sinjin from wherever we land. <b>Nothing here is decided.</b> Please argue with it. 😊</p>
   <p class="meta">
-    Today is Friday 7 August 2026 &middot; M0 kickoff is Monday &middot; Public launch target Friday 9 October 2026<br>
-    Everything saves in this browser only. Nothing is sent anywhere until you export it.
+    Prepared by Eric Francksen, Executive Producer, for the M0 kickoff &middot; Friday 7 August 2026<br>
+    Kickoff is Monday &middot; Public launch target Friday 9 October 2026 &middot; Distribution: Gordon, Joe, Alex, Mabel, Brennan, Charlie<br>
+    Drafted by Darby in my production register so I'd have something to argue with. My edits and sign-off are what make it mine.<br>
+    Everything saves in this browser only. Nothing goes anywhere until one of us exports it.
   </p>
 </header>
 
@@ -246,6 +248,17 @@ a{color:var(--brand)}
 <div class="dash" id="dash"></div>
 <div class="verdict" id="verdict"></div>
 <div class="alerts" id="alerts"></div>
+
+<div class="panel" style="margin-top:14px;border-left:5px solid var(--brand)">
+  <h3>Four things I need, and then this moves</h3>
+  <p class="lead">Everything else on this board I can carry. These four I can't do alone, and Monday is the right room for all of them.</p>
+  <ol>
+    <li><b>Argue with the scope columns.</b> Now is free. October is expensive.</li>
+    <li><b>Give me a real kickoff date.</b> Monday 10 August is a pencil mark I made without asking any of you, so move it freely.</li>
+    <li><b>Help me name the data steward</b>, or tell me it's an unbudgeted hire and I'll take that to Joe. An Extended Scholar in this seat would be resume-grade work for one of Alex's recent grads, which solves two things at once.</li>
+    <li><b>Tell me honestly whether October 9 is producible.</b> It sits ahead of the Bigglesworth letter of intent window on purpose, but a date none of us can hit costs more than a date we move today.</li>
+  </ol>
+</div>
 
 <div class="toolbar">
   <div class="viewtabs" role="tablist">
@@ -271,10 +284,12 @@ a{color:var(--brand)}
 <div class="view" id="view-chg"><div id="chg"></div></div>
 
 <footer>
-  Built for Eric Francksen, Executive Producer, on 7 August 2026.<br>
+  Thank you for reading all of this. Genuinely. Bring your amendments Monday and let's plan next steps!<br>
+  Best, Eric Francksen &middot; Executive Producer, Gay Gaming Professionals &middot; Ph: 608-322-6841<br>
+  <br>
   Source: The Directory &amp; Pipeline Production Plan v1.0 (D1 through D9, RACI, M0 through M7, budget, risk register),
   the 53-entry verified catalog, and the Take-Two board approval of 18 June 2026.<br>
-  Sizing on anything you add is an estimate produced from your description. Treat it as a starting number and overwrite it.<br>
+  Sizing on anything you add is an estimate produced from your description, so treat it as a starting number and overwrite it.<br>
   Companion page: <a href="https://gordonusc.github.io/ggp-directory/">the Directory, Alex's owner copy</a>
 </footer>
 
@@ -296,10 +311,10 @@ var TODAY=new Date(2026,7,7);
 var SEAT=12500;
 
 var PRI={
-  must:{name:'Must have',hex:'#E2445C',note:'Launch does not happen without these. This is the promise we already made.'},
-  should:{name:'Should have',hex:'#FDAB3D',note:'Real value, painful to drop, but launch survives without them.'},
-  could:{name:'Could have',hex:'#00C875',note:'Nice to have. First to go when something has to give.'},
-  later:{name:'Next release',hex:'#A25DDC',note:'Not this release. Parked on the public roadmap, visibly, where funders can see it.'}
+  must:{name:'Must have',hex:'#E2445C',note:"We don't launch without these. This is the promise we already made to Take-Two."},
+  should:{name:'Should have',hex:'#FDAB3D',note:"Real value, and it hurts to drop them, but we'd still launch."},
+  could:{name:'Could have',hex:'#00C875',note:"Nice to have. These are the first things I'd let go when something has to give."},
+  later:{name:'Next release',hex:'#A25DDC',note:"Not this release. Parked on the public roadmap where funders can see it, because being honest about what isn't funded yet is part of the pitch."}
 };
 
 var MILESTONES=[
@@ -591,10 +606,10 @@ function renderModel(){
   document.getElementById('seatVal').textContent=state.seats+' seat'+(state.seats===1?'':'s');
   var n=document.getElementById('mNote');
   if(state.seats>0){
-    n.innerHTML='Modelling '+state.seats+' coalition seat'+(state.seats===1?'':'s')+' at '+money(SEAT)+
-      '. Spendable becomes <b>'+money(spendable())+'</b>. Alan offered on 18 June to make the EA and ESA introductions with us, so this is a real scenario, not a hopeful one.';
+    n.innerHTML="I'm modelling "+state.seats+' coalition seat'+(state.seats===1?'':'s')+' at '+money(SEAT)+
+      ', so spendable becomes <b>'+money(spendable())+'</b>. Alan offered in writing on 18 June to make the EA and ESA introductions with us, so this is a real scenario and not a hopeful one.';
   } else {
-    n.innerHTML='Spendable today is <b>'+money(spendable())+'</b>, which is the funded budget less the contingency Joe holds. Add a coalition seat above to see what closing one would unlock.';
+    n.innerHTML='Spendable today is <b>'+money(spendable())+'</b>, which is what Take-Two funded less the contingency Joe holds. Add a coalition seat above and you can see for yourself what closing one would buy us.';
   }
 }
 
@@ -619,24 +634,24 @@ function renderDash(){
   var over=t.gap>0, slow=t.committedPts>state.cap;
   if(over&&slow){
     cls='bad';
-    msg='<b>As it stands, this does not fit.</b> You are '+money(t.gap)+' over spendable and '+(t.committedPts-state.cap)+
-      ' points over capacity to GDC. Your own change control rule applies: something leaves to make room. '+
-      'The single fastest fix is one coalition seat at '+money(SEAT)+', which you can model in the bar above.';
+    msg="<b>As it stands this doesn't fit, and I'd much rather we knew that today than in week six.</b> We're "+money(t.gap)+
+      ' over spendable and '+(t.committedPts-state.cap)+' points over capacity to GDC. My own change control rule applies to me too, so something has to leave to make room. '+
+      'The fastest single fix is one coalition seat at '+money(SEAT)+', and you can model that in the bar above.';
   } else if(over){
     cls='warn';
-    msg='<b>The schedule fits, the money does not.</b> You are '+money(t.gap)+' over spendable. '+
-      'One coalition seat closes it, or move '+money(t.gap)+' of Should-haves down to Could. Both are defensible, and both are yours to call.';
+    msg="<b>The schedule fits. The money doesn't.</b> We're "+money(t.gap)+' over spendable. '+
+      'One coalition seat closes it outright, or we move '+money(t.gap)+" of Should-haves down to Could. Both are defensible and I'm happy either way, but I do need us to pick one.";
   } else if(slow){
     cls='warn';
-    msg='<b>The money fits, the calendar does not.</b> You are '+(t.committedPts-state.cap)+
-      ' points over capacity to GDC. Either something moves to Next release, or a milestone moves. Better decided now than at M2.';
+    msg="<b>The money fits. The calendar doesn't.</b> We're "+(t.committedPts-state.cap)+
+      ' points over capacity to GDC. Either something moves to Next release or a milestone moves. Much better decided now than at M2.';
   } else if(t.count.must===0){
-    cls='warn'; msg='<b>Nothing is committed yet.</b> Move the things launch cannot happen without into Must have and these numbers will start telling you something.';
+    cls='warn'; msg="<b>Nothing is committed yet.</b> Move the things we can't launch without into Must have and these numbers will start telling us something useful.";
   } else {
     cls='ok';
-    msg='<b>This fits.</b> '+money(sp-t.committedCost)+' of headroom and '+(state.cap-t.committedPts)+
-      ' points of capacity left. '+(t.severe>0?'You are still carrying '+t.severe+' severe risk'+(t.severe>1?'s':'')+
-      ' in the committed set, which is worth a look before you sign.':'No severe risks live in the committed set.');
+    msg='<b>This fits, and I can produce it.</b> '+money(sp-t.committedCost)+' of headroom and '+(state.cap-t.committedPts)+
+      ' points of capacity left. '+(t.severe>0?"We're still carrying "+t.severe+' severe risk'+(t.severe>1?'s':'')+
+      " in the committed set, which I'd want us to look at before anyone signs.":'No severe risks live in the committed set.');
   }
   v.className='verdict '+cls; v.innerHTML=msg;
 
@@ -657,34 +672,34 @@ function renderAlerts(){
 
   var m0=MILESTONES[0], d0=days(m0.date);
   if(d0!==null&&d0>=0&&d0<=7){
-    a.push({c:'info',h:'M0 kickoff is in '+(d0===0?'today':d0+' day'+(d0===1?'':'s')),
-      b:'Monday 10 August, 45 minutes, whole team. The gate is that every RACI cell has a name in it, and the data steward candidate is named. That gate is not met yet.'});
+    a.push({c:'info',h:'Our kickoff is '+(d0===0?'today':'in '+d0+' day'+(d0===1?'':'s')),
+      b:"Monday 10 August, 45 minutes, all of us. The gate I set is that every RACI cell has a name in it and we've named a data steward candidate. We haven't met that gate yet, so please come ready."});
   }
 
   var steward=find('ST');
   if(steward&&committed(steward)){
-    a.push({c:'warn',h:'The data steward is still unnamed',
-      b:'It is due at M1, Friday 21 August, which is '+days(MILESTONES[1].date)+' days out. Until that seat has a person in it, the corrections SLA has nobody behind it. An Extended Scholar in this seat would be resume-grade work for one of Alex recent grads.'});
+    a.push({c:'warn',h:"We still haven't named the data steward",
+      b:"It's due at M1, Friday 21 August, which is "+days(MILESTONES[1].date)+" days out. Until that seat has a real person in it, our corrections promise has nobody standing behind it, and that promise is the whole differentiator. This is the one I'd most like help with on Monday."});
   }
 
   var broken=brokenDeps();
   if(broken.length){
-    a.push({c:'bad',h:broken.length+' dependency '+(broken.length===1?'break':'breaks'),
+    a.push({c:'bad',h:"We've got "+broken.length+' dependency '+(broken.length===1?'break':'breaks'),
       b:broken.map(function(b){ return '<b>'+esc(b.item.n)+'</b> is committed but depends on <b>'+esc(b.parent.n)+
-        '</b>, which you have in '+PRI[b.parent.pri].name+'.'; }).join(' ')});
+        '</b>, which is sitting in '+PRI[b.parent.pri].name+'.'; }).join(' ')+' These bite at the milestone rather than today, which is exactly why I want them visible now.'});
   }
 
   var loads=ownerLoad(), heavy=[];
   Object.keys(loads).forEach(function(k){ if(loads[k].pts>25) heavy.push(k+' at '+loads[k].pts+' pts across '+loads[k].n+' items'); });
   if(heavy.length){
-    a.push({c:'warn',h:'Load is concentrated',
-      b:heavy.join(', ')+'. Worth a look on the Team load tab before you commit the plan. Concentration is how a schedule quietly becomes one person availability.'});
+    a.push({c:'warn',h:"I'm concentrating too much on too few people",
+      b:heavy.join(', ')+". Have a look at the Team load tab before we commit this. Concentration is how a schedule quietly turns into one person's availability, and I've watched that happen before."});
   }
 
   var d7=find('D7');
   if(d7&&committed(d7)&&t.gap>0&&state.seats===0){
-    a.push({c:'info',h:'You are carrying a gap and an unused offer at the same time',
-      b:'Alan offered in writing on 18 June to make the EA and ESA introductions with us. That was seven weeks ago. One seat at '+money(SEAT)+' closes '+money(Math.min(t.gap,SEAT))+' of the '+money(t.gap)+' gap.'});
+    a.push({c:'info',h:"We're carrying a gap and an unused offer at the same time",
+      b:'Alan offered in writing on 18 June to make the EA and ESA introductions with us, and that was seven weeks ago. One seat at '+money(SEAT)+' closes '+money(Math.min(t.gap,SEAT))+' of our '+money(t.gap)+" gap. That one's on me to chase with Gordon."});
   }
 
   document.getElementById('alerts').innerHTML=a.map(function(x){
@@ -804,10 +819,10 @@ function renderTeam(){
   }).join('');
   var unassigned=state.items.filter(function(i){ return committed(i)&&(i.own==='TBD'||i.own==='Data steward'); });
   document.getElementById('team').innerHTML=
-    '<div class="panel"><h3>Who is carrying what</h3>'+
-    '<p class="lead">Committed work only, so Could and Next release do not flatter the picture. Anything above 25 points is worth a conversation before you commit the plan, because that is where a schedule quietly turns into one person availability.</p>'+
+    '<div class="panel"><h3>Who I am asking to carry what</h3>'+
+    "<p class=\"lead\">Committed work only, so Could and Next release don't flatter the picture. Anything above 25 points I'd want to talk through with that person before we commit, because that's where a schedule quietly turns into one person's availability. If I've put too much on you, please say so on Monday rather than in October.</p>"+
     rows+'</div>'+
-    '<div class="panel"><h3>RACI, straight from the plan</h3><p class="lead">Unchanged from Production Plan v1. If a name here is wrong, it is wrong in the plan too, and M0 is where you fix it.</p><ul>'+
+    '<div class="panel"><h3>RACI, straight from the plan</h3><p class="lead">Unchanged from Production Plan v1, and I am genuinely grateful to every person on this list. If a name here is wrong it is wrong in the plan too, and Monday is where we fix it.</p><ul>'+
     '<li><b>Gordon Bellamy</b>: executive sponsor, public face, final approval on anything external. Accountable on launch and comms.</li>'+
     '<li><b>Eric Francksen</b>: Executive Producer. Schedule, scope, quality gate, and this document. Responsible and accountable on delivery.</li>'+
     '<li><b>Charlie des Robert</b>: site build, lens engine, feeds integration. Project-scoped per the staffing rule.</li>'+
@@ -817,34 +832,34 @@ function renderTeam(){
     '<li><b>Joe Heally</b>: finance and compliance, budget tracking, sponsor invoicing, counsel coordination. Accountable on budget.</li>'+
     '<li><b>Darby</b>: research and verification engine, wave runs, evidence grading, drafts.</li>'+
     '<li><b>Data steward</b>: to be named by M1. Owns entry accuracy between refreshes and the corrections SLA.</li></ul></div>'+
-    (unassigned.length?'<div class="panel"><h3>Committed work with nobody real on it</h3><p class="lead">These are committed but the owner is still a placeholder.</p><ul>'+
+    (unassigned.length?'<div class="panel"><h3>Committed work with nobody real on it</h3><p class="lead">These are committed but the owner is still a placeholder, which means they are really still mine until we fix that.</p><ul>'+
       unassigned.map(function(i){ return '<li><b>'+esc(i.n)+'</b>, '+i.pts+' pts, owner listed as '+esc(i.own)+'</li>'; }).join('')+'</ul></div>':'');
 }
 
 function renderAgree(){
   document.getElementById('agree').innerHTML=
-   '<div class="panel"><h3>Definition of Done</h3><p class="lead">One bar, applied to everything on the board. Nothing moves to done without all five.</p><ol>'+
-   '<li>The acceptance criteria on the card are all met, checked by someone who did not do the work.</li>'+
-   '<li>Any public claim carries a badge and a last-checked date. <b>Zero unverified claims ship as fact.</b> This one is non-negotiable.</li>'+
-   '<li>Anyone named publicly has approved being named.</li>'+
-   '<li>It works on mobile Safari and Android Chrome, and it is keyboard navigable.</li>'+
-   '<li>The next person can run it from the runbook, not from asking whoever built it.</li></ol></div>'+
+   '<div class="panel"><h3>Definition of Done</h3><p class="lead">One bar, and I want to hold it for everything on this board. Nothing goes to done without all five.</p><ol>'+
+   "<li>The acceptance criteria on the card are all met, and checked by someone who didn't do the work.</li>"+
+   '<li>Any public claim carries a badge and a last-checked date. <b>Zero unverified claims ship as fact.</b> This one is not negotiable for me.</li>'+
+   '<li>Anyone we name publicly has approved being named.</li>'+
+   "<li>It works on mobile Safari and Android Chrome, and you can get through it on a keyboard.</li>"+
+   "<li>The next person can run it from the runbook instead of asking whoever built it.</li></ol></div>"+
 
-   '<div class="panel"><h3>Cadence</h3><p class="lead">Straight from Section 7 of the plan. This is the part that makes the board true rather than decorative.</p><ul>'+
-   '<li><b>Weekly:</b> Tuesday 30-minute standup, before Weekly Connect. Last week, this week, blocked. Brennan keeps the board current, and the board is the truth, not the meeting.</li>'+
-   '<li><b>Monthly:</b> steering with Gordon and Joe. Budget against actuals, metric trend, risk review. One page, ten minutes of reading, thirty of deciding.</li>'+
+   '<div class="panel"><h3>How I would like us to run</h3><p class="lead">This is the part that makes a board true rather than decorative. Round robin, same as Weekly Connect, so nobody has to chase anybody.</p><ul>'+
+   '<li><b>Weekly:</b> Tuesday, 30 minutes, right before Weekly Connect. Last week, this week, blocked. Brennan keeps the board current, and the board is the truth, not the meeting.</li>'+
+   '<li><b>Monthly:</b> steering with Gordon and Joe. Budget against actuals, metric trend, risk review. One page, ten minutes of reading and thirty of deciding.</li>'+
    '<li><b>Quarterly after launch:</b> refresh cycle per the runbook. Feeds diffed, entries re-verified oldest first, changelog published.</li>'+
-   '<li><b>Corrections SLA:</b> five business days from inbox to resolution, or to a public checking status.</li></ul></div>'+
+   '<li><b>Corrections:</b> five business days from inbox to either a resolution or a public checking status. If we cannot hold that, I would rather promise ten days and hit it.</li></ul></div>'+
 
-   '<div class="panel"><h3>Change control</h3><p class="lead">Your rule, and this board enforces it rather than just quoting it.</p><ul>'+
-   '<li>After M1, any scope addition needs a written change order naming <b>what leaves to make room</b>, approved by the EP and the sponsor.</li>'+
-   '<li>Every priority move you make here is logged with its budget and schedule effect. The Change orders tab is your paper trail, and it exports.</li>'+
-   '<li><b>"It is small" is not a size.</b></li></ul></div>'+
+   '<div class="panel"><h3>Change control</h3><p class="lead">This is the rule I will be strictest about, and it applies to me first.</p><ul>'+
+   '<li>After M1, any scope addition needs a written change order naming <b>what leaves to make room</b>, approved by me and by Gordon.</li>'+
+   '<li>Every priority move any of us makes here gets logged with its budget and schedule effect. The Change orders tab is our paper trail and it exports, so nobody has to reconstruct why the scope looks the way it does.</li>'+
+   "<li><b>\"It's small\" is not a size.</b> I say that with love. 😊</li></ul></div>"+
 
-   '<div class="panel"><h3>The risk I would want on the record</h3>'+
-   '<p class="lead" style="color:var(--ink2)"><b>Pipeline consent.</b> If a scholar information ever reaches a recruiter without that scholar explicit yes, the trust that makes this work is gone and does not come back. The standing rule: any consent failure pauses the Pipeline entirely, whatever it costs the calendar. Shipping late beats shipping that wrong.</p></div>'+
+   '<div class="panel"><h3>The risk I want on the record</h3>'+
+   "<p class=\"lead\" style=\"color:var(--ink2)\"><b>Pipeline consent.</b> If a scholar's information ever reaches a recruiter without that scholar's explicit yes, the trust that makes this work is gone and it does not come back. So the standing rule is that any consent failure pauses the Pipeline entirely, whatever it costs the calendar. I would much rather we shipped late than shipped that wrong, and I would like all of us holding that line together.</p></div>"+
 
-   '<div class="panel"><h3>Sign-off</h3><p class="lead">This becomes real when the actual humans sign it. You will have amendments, which is the entire point of having you.</p>'+
+   '<div class="panel"><h3>For your approval</h3><p class="lead">This becomes real when the actual humans sign it. I fully expect amendments, and honestly the amendments are the point.</p>'+
    '<div class="signline">Executive Producer &middot; Eric Francksen &middot; date</div>'+
    '<div class="signline">Executive Sponsor &middot; Gordon Bellamy &middot; date</div>'+
    '<div class="signline">Finance and Compliance &middot; Joe Heally &middot; date</div></div>';
@@ -853,11 +868,11 @@ function renderAgree(){
 function renderChg(){
   var el=document.getElementById('chg');
   if(!state.log.length){
-    el.innerHTML='<div class="panel"><h3>No change orders yet</h3><p class="lead">Move something between columns on the board and it gets logged here with what it did to the budget and the schedule. After M1 this is the paper trail your own change control rule asks for, and it exports with everything else.</p></div>';
+    el.innerHTML='<div class="panel"><h3>No change orders yet</h3><p class="lead">Move something between columns on the board and it gets logged here with exactly what it did to the budget and the schedule. After M1 this is the paper trail my change control rule asks for, and it rides along with the proposals.</p></div>';
     return;
   }
   el.innerHTML='<div class="panel"><h3>Change orders, newest first</h3>'+
-    '<p class="lead">Every move you have made, with its effect. Export it with the proposal so nobody has to reconstruct why the scope looks the way it does.</p>'+
+    '<p class="lead">Every move we have made, with its effect. This exports with the proposal so nobody downstream has to reconstruct why the scope looks the way it does.</p>'+
     state.log.map(function(c){
       var d=new Date(c.t);
       var cost=c.dCost===0?'no budget change':(c.dCost>0?'added '+money(c.dCost):'freed '+money(-c.dCost));
@@ -996,7 +1011,7 @@ function addModal(existing){
   s.innerHTML=
     '<h3>'+(it?'Edit, '+esc(it.n):'Add a feature or an intention')+'</h3>'+
     '<p class="lead">'+(it?'Change anything. The board recalculates the moment you save.':
-      'Describe it in your own words and it will size itself: effort, cost, the resources it needs, the risks it carries, and what we get out of it. Every number is a starting point you can overwrite.')+'</p>'+
+      "Describe it in your own words and it'll size itself: effort, cost, the resources it needs, the risks it carries, and what we get out of it. Every number is a starting point, so please overwrite anything that looks wrong to you.")+'</p>'+
     '<div class="field"><label>Name</label><input id="fN" value="'+esc(it?it.n:'')+'" placeholder="Short, the way it would read on a Monday board"></div>'+
     '<div class="field"><label>What we promise, in one line</label><input id="fP" value="'+esc(it?it.promise:'')+'" placeholder="What someone outside GGP would get from this"></div>'+
     '<div class="field"><label>Why it matters, the goal behind it</label><textarea id="fG" placeholder="What problem does this solve, and what happens if we skip it">'+esc(it?it.goal:'')+'</textarea></div>'+
@@ -1028,8 +1043,8 @@ function addModal(existing){
     h.innerHTML='Reading that, this looks like about <b>'+a.pts+' points</b> and <b>'+money(a.cost)+
       '</b>, carrying <b>'+a.risk.length+' risk'+(a.risk.length>1?'s':'')+'</b> and needing <b>'+a.res.length+
       ' resource'+(a.res.length>1?'s':'')+'</b>. '+
-      (after>spendable()?'<b style="color:var(--bad)">Committing this puts you '+money(after-spendable())+
-        ' over spendable, so your change control rule asks what leaves to make room.</b>':'Override either number if you disagree.');
+      (after>spendable()?'<b style="color:var(--bad)">Committing this puts us '+money(after-spendable())+
+        ' over spendable, so the change control rule kicks in and I need to know what leaves to make room.</b>':'Override either number if you disagree with it.');
   }
   ['fN','fP','fG'].forEach(function(id){ document.getElementById(id).addEventListener('input',preview); });
   document.getElementById('fE').addEventListener('change',preview);
@@ -1203,14 +1218,14 @@ function outModal(title,lead,text,filename){
 function propModal(){
   var s=document.getElementById('msheet');
   s.innerHTML='<h3>Make a proposal</h3><p class="lead">Written from the board exactly as it stands right now, '+
-    'so the numbers in it are the numbers you just set, and your change orders ride along at the bottom. Pick who it is for.</p>'+
+    'so the numbers in it are the numbers we just set, and the change orders ride along at the bottom. Who is it for?</p>'+
     '<div style="display:flex;gap:9px;flex-wrap:wrap">'+
     '<button class="btn pri" id="pAlan">For Alan Lewis, Take-Two</button>'+
     '<button class="btn pri" id="pSinjin">For Sinjin Bain, board-ready</button>'+
     '<button class="btn" id="pCancel">Cancel</button></div>'+
-    '<p class="hint">Alan gets the sponsor and coalition framing with the gap stated plainly, which is the habit that won Take-Two. '+
+    '<p class="hint">Alan gets the sponsor and coalition framing with the gap stated plainly, which is the habit that won us Take-Two in the first place. '+
     'Sinjin gets the board-ready version built for the Bigglesworth letter of intent window. '+
-    'Gordon sends anything that goes to either of them.</p>';
+    'Gordon sends anything that goes to either of them, always.</p>';
   document.getElementById('modal').classList.add('on');
   document.getElementById('pCancel').addEventListener('click',closeModal);
   document.getElementById('pAlan').addEventListener('click',function(){
@@ -1268,8 +1283,8 @@ document.getElementById('bAdd').addEventListener('click',function(){ addModal(nu
 document.getElementById('bProp').addEventListener('click',propModal);
 document.getElementById('bMonday').addEventListener('click',function(){
   outModal('Export to Monday','Save this as a .csv, then in Monday choose Import data and then CSV. '+
-    'The Group column becomes your board groups, so Must, Should, Could, and Next release arrive as four groups already sorted, '+
-    'with owner, dates, points, cost, dependencies, and acceptance criteria mapped to columns.',
+    'The Group column becomes our board groups, so Must, Should, Could, and Next release land as four groups already sorted, '+
+    'with owner, dates, points, cost, dependencies, and acceptance criteria mapped across. Brennan, this one is for you. 😊',
     mondayCSV(),'ggp-directory-board.csv');
 });
 document.getElementById('bReset').addEventListener('click',function(){
