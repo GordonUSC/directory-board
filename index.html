@@ -123,8 +123,8 @@ textarea{width:100%;resize:vertical;min-height:66px;line-height:1.5}
   background:var(--line);color:var(--ink2);white-space:nowrap}
 .tag.pts{background:color-mix(in srgb,var(--brand) 14%,transparent);color:var(--brand)}
 .tag.cost{background:color-mix(in srgb,var(--okc) 17%,transparent);color:var(--ok)}
-.tag.ms{background:color-mix(in srgb,var(--brand2) 15%,transparent);color:#0077b6}
-@media (prefers-color-scheme:dark){.tag.ms{color:#6fd0ff}}
+.tag.mile{background:color-mix(in srgb,var(--brand2) 15%,transparent);color:#0077b6}
+@media (prefers-color-scheme:dark){.tag.mile{color:#6fd0ff}}
 .tag.new{background:var(--brand);color:#fff}
 .tag.blocked{background:color-mix(in srgb,var(--badc) 18%,transparent);color:var(--bad)}
 
@@ -730,7 +730,7 @@ function renderBoard(){
         '<div class="nm">'+esc(it.n)+'</div><div class="dsc">'+esc(it.promise)+'</div><div class="foot">'+
         '<span class="tag pts">'+it.pts+' pts</span>'+
         (Number(it.cost)>0?'<span class="tag cost">'+money(it.cost)+'</span>':'')+
-        '<span class="tag ms">'+it.ms+'</span><span class="tag">'+esc(it.own)+'</span>'+
+        '<span class="tag mile">'+it.ms+'</span><span class="tag">'+esc(it.own)+'</span>'+
         (brokenIds[it.id]?'<span class="tag blocked">dependency</span>':'')+
         (it.added?'<span class="tag new">added</span>':'')+
         '</div></div>';
