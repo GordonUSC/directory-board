@@ -1650,7 +1650,7 @@ document.querySelectorAll('.vt').forEach(function(b){
   b.addEventListener('click',function(){
     document.querySelectorAll('.vt').forEach(function(x){ x.classList.remove('on'); });
     b.classList.add('on'); view=b.dataset.v;
-    ['board','timeline','team','agree','chg'].forEach(function(v){
+    ['board','timeline','team','agree','chg','ask'].forEach(function(v){
       document.getElementById('view-'+v).classList.toggle('on',view===v); });
     renderAll();
   });
