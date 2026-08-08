@@ -390,7 +390,7 @@ var SEED=[
   promise:'Launch day is a moment, not an upload.',
   goal:'Partners amplify when you ask them properly and early. WOTC, G4C, and ASGC all have reasons to carry this.',
   ac:['Announcement thread drafted','Partner amplification asks to WOTC, G4C, ASGC','Scholar-facing walkthrough','Gordon approves all sends'],
-  res:['Gordon owns this and approves anything external','Mabel on brand voice as a project-scoped contributor, briefed by Gordon'],
+  res:['Gordon owns this and approves anything external','Brand voice support, project-scoped'],
   risk:[{t:'Partner asks go out too late to be scheduled',l:2,i:2}],
   ben:['Drives the 1,500 unique visitors in the first 90 days','Unsolicited mentions are one of our stated success metrics']},
 
@@ -438,7 +438,7 @@ var SEED=[
   promise:'The Directory shown live at GDC with the scholars it serves standing in the room.',
   goal:'GDC is where this field decides what is real. A live demo with scholars present is worth more than any deck.',
   ac:['Shown live in a scheduled GDC-week moment','Scholars in the room','Press one-pager available','Demo rehearsed twice with a static fallback'],
-  res:['Gordon owns the moment and is the public face of it','Mabel on Informa coordination as a project-scoped contributor, since that relationship is hers','Demo build and rehearsal time'],
+  res:['Gordon owns the moment and is the public face of it','Informa coordination for the slot','Demo build and rehearsal time'],
   risk:[{t:'Live demo fails on venue wifi',l:2,i:2},{t:'Scheduled slot not secured in time',l:2,i:3}],
   ben:['Converts the product into industry awareness','Feeds directly into the coalition announcements']},
 
@@ -535,21 +535,25 @@ var OWNERS={
   Eric:'Executive Producer',Gordon:'Executive sponsor',Joe:'Finance and compliance',
   Alex:'Scholar and alumni liaison',Brennan:'Ops and boards',Darby:'Research and verification',
   'Build partner':'Site build, to name by M1','Automation partner':'Feeds and refresh, to name by M1',
-  'Data steward':'Accuracy between refreshes',
-  Mabel:'Brand voice and Informa, project-scoped, briefed by Gordon',
-  Charlie:'Technical contributor, project-scoped',TBD:'Unassigned'
+  'Data steward':'Accuracy between refreshes',TBD:'Unassigned'
 };
+function ownerList(){
+  var base=Object.keys(OWNERS), extra=(state&&state.people)||[];
+  extra.forEach(function(p){ if(base.indexOf(p)<0) base.push(p); });
+  return base;
+}
+function ownerRole(o){ return OWNERS[o]||'Added by Eric'; }
 
 var state=null, view='board', fEpic='', fOwner='', openId=null, dragId=null;
 
 function defaults(){
-  return {items:SEED.map(clone),budget:30000,cont:3000,seats:0,cap:90,log:[]};
+  return {items:SEED.map(clone),budget:30000,cont:3000,seats:0,cap:90,log:[],people:[]};
 }
 function clone(o){ return JSON.parse(JSON.stringify(o)); }
 function load(){
   var s=null;
   try{ s=JSON.parse(localStorage.getItem(KEY)||'null'); }catch(e){ s=null; }
-  if(s&&s.items&&s.items.length){ state=s; if(!state.log) state.log=[]; return; }
+  if(s&&s.items&&s.items.length){ state=s; if(!state.log) state.log=[]; if(!state.people) state.people=[]; return; }
   state=defaults();
 }
 function save(){ try{ localStorage.setItem(KEY,JSON.stringify(state)); }catch(e){} }
@@ -781,6 +785,15 @@ function setPri(id,pri){
   if(openId===id) openDrawer(id);
 }
 
+function setOwner(id,owner){
+  var it=find(id); if(!it||!owner||it.own===owner) return;
+  var from=it.own; it.own=owner;
+  state.log.unshift({t:new Date().toISOString(),id:id,name:it.n,from:'owner '+from,to:'owner '+owner,
+    dCost:0,dPts:0,gap:totals().gap,note:'reassigned'});
+  if(state.log.length>200) state.log.length=200;
+  save(); renderAll(); openDrawer(id);
+}
+
 function renderTimeline(){
   var html='';
   MILESTONES.forEach(function(m){
@@ -828,9 +841,8 @@ function renderTeam(){
     '<div class="panel"><h3>RACI, straight from the plan</h3><p class="lead">Unchanged from Production Plan v1, and I am genuinely grateful to every person on this list. If a name here is wrong it is wrong in the plan too, and Monday is where we fix it.</p><ul>'+
     '<li><b>Gordon Bellamy</b>: executive sponsor, public face, final approval on anything external. Accountable on launch and comms.</li>'+
     '<li><b>Eric Francksen</b>: Executive Producer. Schedule, scope, quality gate, and this document. Responsible and accountable on delivery.</li>'+
-    '<li><b>Build partner</b> and <b>automation partner</b>: the site build and the feeds work, written as two scoped packages to fill by M1 rather than assigned by default. Charlie des Robert is a strong candidate for either, and they are one of several people we should be talking to.</li>'+
+    '<li><b>Build partner</b> and <b>automation partner</b>: the site build and the feeds work, written as two scoped packages for us to fill by M1 rather than assigned by default. Bring me candidates on Monday.</li>'+
     '<li><b>Alex Rogers</b>: scholar and alumni liaison, Pipeline recruitment and consent collection. He took ownership of the Directory itself on 7 August.</li>'+
-    '<li><b>Mabel Chung</b>: brand voice on the launch comms, and Informa coordination for the GDC moment, because that relationship is genuinely hers. Project-scoped and briefed by Gordon, which is how we work now.</li>'+
     '<li><b>Brennan Murphy</b>: ops, boards, refresh reminders, corrections triage, and the ASGC cross-listing submission.</li>'+
     '<li><b>Joe Heally</b>: finance and compliance, budget tracking, sponsor invoicing, counsel coordination. Accountable on budget.</li>'+
     '<li><b>Darby</b>: research and verification engine, wave runs, evidence grading, drafts.</li>'+
@@ -844,7 +856,7 @@ function renderTeam(){
     '<ul>'+
     '<li><b>The build is a scoped package, not a name.</b> Handing one person the site, the lens engine, and the feeds automation would be exactly the dependency my own risk register warns about. So it is two separable packages with two seats to fill by M1.</li>'+
     "<li><b>Brand voice and partner relationships route through Gordon.</b> He briefs them, he approves anything external, and that is already true in practice. Writing it down just makes it honest.</li>"+
-    '<li><b>Named contributors are still named.</b> Scoping work before a name goes on it is not a comment on anybody. Mabel and Charlie are both on this project, and I want both of them on it.</li>'+
+    "<li><b>Every card can be reassigned.</b> Open any item and change the owner, and if the right person isn't on the list yet, type their name and they'll be available everywhere. Scoping the work before a name goes on it is not a comment on anybody, and I would rather we picked the right person for each piece than inherited an org chart.</li>"+
     '</ul></div>';
 }
 
@@ -935,16 +947,40 @@ function openDrawer(id){
     '<div class="dsec"><h4>Resources it needs</h4><ul>'+(it.res||[]).map(function(a){ return '<li>'+esc(a)+'</li>'; }).join('')+'</ul></div>'+
     '<div class="dsec"><h4>Risks</h4>'+riskHtml+'</div>'+
     '<div class="dsec"><h4>Benefits if we do it</h4><ul>'+(it.ben||[]).map(function(a){ return '<li>'+esc(a)+'</li>'; }).join('')+'</ul></div>'+
+    '<div class="dsec"><h4>Owner, reassign it to anyone</h4>'+
+      '<select id="downer" style="width:100%">'+ownerList().map(function(o){
+        return '<option'+(it.own===o?' selected':'')+'>'+esc(o)+'</option>'; }).join('')+
+        '<option value="__new">Someone else, let me type a name</option></select>'+
+      '<div id="dnewwrap" style="display:none;margin-top:8px">'+
+        '<input id="dnewname" placeholder="Their name" style="width:100%">'+
+        '<button class="btn pri" id="dnewgo" style="margin-top:7px">Assign it to them</button></div>'+
+      '<p class="hint">Anyone you add here becomes available on every other card too, and the move gets logged as a change order.</p></div>'+
     '<div class="dsec"><h4>The numbers</h4><div class="kv">'+
       '<div class="k">Epic</div><div class="v">'+esc(it.e)+'</div>'+
       '<div class="k">Milestone</div><div class="v">'+esc(it.ms)+'</div>'+
-      '<div class="k">Owner</div><div class="v">'+esc(it.own)+'</div>'+
+      '<div class="k">Role</div><div class="v">'+esc(ownerRole(it.own))+'</div>'+
       '<div class="k">Effort</div><div class="v">'+it.pts+' story points</div>'+
       '<div class="k">Cost</div><div class="v">'+money(it.cost)+'</div></div></div>'+
     '<div class="dsec"><h4>Your notes</h4><textarea id="dnote" placeholder="Anything you want recorded against this. Saves as you type, and it rides along into the Monday export.">'+esc(it.note||'')+'</textarea></div>'+
     '<div class="dsec"><button class="btn" id="dEdit">Edit the numbers</button></div>';
 
   document.querySelectorAll('.pp').forEach(function(b){ b.addEventListener('click',function(){ setPri(id,b.dataset.p); }); });
+
+  var sel=document.getElementById('downer'), wrap=document.getElementById('dnewwrap');
+  sel.addEventListener('change',function(){
+    if(sel.value==='__new'){ wrap.style.display='block'; document.getElementById('dnewname').focus(); }
+    else { wrap.style.display='none'; setOwner(id,sel.value); }
+  });
+  document.getElementById('dnewgo').addEventListener('click',function(){
+    var nm=document.getElementById('dnewname').value.trim();
+    if(!nm) return;
+    if(state.people.indexOf(nm)<0&&!OWNERS[nm]) state.people.push(nm);
+    setOwner(id,nm);
+  });
+  document.getElementById('dnewname').addEventListener('keydown',function(ev){
+    if(ev.key==='Enter'){ ev.preventDefault(); document.getElementById('dnewgo').click(); }
+  });
+
   var n=document.getElementById('dnote');
   n.addEventListener('input',function(){ it.note=n.value; save(); });
   document.getElementById('dEdit').addEventListener('click',function(){ addModal(it); });
@@ -1019,7 +1055,7 @@ function addModal(existing){
   var it=existing||null;
   var s=document.getElementById('msheet');
   var epics=['Foundations','Trust','Build','Content','Pipeline','Operations','Funding','Launch','Partnerships'];
-  var owners=Object.keys(OWNERS);
+  var owners=ownerList();
   s.innerHTML=
     '<h3>'+(it?'Edit, '+esc(it.n):'Add a feature or an intention')+'</h3>'+
     '<p class="lead">'+(it?'Change anything. The board recalculates the moment you save.':
