@@ -219,15 +219,32 @@ a{color:var(--brand)}
 <div class="rail"></div>
 <div class="wrap">
 
+<div class="panel" id="preface" style="margin-top:26px;border-left:5px solid var(--brand2)">
+  <h3>Eric, read this bit first. It is from Gordon and Darby, not from you.</h3>
+  <p class="lead"><b>Everything below this card is written in your voice, and you did not write it.</b> That is deliberate, and you should know exactly why before you read a word of it.</p>
+  <ul>
+    <li><b>Nobody has seen this except Gordon.</b> Nothing has been emailed, nothing has been sent to the team, and the distribution line further down is a proposal, not a record. There is no version of this where you find out your team read something you did not write.</li>
+    <li><b>It is a draft for you to argue with, not a document to accept.</b> Gordon asked for it in your production register so you would have something to react to instead of a blank page and a weekend. Reacting is the whole job we are asking of you.</li>
+    <li><b>The facts are real, the voice is a guess.</b> Numbers, dates, acceptance criteria and quotes come from your Production Plan v1, Alan's email of 18 June, and the live catalog. Every one is traceable, and the Working agreement tab shows the arithmetic. The wording around them is our attempt at how you would put it, and it is the part most likely to be wrong.</li>
+    <li><b>The dates are pencil.</b> Kickoff is a date Darby picked. Change it in the bar below and the whole schedule moves with it.</li>
+  </ul>
+  <p>If the voice is off, tell us and we will fix it or strip it back to plain notes. If it is close, edit it and make it yours. <b>It becomes your document the moment you say it is, and not one second before.</b></p>
+  <div class="field" style="margin-top:14px"><label>Your opening line, if you want one</label>
+    <input id="ownLine" placeholder="Type how you would actually open this to your team"></div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <button class="btn pri" id="adoptBtn">This reads like me, make it mine</button>
+    <button class="btn" id="rejectBtn">The voice is off, strip it to plain notes</button>
+  </div>
+</div>
+
 <header>
   <p class="hi">GGP &middot; The Directory &amp; Pipeline &middot; Production Board v1</p>
   <h1>Hi team! Here's the whole build,<br>and here's what I need from you.</h1>
-  <p class="sub">First, thank you. Take-Two put $30,000 behind this as our inaugural lead sponsor, Alan and Sinjin started the whole thing in a conversation, and Gordon and Darby have already built a 53-entry catalog that genuinely works. My job now is to produce it without breaking any of that, and this board is how I'd like us to run it. <b>Every item moves between Must, Should, Could, and Next release</b>, and when it moves, the budget, the schedule, the team load, and the risk all move with it. Model a coalition seat closing and you'll see exactly what it buys us. Add anything I've missed and it'll size itself. Then we export to Monday, or generate the proposal for Alan or Sinjin from wherever we land. <b>Nothing here is decided.</b> Please argue with it. 😊</p>
-  <p class="meta">
-    Prepared by Eric Francksen, Executive Producer, for the M0 kickoff &middot; Friday 7 August 2026<br>
-    Kickoff is Monday &middot; Public launch target Friday 9 October 2026 &middot; Distribution: Gordon, Joe, Alex<br>
-    Drafted by Darby in my production register so I'd have something to argue with. My edits and sign-off are what make it mine.<br>
-    Everything saves in this browser only. Nothing goes anywhere until one of us exports it.
+  <p class="sub" id="subLine"><span id="ownEcho"></span>First, thank you. Take-Two put $30,000 behind this as our inaugural lead sponsor, Alan and Sinjin started the whole thing in a conversation, and Gordon and Darby have already built a 53-entry catalog that genuinely works. My job now is to produce it without breaking any of that, and this board is how I'd like us to run it. <b>Every item moves between Must, Should, Could, and Next release</b>, and when it moves, the budget, the schedule, the team load, and the risk all move with it. Model a coalition seat closing and you'll see exactly what it buys us. Add anything I've missed and it'll size itself. Then we export to Monday, or generate the proposal for Alan or Sinjin from wherever we land. <b>Nothing here is decided.</b> Please argue with it. 😊</p>
+  <p class="meta" id="byline">
+    <b>DRAFT written for Eric Francksen to react to. Not his document yet.</b> &middot; Friday 7 August 2026<br>
+    Public launch target Friday 9 October 2026 &middot; Proposed distribution once Eric signs off: Gordon, Joe, Alex<br>
+    Everything saves in this browser only. Nothing has been sent to anyone, and nothing goes anywhere until Eric exports it himself.
   </p>
 </header>
 
@@ -242,8 +259,15 @@ a{color:var(--brand)}
     </div>
   </div>
   <div class="mf"><label>Capacity to GDC, points</label><input id="mCap" type="number" step="5" min="10"></div>
+  <div class="mf"><label>If kickoff actually happens</label><input id="mKick" type="date"></div>
+  <div class="mf"><label>&nbsp;</label>
+    <label style="font-size:13px;font-weight:600;text-transform:none;letter-spacing:0;color:var(--ink2);display:flex;gap:7px;align-items:center;cursor:pointer">
+      <input type="checkbox" id="mHold" style="width:auto"> Hold October 9
+    </label>
+  </div>
   <p class="mnote" id="mNote"></p>
 </div>
+<div class="alert info" id="provisional" style="margin-top:10px"></div>
 
 <div class="dash" id="dash"></div>
 <div class="verdict" id="verdict"></div>
@@ -339,15 +363,15 @@ var PRI={
 };
 
 var MILESTONES=[
- {id:'M0',when:'Mon Aug 10',date:new Date(2026,7,10),t:'Kickoff and roles locked',d:'45 minutes, whole team. This plan reviewed, argued, and amended. Data steward candidate named. Weekly standup slotted for Tuesday, 30 minutes, before Weekly Connect.',gate:'Gate: every RACI cell has a name in it'},
- {id:'M1',when:'Fri Aug 21',date:new Date(2026,7,21),t:'Spec freeze',d:'Canonical doc merged. Lens engine reviewed on real phones. Wave Three research brief approved. Consent flow draft to counsel.',gate:'Gate: no new scope enters after this date without an equal scope exit'},
- {id:'M2',when:'Fri Sep 18',date:new Date(2026,8,18),t:'Content complete for launch',d:'Catalog at 65 or better, methodology page final, every entry re-checked within 60 days. The Riot September wave lands inside this window and we catch it live, which is the whole point of the product.',gate:'Gate: zero entries without badges; internship entries current within 14 days'},
- {id:'M3',when:'Fri Oct 9',date:new Date(2026,9,9),t:'PUBLIC LAUNCH',d:'Site accepted, Take-Two credit approved by their office, launch comms out, ASGC cross-listing submitted. Timed deliberately before the Bigglesworth board clock.',gate:'Gate: Gordon go, Joe budget sign-off, Alan office credit approval'},
- {id:'M4',when:'Fri Dec 11',date:new Date(2026,11,11),t:'Pipeline alpha live, Casino Night moment',d:'20 consented profiles, intro-request flow proven with two friendly recruiters, announced to the donor room where the scholars it serves are standing.',gate:'Gate: counsel-approved consent on file for every profile, no exceptions'},
- {id:'M5',when:'Feb 2027',date:new Date(2027,1,19),t:'Meet the Scholars integration',d:'Campaign traffic routed through the Directory. Recruiter annual touchpoint number one executed.',gate:'Gate: refresh number two complete before campaign sends'},
- {id:'M6',when:'GDC Mar 2027',date:new Date(2027,2,19),t:'GDC debut and coalition announcements',d:'Live demo with scholars present, coalition seats announced, press one-pager, CGC finalist profiles featured.',gate:'Gate: demo rehearsed twice, fallback static version on a USB drive because we are professionals'},
- {id:'M7',when:'Apr 2027',date:new Date(2027,3,16),t:'Retro and v2 decision',d:'Full production retro against the success metrics. Decisions with data, not enthusiasm.',gate:'Gate: retro doc filed; v2 scope drafted from evidence'},
- {id:'v2',when:'Next release',date:null,t:'The public roadmap',d:'Everything parked, visible to funders. Honesty about what is not funded yet is itself part of the pitch.',gate:''}
+ {id:'M0',when:'Mon Aug 10',base:new Date(2026,7,10),t:'Kickoff and roles locked',d:'45 minutes, whole team. This plan reviewed, argued, and amended. Data steward candidate named. Weekly standup slotted for Tuesday, 30 minutes, before Weekly Connect.',gate:'Gate: every RACI cell has a name in it'},
+ {id:'M1',when:'Fri Aug 21',base:new Date(2026,7,21),t:'Spec freeze',d:'Canonical doc merged. Lens engine reviewed on real phones. Wave Three research brief approved. Consent flow draft to counsel.',gate:'Gate: no new scope enters after this date without an equal scope exit'},
+ {id:'M2',when:'Fri Sep 18',base:new Date(2026,8,18),t:'Content complete for launch',d:'Catalog at 65 or better, methodology page final, every entry re-checked within 60 days. The Riot September wave lands inside this window and we catch it live, which is the whole point of the product.',gate:'Gate: zero entries without badges; internship entries current within 14 days'},
+ {id:'M3',when:'Fri Oct 9',base:new Date(2026,9,9),t:'PUBLIC LAUNCH',d:'Site accepted, Take-Two credit approved by their office, launch comms out, ASGC cross-listing submitted. Timed deliberately before the Bigglesworth board clock.',gate:'Gate: Gordon go, Joe budget sign-off, Alan office credit approval'},
+ {id:'M4',when:'Fri Dec 11',base:new Date(2026,11,11),t:'Pipeline alpha live, Casino Night moment',d:'20 consented profiles, intro-request flow proven with two friendly recruiters, announced to the donor room where the scholars it serves are standing.',gate:'Gate: counsel-approved consent on file for every profile, no exceptions'},
+ {id:'M5',when:'Feb 2027',base:new Date(2027,1,19),t:'Meet the Scholars integration',d:'Campaign traffic routed through the Directory. Recruiter annual touchpoint number one executed.',gate:'Gate: refresh number two complete before campaign sends'},
+ {id:'M6',when:'GDC Mar 2027',base:new Date(2027,2,19),t:'GDC debut and coalition announcements',d:'Live demo with scholars present, coalition seats announced, press one-pager, CGC finalist profiles featured.',gate:'Gate: demo rehearsed twice, fallback static version on a USB drive because we are professionals'},
+ {id:'M7',when:'Apr 2027',base:new Date(2027,3,16),t:'Retro and v2 decision',d:'Full production retro against the success metrics. Decisions with data, not enthusiasm.',gate:'Gate: retro doc filed; v2 scope drafted from evidence'},
+ {id:'v2',when:'Next release',base:null,t:'The public roadmap',d:'Everything parked, visible to funders. Honesty about what is not funded yet is itself part of the pitch.',gate:''}
 ];
 
 var SEED=[
@@ -582,13 +606,13 @@ function ownerRole(o){ return OWNERS[o]||'Added by Eric'; }
 var state=null, view='board', fEpic='', fOwner='', openId=null, dragId=null;
 
 function defaults(){
-  return {items:SEED.map(clone),budget:30000,cont:3000,seats:0,cap:90,log:[],people:[]};
+  return {items:SEED.map(clone),budget:30000,cont:3000,seats:0,cap:90,log:[],people:[],kickoff:'2026-08-10',holdLaunch:true,adopted:null,opening:''};
 }
 function clone(o){ return JSON.parse(JSON.stringify(o)); }
 function load(){
   var s=null;
   try{ s=JSON.parse(localStorage.getItem(KEY)||'null'); }catch(e){ s=null; }
-  if(s&&s.items&&s.items.length){ state=s; if(!state.log) state.log=[]; if(!state.people) state.people=[]; return; }
+  if(s&&s.items&&s.items.length){ state=s; if(!state.log) state.log=[]; if(!state.people) state.people=[]; if(!state.kickoff) state.kickoff='2026-08-10'; if(state.holdLaunch===undefined) state.holdLaunch=true; if(state.adopted===undefined) state.adopted=null; if(state.opening===undefined) state.opening=''; return; }
   state=defaults();
 }
 function save(){ try{ localStorage.setItem(KEY,JSON.stringify(state)); }catch(e){} }
@@ -599,6 +623,33 @@ function find(id){ for(var i=0;i<state.items.length;i++){ if(state.items[i].id==
 function committed(it){ return it.pri==='must'||it.pri==='should'; }
 function spendable(){ return state.budget + state.seats*SEAT - state.cont; }
 function days(d){ if(!d) return null; return Math.round((d-TODAY)/86400000); }
+
+var BASE_KICK=new Date(2026,7,10);
+function kickDate(){
+  var s=(state&&state.kickoff)||'2026-08-10', p=s.split('-');
+  return new Date(+p[0],+p[1]-1,+p[2]);
+}
+function kickShift(){ return Math.round((kickDate()-BASE_KICK)/86400000); }
+// Effective date for a milestone, given where kickoff actually lands.
+// Holding October 9 means a late kickoff compresses the build window instead of moving the launch.
+function mdate(m){
+  if(!m.base) return null;
+  var shift=kickShift();
+  if(shift===0) return m.base;
+  var launchIdx=3;
+  var idx=MILESTONES.findIndex(function(x){ return x.id===m.id; });
+  if(state.holdLaunch && idx>=launchIdx) return m.base;
+  return new Date(m.base.getTime()+shift*86400000);
+}
+function fmt(d){
+  if(!d) return 'Next release';
+  return d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+}
+function buildWindow(){
+  var m3=MILESTONES.filter(function(x){ return x.id==='M3'; })[0];
+  return Math.round((mdate(m3)-kickDate())/86400000);
+}
+var BASE_WINDOW=Math.round((new Date(2026,9,9)-BASE_KICK)/86400000);
 
 function totals(){
   var t={cost:{must:0,should:0,could:0,later:0},pts:{must:0,should:0,could:0,later:0},
@@ -644,6 +695,9 @@ function renderModel(){
   document.getElementById('mBudget').value=state.budget;
   document.getElementById('mCont').value=state.cont;
   document.getElementById('mCap').value=state.cap;
+  document.getElementById('mKick').value=state.kickoff;
+  document.getElementById('mHold').checked=!!state.holdLaunch;
+  renderProvisional();
   document.getElementById('seatVal').textContent=state.seats+' seat'+(state.seats===1?'':'s');
   var n=document.getElementById('mNote');
   if(state.seats>0){
@@ -651,6 +705,46 @@ function renderModel(){
       ', so spendable becomes <b>'+money(spendable())+'</b>. Alan offered in writing on 18 June to make the EA and ESA introductions with us, so this is a real scenario and not a hopeful one.';
   } else {
     n.innerHTML='Spendable today is <b>'+money(spendable())+'</b>, which is what Take-Two funded less the contingency Joe holds. Add a coalition seat above and you can see for yourself what closing one would buy us.';
+  }
+}
+
+function renderProvisional(){
+  var el=document.getElementById('provisional'); if(!el) return;
+  var shift=kickShift(), win=buildWindow(), m0=MILESTONES[0];
+  var parts=[];
+  if(shift===0){
+    parts.push('<b>These dates are pencil.</b> Kickoff sits on '+fmt(mdate(m0))+
+      ' because Darby picked it, not because anyone agreed to it. Move it above and watch what it costs.');
+  } else {
+    parts.push('<b>Kickoff moved to '+fmt(mdate(m0))+'</b>, which is '+Math.abs(shift)+' day'+(Math.abs(shift)===1?'':'s')+
+      (shift>0?' later':' earlier')+' than the pencil mark.');
+    if(state.holdLaunch){
+      parts.push('October 9 is held, so the whole slip lands on the build window: <b>'+win+' days instead of '+BASE_WINDOW+
+        '</b>. That is time coming out of catalog verification and the site build, not out of the launch.');
+      if(win<35) parts.push('<b>At this point I would stop defending the date and go talk to Sinjin about the letter of intent window instead.</b>');
+    } else {
+      parts.push('The launch moves with it, to <b>'+fmt(mdate(MILESTONES[3]))+
+        '</b>. That needs a conversation with Sinjin, because October 9 was chosen to land before the Bigglesworth letter of intent window.');
+    }
+  }
+  el.innerHTML=parts.join(' ');
+  el.className='alert '+(state.holdLaunch&&win<35?'bad':(shift!==0?'':'info'));
+}
+
+function renderAdoption(){
+  var pre=document.getElementById('preface'), by=document.getElementById('byline');
+  if(!pre||!by) return;
+  var line=document.getElementById('ownLine');
+  if(line&&document.activeElement!==line) line.value=state.opening||'';
+  var echo=document.getElementById('ownEcho');
+  if(echo) echo.innerHTML=state.opening?('<b>'+esc(state.opening)+'</b><br><br>'):'';
+  if(state.adopted==='yes'){
+    pre.style.display='none';
+    by.innerHTML='<b>Eric Francksen, Executive Producer.</b> Adopted '+new Date().toLocaleDateString()+
+      ' &middot; Public launch target Friday 9 October 2026<br>Everything saves in this browser only. Nothing goes anywhere until you export it.';
+  } else if(state.adopted==='no'){
+    pre.querySelector('h3').textContent='Noted. The voice is off, and that is useful to know.';
+    pre.querySelector('.lead').innerHTML='<b>Nothing here is going anywhere.</b> Tell Gordon which parts read wrong and Darby will strip the first-person voice out entirely and leave you plain notes with the same numbers. The facts underneath, the budget lines, the dates, the acceptance criteria and Alan\'s email, all stand on their own without anybody speaking for you.';
   }
 }
 
@@ -711,16 +805,16 @@ function tile(cls,lbl,val,sub,pct,mcls){
 function renderAlerts(){
   var a=[], t=totals();
 
-  var m0=MILESTONES[0], d0=days(m0.date);
+  var m0=MILESTONES[0], d0=days(mdate(m0));
   if(d0!==null&&d0>=0&&d0<=7){
-    a.push({c:'info',h:'Our kickoff is '+(d0===0?'today':'in '+d0+' day'+(d0===1?'':'s')),
-      b:"Monday 10 August, 45 minutes, all of us. The gate I set is that every RACI cell has a name in it and we've named a data steward candidate. We haven't met that gate yet, so please come ready."});
+    a.push({c:'info',h:'Kickoff is pencilled for '+fmt(mdate(m0))+(d0===0?', today':', '+d0+' day'+(d0===1?'':'s')+' away'),
+      b:"45 minutes, all of us. Nobody has agreed this date, and as far as I know nothing is in anyone's calendar, so treat it as a proposal rather than a commitment. Change it in the bar above and every date on this board moves with it."});
   }
 
   var steward=find('ST');
   if(steward&&committed(steward)){
     a.push({c:'warn',h:"We still haven't named the data steward",
-      b:"It's due at M1, Friday 21 August, which is "+days(MILESTONES[1].date)+" days out. Until that seat has a real person in it, our corrections promise has nobody standing behind it, and that promise is the whole differentiator. This is the one I'd most like help with on Monday."});
+      b:"It is pencilled for M1, "+fmt(mdate(MILESTONES[1]))+", which is "+days(mdate(MILESTONES[1]))+" days out on the current plan. Until that seat has a real person in it, our corrections promise has nobody standing behind it, and that promise is the whole differentiator. This is the one I'd most like help with on Monday."});
   }
 
   var broken=brokenDeps();
@@ -836,14 +930,15 @@ function renderTimeline(){
     var parked=state.items.filter(function(it){ return it.ms===m.id&&it.pri==='later'; });
     var pts=list.reduce(function(a,b){ return a+(Number(b.pts)||0); },0);
     var cost=list.reduce(function(a,b){ return a+(Number(b.cost)||0); },0);
-    var d=days(m.date), cd='', now='';
+    var d=days(mdate(m)), cd='', now='';
     if(d!==null){
       if(d<0){ cd='<span class="cd" style="color:var(--bad)">'+Math.abs(d)+' days past</span>'; }
       else if(d===0){ cd='<span class="cd" style="color:var(--bad)">today</span>'; now=' now'; }
       else if(d<=14){ cd='<span class="cd" style="color:var(--warn)">in '+d+' days</span>'; now=' now'; }
       else { cd='<span class="cd" style="color:var(--muted)">in '+d+' days</span>'; }
     }
-    html+='<div class="ms'+now+'"><div class="when">'+m.id+'<small>'+m.when+'</small>'+cd+'</div><div>'+
+    var lbl=m.base?fmt(mdate(m)):m.when;
+    html+='<div class="ms'+now+'"><div class="when">'+m.id+'<small>'+lbl+'</small>'+cd+'</div><div>'+
       '<div class="t">'+esc(m.t)+'</div><div class="d">'+esc(m.d)+'</div>'+
       (m.gate?'<div class="gate">'+esc(m.gate)+'</div>':'')+'<div class="load">'+
       (list.length?'<span class="tag pts">'+pts+' pts</span>':'')+
@@ -1522,8 +1617,8 @@ function answerLocal(q){
       P('You can reassign any card to anyone by opening it and changing the owner, including typing in a name that is not on the list yet.');
   }
   if(/when|date|milestone|launch|deadline|timeline|october|kickoff/.test(s)){
-    return P('The dates I am working to:')+'<ul>'+MILESTONES.filter(function(m){ return m.date; }).map(function(m){
-      var d=days(m.date);
+    return P('The dates I am working to:')+'<ul>'+MILESTONES.filter(function(m){ return m.base; }).map(function(m){
+      var d=days(mdate(m));
       return '<li><b>'+m.id+', '+m.when+'</b>, '+(d<0?Math.abs(d)+' days ago':'in '+d+' days')+': '+esc(m.t)+'</li>'; }).join('')+'</ul>'+
       P('October 9 sits ahead of the Bigglesworth letter of intent window on purpose, so their board sees a live product rather than a promise.');
   }
@@ -1549,7 +1644,7 @@ function answerLocal(q){
   }
   if(/steward/.test(s)){
     var st=find('ST');
-    return P('Still unnamed, and due at M1 on Friday 21 August, which is '+days(MILESTONES[1].date)+' days out.')+
+    return P('Still unnamed. It is pencilled for M1 on '+fmt(mdate(MILESTONES[1]))+', which is '+days(mdate(MILESTONES[1]))+' days out on the current plan.')+
       P('Until that seat has a real person in it, our corrections promise has nobody behind it. An Extended Scholar would get resume-grade work out of it, which solves two things at once.')+
       (st?P('It is '+st.pts+' points and currently sitting in '+PRI[st.pri].name+'.'):'');
   }
@@ -1643,7 +1738,7 @@ function renderAsk(){
 }
 
 function renderAll(){
-  renderModel(); renderDash(); fillFilters();
+  renderModel(); renderAdoption(); renderDash(); fillFilters();
   if(view==='board') renderBoard();
   else if(view==='timeline') renderTimeline();
   else if(view==='team') renderTeam();
@@ -1678,6 +1773,16 @@ document.getElementById('mBudget').addEventListener('input',function(){
   state.budget=Math.max(0,parseInt(this.value,10)||0); save(); renderDash(); });
 document.getElementById('mCont').addEventListener('input',function(){
   state.cont=Math.max(0,parseInt(this.value,10)||0); save(); renderDash(); });
+document.getElementById('mKick').addEventListener('change',function(){
+  if(this.value){ state.kickoff=this.value; save(); renderAll(); } });
+document.getElementById('mHold').addEventListener('change',function(){
+  state.holdLaunch=this.checked; save(); renderAll(); });
+document.getElementById('ownLine').addEventListener('input',function(){
+  state.opening=this.value; save(); });
+document.getElementById('adoptBtn').addEventListener('click',function(){
+  state.adopted='yes'; save(); renderAll(); window.scrollTo(0,0); });
+document.getElementById('rejectBtn').addEventListener('click',function(){
+  state.adopted='no'; save(); renderAdoption(); });
 document.getElementById('mCap').addEventListener('input',function(){
   state.cap=Math.max(10,parseInt(this.value,10)||10); save(); renderDash(); });
 document.getElementById('seatUp').addEventListener('click',function(){
