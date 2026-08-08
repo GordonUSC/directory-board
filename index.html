@@ -1446,39 +1446,48 @@ function answerLocal(q){
   var t=totals(), sp=spendable();
   function P(x){ return '<p>'+x+'</p>'; }
 
+  var STOP={'the':1,'and':1,'for':1,'with':1,'from':1,'that':1,'this':1,'what':1,'when':1,'who':1,
+            'how':1,'why':1,'does':1,'are':1,'our':1,'its':1,'into':1,'first':1,'public':1,'named':1};
+  function hasWord(hay,w){ return new RegExp('\\b'+w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b','i').test(hay); }
+
   var card=null, best=0;
   state.items.forEach(function(i){
     var score=0, name=i.n.toLowerCase();
-    if(s.indexOf(name)>=0) score+=10;
-    if(s.indexOf(i.id.toLowerCase())>=0&&i.id.length>1) score+=8;
-    name.split(/[^a-z0-9]+/).forEach(function(w){ if(w.length>4&&s.indexOf(w)>=0) score+=2; });
+    if(s.indexOf(name)>=0) score+=12;                                  // full card name quoted
+    if(hasWord(s,i.id.toLowerCase())) score+=10;                       // the ID as its own word, not inside another
+    var hits=0;
+    name.split(/[^a-z0-9]+/).forEach(function(w){
+      if(w.length>4&&!STOP[w]&&hasWord(s,w)) hits++;
+    });
+    if(hits>=2) score+=4+hits;                                         // two or more real words from the title
     if(score>best){ best=score; card=i; }
   });
+  if(best>=10) return cardAnswer(card);                                // an unmistakable reference wins outright
 
-  if(/budget|money|cost|spend|afford|gap|headroom|dollar|\$/.test(s)&&!card){
+  if(/budget|money|cost|spend|afford|gap|headroom|dollar|\$/.test(s)){
     return P('<b>Committed budget is '+money(t.committedCost)+'</b>, which is the cost of every card in Must have and Should have added together.')+
       P('Spendable is <b>'+money(sp)+'</b>: the funded '+money(state.budget)+
         (state.seats?' plus '+money(state.seats*SEAT)+' of coalition seats':'')+' minus the '+money(state.cont)+
         ' contingency Joe holds against written change orders.')+
       P('That leaves <b>'+(t.gap>0?money(t.gap)+' over':money(-t.gap)+' of headroom')+'</b>. Every dollar traces to one of the five Production Plan v1 budget lines, and the full table is on the Working agreement tab.');
   }
-  if(/capacity|points|velocity|schedule load|too much work|overloaded|sprint/.test(s)&&!card){
+  if(/capacity|points|velocity|schedule load|too much work|overloaded|sprint/.test(s)){
     return P('Schedule load is <b>'+t.committedPts+' points</b> against an assumed capacity of <b>'+state.cap+'</b>.')+
       P('Both numbers are my estimates, not measurements. Points are relative sizing rather than hours, and I set capacity by feel because we have never run this team against a points board. Overwrite the capacity field at the top the moment you have a better number.');
   }
-  if(/risk/.test(s)&&!card){
+  if(/risk/.test(s)){
     return P('Risk index is <b>'+t.risk+'</b>, with <b>'+t.severe+'</b> scored severe.')+
       P('Each risk on a committed card is scored likelihood times impact, 1 to 3 each, so a single risk lands between 1 and 9. Anything at 6 or above I call severe.')+
       P('The one I would put in front of the board regardless of its score is Pipeline consent, because that failure is not recoverable.');
   }
-  if(/who|owner|assign|responsib/.test(s)&&!card){
+  if(/who|owner|assign|responsib/.test(s)){
     var loads=ownerLoad();
     return P('Owners on committed work right now:')+'<ul>'+Object.keys(loads).sort(function(a,b){
       return loads[b].pts-loads[a].pts; }).map(function(k){
       return '<li><b>'+esc(k)+'</b>, '+loads[k].pts+' pts across '+loads[k].n+' items</li>'; }).join('')+'</ul>'+
       P('You can reassign any card to anyone by opening it and changing the owner, including typing in a name that is not on the list yet.');
   }
-  if(/when|date|milestone|launch|deadline|timeline|october|kickoff/.test(s)&&!card){
+  if(/when|date|milestone|launch|deadline|timeline|october|kickoff/.test(s)){
     return P('The dates I am working to:')+'<ul>'+MILESTONES.filter(function(m){ return m.date; }).map(function(m){
       var d=days(m.date);
       return '<li><b>'+m.id+', '+m.when+'</b>, '+(d<0?Math.abs(d)+' days ago':'in '+d+' days')+': '+esc(m.t)+'</li>'; }).join('')+'</ul>'+
@@ -1496,7 +1505,7 @@ function answerLocal(q){
     return P('After M1, any scope addition needs a written change order naming <b>what leaves to make room</b>, approved by me and by Gordon.')+
       P('Every move you make on this board is logged on the Change orders tab with its budget and schedule effect, and it exports with the proposals. "It\'s small" is not a size.');
   }
-  if(/seat|coalition|alan|ea |esa|sponsor|funding gap/.test(s)&&!card){
+  if(/seat|coalition|alan|ea |esa|sponsor|funding gap/.test(s)){
     return P('Alan Lewis offered in writing on 18 June to make the introductions at EA through Tammy and at ESA through Aubrey. That offer has been sitting unused for seven weeks.')+
       P('One coalition seat at '+money(SEAT)+' would take spendable from '+money(sp)+' to '+money(sp+SEAT)+
         '. You can model that with the seats stepper at the top of the page and watch every number move.');
@@ -1511,18 +1520,24 @@ function answerLocal(q){
       (st?P('It is '+st.pts+' points and currently sitting in '+PRI[st.pri].name+'.'):'');
   }
 
-  if(card&&best>=4){
-    var deps=(card.dep||[]).map(function(d){ var p=find(d); return p?p.n+' ('+PRI[p.pri].name+')':d; });
-    return '<p><b>'+esc(card.n)+'</b>, currently in '+PRI[card.pri].name+', owned by '+esc(card.own)+
-      ', due at '+card.ms+'.</p>'+
-      P('<b>What it promises:</b> '+esc(card.promise))+
-      P('<b>Why:</b> '+esc(card.goal))+
-      P('<b>Accepted when:</b> '+(card.ac||[]).map(esc).join('; '))+
-      P('<b>Sizing:</b> '+card.pts+' points, '+money(card.cost)+(card.src?', drawn from '+esc(card.src):''))+
-      (deps.length?P('<b>Depends on:</b> '+deps.map(esc).join('; ')):'')+
-      (card.risk&&card.risk.length?P('<b>Biggest risk:</b> '+esc(card.risk[0].t)):'');
-  }
+  if(card&&best>=6) return cardAnswer(card);
   return null;
+}
+
+function cardAnswer(card){
+  if(!card) return null;
+  function P(x){ return '<p>'+x+'</p>'; }
+  var deps=(card.dep||[]).map(function(d){ var p=find(d); return p?p.n+' ('+PRI[p.pri].name+')':d; });
+  var blocks=state.items.filter(function(x){ return (x.dep||[]).indexOf(card.id)>=0; });
+  return '<p><b>'+esc(card.n)+'</b>, currently in '+PRI[card.pri].name+', owned by '+esc(card.own)+
+    ', due at '+card.ms+'.</p>'+
+    P('<b>What it promises:</b> '+esc(card.promise))+
+    P('<b>Why:</b> '+esc(card.goal))+
+    P('<b>Accepted when:</b> '+(card.ac||[]).map(esc).join('; '))+
+    P('<b>Sizing:</b> '+card.pts+' points, '+money(card.cost)+(card.src?', drawn from '+esc(card.src):''))+
+    (deps.length?P('<b>Depends on:</b> '+deps.map(esc).join('; ')):'')+
+    (blocks.length?P('<b>Waiting on it:</b> '+blocks.map(function(b){ return esc(b.n); }).join('; ')):'')+
+    (card.risk&&card.risk.length?P('<b>Biggest risk:</b> '+esc(card.risk[0].t)):'');
 }
 
 function renderAsk(){
