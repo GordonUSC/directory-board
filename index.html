@@ -260,6 +260,25 @@ a{color:var(--brand)}
   </ol>
 </div>
 
+<div class="panel">
+  <h3>Who this is for, and why it is us building it</h3>
+  <p class="lead">Gordon says this better than I do, so I am borrowing his words. <b>GGP brings universal excellence. Our particular lens, LGBTQ+ professionals and students in the games industry, positions us to serve and center underestimated communities</b>, neurodiverse, Latine, BIPOC, disabled, women, LGBTQIA+, AANHPI, and growing. We serve all audiences, and we are not a niche.</p>
+  <p>That is not decoration on a production plan. It is the whole reason this thing has to be verified rather than approximate. The families who most need this map are the ones least likely to have somebody at the dinner table who already knows the way in, and a student acting on a date we got wrong pays for our mistake in a way we never see.</p>
+  <p><b>2026 is GGP's twentieth year.</b> The Scholars program is seven. Take-Two has been with us every year since 2019, the same year Scholars launched, and they are the ones putting the Directory into the world. That is the story the launch should tell, and I would rather we told it with gratitude than with superlatives.</p>
+</div>
+
+<div class="panel">
+  <h3>The people this is actually for</h3>
+  <p class="lead">Before any of us argue about story points, this is what the machinery is in service of. Four of ours, in their own right.</p>
+  <ul>
+    <li><b>Joseph Kemp</b>, the first GGP Scholar named to Forbes 30 Under 30 in Games. CEO of Games That Matter, and the creator of Disbarred.</li>
+    <li><b>iAsia Brown</b>, named Outstanding Alumni by the USC Black Alumni Association, nominated for the Women in Tech Global Awards in two categories, and now the founder of her own scholarship endowment for Los Angeles students in game development.</li>
+    <li><b>Christopher Kim</b>, scholar, then mentor, then faculty. As an NYU mentor he wrote the thank-you letter to GDC that helped win passes for the next cohort.</li>
+    <li><b>Jonas Ma</b>, on camera at GDC 2026: "GGP made my entry into the games industry so much easier."</li>
+  </ul>
+  <p>Every one of them found a door. The Directory is the argument that finding the door should not have to depend on luck. <b>If a number on this board does not eventually help produce another one of these, it is the wrong number.</b></p>
+</div>
+
 <div class="toolbar">
   <div class="viewtabs" role="tablist">
     <button class="vt on" data-v="board" role="tab">Board</button>
@@ -429,7 +448,7 @@ var SEED=[
 
  {id:'CI',n:'Corrections inbox and public changelog',e:'Trust',ms:'M3',own:'Darby',pts:3,cost:0,pri:'must',dep:['D2'],
   promise:'When we get something wrong, you can watch us fix it.',
-  goal:'Publishing our own gaps is what nobody else in this space does. The changelog is the proof it is not just a claim.',
+  goal:'Publishing our own gaps is what earns a board\'s trust, and the changelog is the proof it is not just a claim. We are not doing it to be different from anyone. We are doing it because a student acting on a wrong date pays for it.',
   ac:['Corrections inbox tested','Changelog page seeded with the launch entry','Five business day SLA from inbox to resolution or public checking status'],
   res:['Darby to build','Data steward to run'],
   risk:[{t:'Inbox goes unwatched and the SLA becomes fiction',l:2,i:3}],
@@ -1312,11 +1331,10 @@ function proposalText(who){
       L.push('');
     }
     if(t.gap>0){
-      L.push('THE ASK, SAID PLAINLY');
-      L.push('  Full committed scope prices at '+money(t.committedCost+state.cont)+'. We are funded to '+money(state.budget+state.seats*SEAT)+'.');
-      L.push('  The gap is '+money(t.gap)+'.');
-      L.push('  One coalition seat at '+money(SEAT)+' closes it. You offered on 18 June to make the introductions at EA through Tammy and at ESA through Aubrey, and we would love to take you up on that.');
-      L.push('  Two seats would make this a coalition asset rather than a single-sponsor one, which is safer for Take-Two and stronger for the field.');
+      L.push('TAKING YOU UP ON WHAT YOU ALREADY OFFERED');
+      L.push('  On 18 June you wrote that we can and should approach EA, with Tammy back, and ESA with Aubrey. We would love to take you up on it, together.');
+      L.push('  Full committed scope prices at '+money(t.committedCost+state.cont)+' against the '+money(state.budget+state.seats*SEAT)+' you have funded, so the remainder is '+money(t.gap)+'.');
+      L.push('  A coalition seat at '+money(SEAT)+' covers it. More than the money, a second and third name alongside yours makes this the field\'s asset rather than one company\'s, which is better for Take-Two and better for everyone we are trying to reach.');
     } else if(state.seats>0){
       L.push('WHERE THE COALITION SEATS LAND');
       L.push('  With '+state.seats+' seat'+(state.seats===1?'':'s')+' at '+money(SEAT)+', the committed scope fits with '+money(sp-t.committedCost)+' of headroom.');
@@ -1341,16 +1359,17 @@ function proposalText(who){
     L.push('Hi Sinjin!','');
     L.push('Board-ready summary of the Directory, current as of today. Built so you can lift any part of it straight into the Bigglesworth conversation.','');
     L.push('WHERE IT IS');
+    L.push('  2026 is GGP\'s twentieth year. The Scholars program is seven, and Take-Two has been with us every year since 2019, the same year Scholars launched.');
     L.push('  Funded at '+money(state.budget)+' by Take-Two as inaugural lead sponsor, approved unanimously by the Take-Two Giving Committee on 18 June.');
     L.push('  53 verified entries live today, going to 75 by GDC.');
     L.push('  Public launch is Friday 9 October, set deliberately ahead of the Bigglesworth letter of intent window so their board sees a live product rather than a promise.','');
     L.push('WHAT LAUNCHES IN OCTOBER');
     must.forEach(function(i){ L.push('  - '+i.n+': '+i.promise); });
     L.push('','HOW WE KNOW IT WORKED, BY GDC WEEK');
-    L.push('  1,500 unique visitors in the first 90 days, and at least three inbound mentions we did not solicit.');
-    L.push('  20 consenting scholar and alumni profiles, and 10 or more brokered recruiter introductions.');
-    L.push('  One coalition seat closed at '+money(SEAT)+' or more, or the Bigglesworth expansion decision in writing.');
-    L.push('  Zero unverified claims shipped as fact. That one is non-negotiable.','');
+    L.push('  Scholars and alumni introduced to people who can hire them: 20 consenting profiles and 10 or more brokered introductions. This is the one that matters. Every other number on this list is in service of it.');
+    L.push('  Zero unverified claims shipped as fact. A student acting on a date we got wrong pays for it, so this one is not negotiable.');
+    L.push('  A coalition seat closed at '+money(SEAT)+' or more, or the Bigglesworth expansion decision in writing.');
+    L.push('  1,500 unique visitors in the first 90 days, and three inbound mentions we did not solicit. Useful, and the least important thing here.','');
     L.push('THE MONEY, STATED THE WAY WE STATED IT TO ALAN');
     L.push('  Committed scope: '+money(t.committedCost)+' against '+money(sp)+' spendable, '+money(state.cont)+' contingency held by Joe.');
     if(t.gap>0){
