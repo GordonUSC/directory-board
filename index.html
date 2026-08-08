@@ -267,6 +267,7 @@ a{color:var(--brand)}
     <button class="vt" data-v="team" role="tab">Team load</button>
     <button class="vt" data-v="agree" role="tab">Working agreement</button>
     <button class="vt" data-v="chg" role="tab">Change orders</button>
+    <button class="vt" data-v="ask" role="tab">Ask Darby</button>
   </div>
   <select id="fEpic" aria-label="Filter by epic"><option value="">All epics</option></select>
   <select id="fOwner" aria-label="Filter by owner"><option value="">All owners</option></select>
@@ -282,6 +283,7 @@ a{color:var(--brand)}
 <div class="view" id="view-team"><div id="team"></div></div>
 <div class="view" id="view-agree"><div id="agree"></div></div>
 <div class="view" id="view-chg"><div id="chg"></div></div>
+<div class="view" id="view-ask"><div id="ask"></div></div>
 
 <footer>
   Thank you for reading all of this. Genuinely. Bring your amendments Monday and let's plan next steps!<br>
@@ -339,6 +341,7 @@ var SEED=[
   ben:['Every later decision has one reference point','Change control becomes possible, since you cannot control change against two baselines']},
 
  {id:'D2',n:'Verification methodology page',e:'Trust',ms:'M2',own:'Darby',pts:5,cost:1000,pri:'must',dep:['D1'],
+  src:'Design and brand, $3,500, shared line.',
   promise:'We publish how we check things, including how we can be wrong.',
   goal:'The badge system is the brand. If we cannot explain it in plain language, a board cannot trust it.',
   ac:['Badge definitions published','Evidence-grade rules published','Refresh calendar published','Corrections SLA published in plain language'],
@@ -347,6 +350,7 @@ var SEED=[
   ben:['This is what makes the Directory citable rather than merely useful','Directly answers the donor question about rigour']},
 
  {id:'D3',n:'Production site at /directory',e:'Build',ms:'M3',own:'Build partner',pts:13,cost:12000,pri:'must',dep:['D1'],
+  src:'Build and hardening, $12,000. The single largest line in the plan.',
   promise:'A real public product at gaygamingpros.org/directory, not a prototype link.',
   goal:'The three-lens experience is the differentiator. Donor, student, and recruiter each get their own front door into the same verified truth.',
   ac:['Lens engine works on mobile Safari and Chrome','Accessibility pass: keyboard, contrast, alt text','All links return 200','Loads in under 3 seconds'],
@@ -354,7 +358,8 @@ var SEED=[
   risk:[{t:'Whoever we name becomes a single point of failure if we hand them everything',l:2,i:3},{t:'Accessibility pass discovered late and delays launch',l:2,i:2}],
   ben:['The whole project becomes real and demonstrable','Almost everything else on this board depends on it existing']},
 
- {id:'D4',n:'Catalog from 53 to 75 entries',e:'Content',ms:'M2',own:'Darby',pts:13,cost:6000,pri:'must',dep:['D2'],
+ {id:'D4',n:'Catalog from 53 to 75 entries',e:'Content',ms:'M2',own:'Darby',pts:13,cost:4000,pri:'must',dep:['D2'],
+  src:'Verification ops, $6,000. This card draws $4,000 and Wave Three draws the other $2,000.',
   promise:'75 verified entries covering K through graduate, each with evidence and a date.',
   goal:'53 is a strong start with named gaps. 75 with the Wave Three lanes filled makes it the reference for the field.',
   ac:['Every entry carries a badge and a last-checked date','Level, type, cost or award, dates or cycle language, application path','Backed-by line where known'],
@@ -363,6 +368,7 @@ var SEED=[
   ben:['Coverage becomes credible across every level, not just undergraduate','Wave Three lanes are exactly where funders keep asking']},
 
  {id:'D5',n:'Pipeline alpha, 20 consented profiles',e:'Pipeline',ms:'M4',own:'Alex',pts:8,cost:3000,pri:'must',dep:[],
+  src:'Pipeline legal and consent, $3,000. Counsel review at IE Law Group.',
   promise:'Recruiters can find ready people, and no student is ever exposed without saying yes.',
   goal:'The Directory answers where dollars go. The Pipeline answers who is ready. That second question is what converts a catalog into placements.',
   ac:['Consent doc reviewed by IE Law Group','20 signed profiles, 18 and over only','Intro-request flow tested end to end with two real recruiters'],
@@ -378,7 +384,8 @@ var SEED=[
   risk:[{t:'Runbook written but never tested by a second operator',l:2,i:3}],
   ben:['Removes the single-maintainer risk that kills most directories','Makes the data steward role hireable and teachable']},
 
- {id:'D7',n:'Coalition kit',e:'Funding',ms:'M3',own:'Gordon',pts:5,cost:1500,pri:'must',dep:['D4'],
+ {id:'D7',n:'Coalition kit',e:'Funding',ms:'M3',own:'Gordon',pts:5,cost:1000,pri:'must',dep:['D4'],
+  src:'Design and brand, $3,500, shared with the methodology page, launch comms, and the Take-Two credit.',
   promise:'Alan can carry our ask into EA and ESA without writing anything himself.',
   goal:'Alan offered in writing on 18 June to make both introductions with us. Seven weeks unused. The kit is what makes that offer usable.',
   ac:['One-pager approved by Gordon and Joe','Credit spec approved by the Take-Two contact','EA and ESA materials physically in Alan hands'],
@@ -387,6 +394,7 @@ var SEED=[
   ben:['One seat at $12,500 closes the funding gap outright','Two seats make this a coalition asset, safer for Take-Two and stronger for the field']},
 
  {id:'D8',n:'Launch comms package',e:'Launch',ms:'M3',own:'Gordon',pts:5,cost:1000,pri:'must',dep:['D3'],
+  src:'Design and brand, $3,500, shared line.',
   promise:'Launch day is a moment, not an upload.',
   goal:'Partners amplify when you ask them properly and early. WOTC, G4C, and ASGC all have reasons to carry this.',
   ac:['Announcement thread drafted','Partner amplification asks to WOTC, G4C, ASGC','Scholar-facing walkthrough','Gordon approves all sends'],
@@ -403,6 +411,7 @@ var SEED=[
   ben:['Makes the corrections SLA real','Could be resume-grade work for an Extended Scholar, which serves two goals at once']},
 
  {id:'TT',n:'Take-Two credit implemented and approved',e:'Funding',ms:'M3',own:'Gordon',pts:3,cost:500,pri:'must',dep:['D3'],
+  src:'Design and brand, $3,500, shared line. Credit treatment only.',
   promise:'Our lead sponsor sees their credit before the public does.',
   goal:'Credit approved after launch is an apology. Approved before launch is a relationship.',
   ac:['Sponsor credit screenshot approved in writing by the Take-Two contact','Approval on file before launch, not after'],
@@ -427,6 +436,7 @@ var SEED=[
   ben:['Turns mistakes into visible integrity','Directly supports the zero-unverified-claims metric']},
 
  {id:'W3',n:'Wave Three research',e:'Content',ms:'M2',own:'Darby',pts:8,cost:2000,pri:'should',dep:['D2'],
+  src:'Verification ops, $6,000. This card draws $2,000 of it.',
   promise:'The four thin lanes get filled: graduate fellowships, K-8, streaming and creator funds, student competitions.',
   goal:'Two research waves produced zero surviving claims in these four lanes. They are named gaps, and named gaps in a trust product are debts.',
   ac:['Each of the four lanes has verified entries or a published reason it does not','Findings merged into the catalog before M2 closes'],
@@ -435,6 +445,7 @@ var SEED=[
   ben:['Closes the honest gaps we have already published','Graduate coverage is what CMU and NYU keep asking for']},
 
  {id:'D9',n:'GDC demo moment',e:'Launch',ms:'M6',own:'Gordon',pts:8,cost:2500,pri:'should',dep:['D3'],
+  src:'Launch and GDC moment, $2,500.',
   promise:'The Directory shown live at GDC with the scholars it serves standing in the room.',
   goal:'GDC is where this field decides what is real. A live demo with scholars present is worth more than any deck.',
   ac:['Shown live in a scheduled GDC-week moment','Scholars in the room','Press one-pager available','Demo rehearsed twice with a static fallback'],
@@ -483,6 +494,7 @@ var SEED=[
   ben:['Demonstrates pipeline depth to funders','Costs nothing to build, since the research is done']},
 
  {id:'SP',n:'State of the Pipeline, Report No. 1',e:'Content',ms:'M7',own:'Gordon',pts:8,cost:3000,pri:'could',dep:['D4'],
+  src:'NOT FUNDED. Would need new money or a coalition seat.',
   promise:'An annual field report under the GGP name, promised for August 2027.',
   goal:'A recurring report is what turns a directory into an authority, and it is the natural artefact to hand a funder.',
   ac:['Greenlit at the M7 retro on evidence, not enthusiasm','Published August 2027'],
@@ -491,6 +503,7 @@ var SEED=[
   ben:['Establishes GGP as the field reference','Renewable annual asset for funder conversations']},
 
  {id:'HV',n:'HEVGA institution expansion',e:'Content',ms:'M7',own:'Darby',pts:13,cost:5000,pri:'could',dep:['D6'],
+  src:'NOT FUNDED. Part of the $10,000 to $20,000 the plan says full scope needs.',
   promise:'All 141 HEVGA member institutions covered, with dues waived as the door.',
   goal:'Higher-education expansion is the largest single coverage jump available, and the HEVGA relationship already exists.',
   ac:['141 institutions catalogued to the same evidence standard'],
@@ -499,6 +512,7 @@ var SEED=[
   ben:['Largest available coverage increase','Deepens the higher-education relationships CYSTEM already runs on']},
 
  {id:'PM',n:'Paid recruiter marketplace',e:'Pipeline',ms:'v2',own:'TBD',pts:13,cost:12500,pri:'later',dep:['D5'],
+  src:'NOT FUNDED. A v2 revenue question, decided at M7 on real data.',
   promise:'Nothing yet. This is a v2 revenue question.',
   goal:'Revenue design waits until the free introduction flow proves demand. The M4 data decides it.',
   ac:['Decided at M7 with real introduction data, not before'],
@@ -507,6 +521,7 @@ var SEED=[
   ben:['Potential sustaining revenue','Would fund the data steward seat permanently']},
 
  {id:'INT',n:'Non-US programs',e:'Content',ms:'v2',own:'TBD',pts:13,cost:8000,pri:'later',dep:['D4'],
+  src:'NOT FUNDED. A v2 conversation with its own budget.',
   promise:'The promise is a US map. We say so plainly.',
   goal:'International coverage carries its own verification cost and would dilute the accuracy we are selling.',
   ac:['A v2 conversation with its own budget'],
@@ -515,6 +530,7 @@ var SEED=[
   ben:['Global relevance eventually','Better as a funded expansion than a stretched v1']},
 
  {id:'APP',n:'Mobile app',e:'Build',ms:'v2',own:'TBD',pts:21,cost:25000,pri:'later',dep:['D3'],
+  src:'NOT FUNDED. A second build track nobody has funded.',
   promise:'Responsive web only for v1.',
   goal:'An app adds store review cycles and a second codebase for no additional reach at this stage.',
   ac:['Revisited only if web analytics show a real need'],
@@ -859,8 +875,121 @@ function renderTeam(){
     '</ul></div>';
 }
 
+var PLANLINES=[
+ {n:'Build and hardening',amt:12000,cards:['D3'],
+  who:'A build partner, external and project-scoped',st:'TO NAME',
+  when:'Engaged by M1, paid against the build through M3',
+  note:'The seat is open. This is the largest single cheque we write and it has nobody attached to it yet.'},
+ {n:'Verification ops',amt:6000,cards:['D4','W3'],
+  who:'Research and verification capacity',st:'ASK JOE',
+  when:'Spent across M2, as the catalog goes from 53 to 75',
+  note:'The plan never says whether this is a contractor, tooling and subscriptions, or internal time. I do not want to guess at a $6,000 line.'},
+ {n:'Design and brand',amt:3500,cards:['D2','D7','D8','TT'],
+  who:'Design, external',st:'TO NAME',
+  when:'M2 for the methodology page, M3 for the coalition kit, launch comms and the sponsor credit',
+  note:'Four cards share this line, so whoever we engage needs all four briefed at once.'},
+ {n:'Pipeline legal and consent',amt:3000,cards:['D5'],
+  who:'IE Law Group',st:'NAMED',
+  when:'Drafting from M1, review complete before any profile is signed at M4',
+  note:'The only payee named anywhere in the plan. Counsel has to clear the consent instrument before we collect a single profile.'},
+ {n:'Launch and GDC moment',amt:2500,cards:['D9'],
+  who:'Event and press materials, vendors',st:'TO NAME',
+  when:'Committed in the run-up to GDC, spent in March 2027',
+  note:'Furthest out, so the least urgent to name, but it is real money against a fixed date.'}
+];
+
+function mathPanel(){
+  var t=totals(), sp=spendable();
+  var rows=PLANLINES.map(function(L){
+    var drawn=L.cards.reduce(function(a,id){ var c=find(id); return a+(c?Number(c.cost)||0:0); },0);
+    var names=L.cards.map(function(id){ var c=find(id); return c?esc(c.n)+' '+money(c.cost):id; }).join(', ');
+    var ok=drawn===L.amt;
+    return '<tr><td class="lb">'+esc(L.n)+'</td><td class="n">'+money(L.amt)+'</td><td class="n" style="color:'+
+      (ok?'var(--ok)':'var(--bad)')+'">'+money(drawn)+'</td><td>'+names+'</td></tr>';
+  }).join('');
+  var planned=PLANLINES.reduce(function(a,b){ return a+b.amt; },0);
+  var drawnAll=PLANLINES.reduce(function(a,L){
+    return a+L.cards.reduce(function(x,id){ var c=find(id); return x+(c?Number(c.cost)||0:0); },0); },0);
+  var untraced=state.items.filter(function(i){
+    var inPlan=PLANLINES.some(function(L){ return L.cards.indexOf(i.id)>=0; });
+    return committed(i)&&Number(i.cost)>0&&!inPlan; });
+
+  return '<div class="panel"><h3>Where every number on this page comes from</h3>'+
+    '<p class="lead">Fair question, and I would rather you could check my arithmetic than take it on faith. Nothing here is a guess dressed up as a fact.</p>'+
+
+    '<h4 style="margin:16px 0 6px;font-size:15px">The formulas</h4><ul>'+
+    '<li><b>Spendable</b> = funded budget, plus any coalition seats at $12,500, minus the contingency Joe holds. Right now that is '+
+      money(state.budget)+(state.seats?' plus '+money(state.seats*SEAT):'')+' minus '+money(state.cont)+' = <b>'+money(sp)+'</b>.</li>'+
+    '<li><b>Committed budget</b> = the cost of every card sitting in Must have or Should have, added up. Right now <b>'+money(t.committedCost)+'</b>.</li>'+
+    '<li><b>Headroom</b> = spendable minus committed. Right now <b>'+(t.gap>0?money(t.gap)+' over':money(-t.gap)+' under')+'</b>.</li>'+
+    '<li><b>Schedule load</b> = the story points on every Must and Should card. Right now <b>'+t.committedPts+'</b> against an assumed capacity of '+state.cap+'.</li>'+
+    '<li><b>Risk index</b> = for every risk on a committed card, likelihood times impact, each scored 1 to 3, all summed. A single risk therefore scores 1 to 9, and anything scoring 6 or more I call severe. Right now <b>'+t.risk+'</b> across '+t.severe+' severe.</li>'+
+    '</ul>'+
+
+    '<h4 style="margin:18px 0 6px;font-size:15px">The money, traced to Production Plan v1</h4>'+
+    '<div class="tw" style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:13.5px">'+
+    '<thead><tr><th style="text-align:left;padding:7px 10px 7px 0">Plan budget line</th>'+
+    '<th style="text-align:right;padding:7px 10px">In the plan</th>'+
+    '<th style="text-align:right;padding:7px 10px">Drawn by cards</th>'+
+    '<th style="text-align:left;padding:7px 0 7px 10px">Which cards</th></tr></thead><tbody>'+rows+
+    '<tr><td class="lb"><b>Total</b></td><td class="n"><b>'+money(planned)+'</b></td><td class="n"><b>'+money(drawnAll)+
+    '</b></td><td>plus '+money(state.cont)+' contingency held by Joe = '+money(planned+state.cont)+' funded</td></tr>'+
+    '</tbody></table></div>'+
+    (untraced.length?'<div class="depwarn">These committed cards carry cost that is not traced to a plan line yet: '+
+      untraced.map(function(i){ return esc(i.n)+' '+money(i.cost); }).join(', ')+'. That is new money, so it needs a change order.</div>':'')+
+
+    '<h4 style="margin:18px 0 6px;font-size:15px">What is a fact, and what is my estimate</h4><ul>'+
+    '<li><b>Facts, from the record:</b> the $30,000 and the 18 June unanimous board approval, the 10% contingency convention, the five budget lines above, the milestone dates, the acceptance criteria, and Alan\'s written offer on 18 June to open EA and ESA.</li>'+
+    '<li><b>My estimates, which you should overwrite:</b> every story point, the capacity of '+state.cap+
+      ' points to GDC, and how I split shared budget lines across cards. Points are relative sizing, not hours, and I set the capacity by feel rather than by measured velocity. We have never run this team against a points board, so treat '+state.cap+' as a placeholder until we have a sprint or two of real data.</li>'+
+    '<li><b>Where the plan is honest about not knowing:</b> full scope was estimated at $40,000 to $50,000 against $30,000 funded. Everything in Could have and Next release is the unfunded remainder, sitting visible rather than hidden.</li>'+
+    '</ul></div>';
+}
+
+function payPanel(){
+  var open=PLANLINES.filter(function(L){ return L.st!=='NAMED'; });
+  var openAmt=open.reduce(function(a,b){ return a+b.amt; },0);
+  var stCol={NAMED:'var(--okc)','TO NAME':'var(--warnc)','ASK JOE':'var(--badc)'};
+
+  var rows=PLANLINES.map(function(L){
+    return '<div class="prog '+(L.st==='NAMED'?'done':(L.st==='ASK JOE'?'block':'wait'))+'">'+
+      '<div class="s" style="color:'+(stCol[L.st]||'var(--muted)')+'">'+L.st+'</div>'+
+      '<div class="t">'+money(L.amt)+' &middot; '+esc(L.n)+'</div>'+
+      '<div class="d"><b>Who:</b> '+esc(L.who)+'<br><b>When:</b> '+esc(L.when)+'</div>'+
+      '<div class="who">'+esc(L.note)+'</div></div>';
+  }).join('');
+
+  // cash phased by milestone from committed cards
+  var phase={};
+  state.items.forEach(function(i){
+    if(!committed(i)||!Number(i.cost)) return;
+    phase[i.ms]=(phase[i.ms]||0)+Number(i.cost);
+  });
+  var phaseRows=MILESTONES.filter(function(m){ return phase[m.id]; }).map(function(m){
+    return '<li><b>'+m.id+', '+m.when+'</b>: '+money(phase[m.id])+'</li>'; }).join('');
+
+  return '<div class="panel" style="border-left:5px solid var(--badc)">'+
+    '<h3>Who actually gets paid, and when</h3>'+
+    '<p class="lead">I want to be straight with all of you, because this is the weakest part of the plan and I would rather say so than present a tidy table. <b>Production Plan v1 budgets by category of work, not by payee, and it contains no payment schedule.</b> Exactly one payee is named in the whole document. So the amounts below are solid and the names mostly are not, and that is a gap for me and Joe to close, not something to discover in October.</p>'+
+    rows+
+    '<h4 style="margin:18px 0 6px;font-size:15px">When the money leaves, by milestone</h4>'+
+    '<ul>'+(phaseRows||'<li>Nothing committed carries a cost right now.</li>')+'</ul>'+
+    '<p class="hint">Phased from the milestone on each committed card, so this moves when you move cards. It is a spend profile, not an invoice schedule. Nobody has agreed payment terms with anyone yet.</p>'+
+    '<div class="depwarn"><b>'+money(openAmt)+' of '+money(PLANLINES.reduce(function(a,b){ return a+b.amt; },0))+
+    ' has no named payee.</b> That is '+open.length+' of the five lines. Joe and I should close this before M1, and the build partner is the urgent one because it is '+
+    money(PLANLINES[0].amt)+' on its own and the engagement has to start for October 9 to be real.</div>'+
+    '<h4 style="margin:18px 0 6px;font-size:15px">What I need decided, with Joe</h4><ul>'+
+    '<li>Is the verification line a person, a tool budget, or internal time? I genuinely do not know and the plan does not say.</li>'+
+    '<li>Does the data steward get a stipend? Right now that card carries $0 and an unresolved "possible stipend" note, which is not a plan.</li>'+
+    '<li>What are the payment terms for the build partner: milestone-based, monthly, or on acceptance? I would argue for acceptance-based against the D3 criteria.</li>'+
+    '<li>Who raises the purchase orders and who signs the engagement letters, so nobody is waiting on me to chase a PO number.</li>'+
+    '</ul></div>';
+}
+
 function renderAgree(){
   document.getElementById('agree').innerHTML=
+   payPanel()+
+   mathPanel()+
    '<div class="panel"><h3>Definition of Done</h3><p class="lead">One bar, and I want to hold it for everything on this board. Nothing goes to done without all five.</p><ol>'+
    "<li>The acceptance criteria on the card are all met, and checked by someone who didn't do the work.</li>"+
    '<li>Any public claim carries a badge and a last-checked date. <b>Zero unverified claims ship as fact.</b> This one is not negotiable for me.</li>'+
@@ -958,8 +1087,10 @@ function openDrawer(id){
       '<div class="k">Epic</div><div class="v">'+esc(it.e)+'</div>'+
       '<div class="k">Milestone</div><div class="v">'+esc(it.ms)+'</div>'+
       '<div class="k">Role</div><div class="v">'+esc(ownerRole(it.own))+'</div>'+
-      '<div class="k">Effort</div><div class="v">'+it.pts+' story points</div>'+
-      '<div class="k">Cost</div><div class="v">'+money(it.cost)+'</div></div></div>'+
+      '<div class="k">Effort</div><div class="v">'+it.pts+' story points, relative sizing rather than hours</div>'+
+      '<div class="k">Cost</div><div class="v">'+money(it.cost)+'</div>'+
+      '<div class="k">Drawn from</div><div class="v">'+esc(it.src||(Number(it.cost)?'Not yet traced to a plan budget line.':'No cash line. Time only.'))+'</div>'+
+      '</div></div>'+
     '<div class="dsec"><h4>Your notes</h4><textarea id="dnote" placeholder="Anything you want recorded against this. Saves as you type, and it rides along into the Monday export.">'+esc(it.note||'')+'</textarea></div>'+
     '<div class="dsec"><button class="btn" id="dEdit">Edit the numbers</button></div>';
 
@@ -1283,12 +1414,192 @@ function propModal(){
       proposalText('sinjin'),'directory-proposal-sinjin.txt'); });
 }
 
+var TEAM=[
+ {n:'Gordon Bellamy',r:'Executive sponsor, approves anything external',u:'gbellamy',d:'gmail.com'},
+ {n:'Joe Heally',r:'Finance and compliance, holds the contingency',u:'joeheally',d:'gmail.com'},
+ {n:'Alex Rogers',r:'Scholar and alumni liaison, owns the Directory',u:'arogersggp',d:'gmail.com'},
+ {n:'Darby',r:'Research and verification',u:'gbellamyAI',d:'gmail.com'}
+];
+function addr(p){ return p.u+'@'+p.d; }
+
+function snapshot(){
+  var t=totals();
+  var L=['BOARD SNAPSHOT, '+new Date().toLocaleString(),
+    'Spendable: '+money(spendable())+' (funded '+money(state.budget)+
+      (state.seats?' + '+state.seats+' coalition seat(s) '+money(state.seats*SEAT):'')+' - contingency '+money(state.cont)+')',
+    'Committed: '+money(t.committedCost)+' across '+(t.count.must+t.count.should)+' cards',
+    'Headroom: '+(t.gap>0?money(t.gap)+' OVER':money(-t.gap)+' under'),
+    'Schedule load: '+t.committedPts+' pts against assumed capacity '+state.cap,
+    'Risk index: '+t.risk+', '+t.severe+' severe','',
+    'MUST HAVE: '+state.items.filter(function(i){return i.pri==='must';}).map(function(i){return i.n;}).join('; '),
+    'SHOULD HAVE: '+state.items.filter(function(i){return i.pri==='should';}).map(function(i){return i.n;}).join('; ')];
+  if(state.log.length){
+    L.push('','CHANGE ORDERS SO FAR:');
+    state.log.slice(0,8).forEach(function(c){ L.push('  - '+c.name+': '+c.from+' to '+c.to); });
+  }
+  return L.join('\n');
+}
+
+function answerLocal(q){
+  var s=(q||'').toLowerCase().trim();
+  if(!s) return null;
+  var t=totals(), sp=spendable();
+  function P(x){ return '<p>'+x+'</p>'; }
+
+  var card=null, best=0;
+  state.items.forEach(function(i){
+    var score=0, name=i.n.toLowerCase();
+    if(s.indexOf(name)>=0) score+=10;
+    if(s.indexOf(i.id.toLowerCase())>=0&&i.id.length>1) score+=8;
+    name.split(/[^a-z0-9]+/).forEach(function(w){ if(w.length>4&&s.indexOf(w)>=0) score+=2; });
+    if(score>best){ best=score; card=i; }
+  });
+
+  if(/budget|money|cost|spend|afford|gap|headroom|dollar|\$/.test(s)&&!card){
+    return P('<b>Committed budget is '+money(t.committedCost)+'</b>, which is the cost of every card in Must have and Should have added together.')+
+      P('Spendable is <b>'+money(sp)+'</b>: the funded '+money(state.budget)+
+        (state.seats?' plus '+money(state.seats*SEAT)+' of coalition seats':'')+' minus the '+money(state.cont)+
+        ' contingency Joe holds against written change orders.')+
+      P('That leaves <b>'+(t.gap>0?money(t.gap)+' over':money(-t.gap)+' of headroom')+'</b>. Every dollar traces to one of the five Production Plan v1 budget lines, and the full table is on the Working agreement tab.');
+  }
+  if(/capacity|points|velocity|schedule load|too much work|overloaded|sprint/.test(s)&&!card){
+    return P('Schedule load is <b>'+t.committedPts+' points</b> against an assumed capacity of <b>'+state.cap+'</b>.')+
+      P('Both numbers are my estimates, not measurements. Points are relative sizing rather than hours, and I set capacity by feel because we have never run this team against a points board. Overwrite the capacity field at the top the moment you have a better number.');
+  }
+  if(/risk/.test(s)&&!card){
+    return P('Risk index is <b>'+t.risk+'</b>, with <b>'+t.severe+'</b> scored severe.')+
+      P('Each risk on a committed card is scored likelihood times impact, 1 to 3 each, so a single risk lands between 1 and 9. Anything at 6 or above I call severe.')+
+      P('The one I would put in front of the board regardless of its score is Pipeline consent, because that failure is not recoverable.');
+  }
+  if(/who|owner|assign|responsib/.test(s)&&!card){
+    var loads=ownerLoad();
+    return P('Owners on committed work right now:')+'<ul>'+Object.keys(loads).sort(function(a,b){
+      return loads[b].pts-loads[a].pts; }).map(function(k){
+      return '<li><b>'+esc(k)+'</b>, '+loads[k].pts+' pts across '+loads[k].n+' items</li>'; }).join('')+'</ul>'+
+      P('You can reassign any card to anyone by opening it and changing the owner, including typing in a name that is not on the list yet.');
+  }
+  if(/when|date|milestone|launch|deadline|timeline|october|kickoff/.test(s)&&!card){
+    return P('The dates I am working to:')+'<ul>'+MILESTONES.filter(function(m){ return m.date; }).map(function(m){
+      var d=days(m.date);
+      return '<li><b>'+m.id+', '+m.when+'</b>, '+(d<0?Math.abs(d)+' days ago':'in '+d+' days')+': '+esc(m.t)+'</li>'; }).join('')+'</ul>'+
+      P('October 9 sits ahead of the Bigglesworth letter of intent window on purpose, so their board sees a live product rather than a promise.');
+  }
+  if(/consent|privacy|student data|minor/.test(s)){
+    return P('<b>Standing rule, and the one I will not trade away.</b> If a scholar\'s information reaches a recruiter without that scholar\'s explicit yes, the trust that makes this work is gone and does not come back.')+
+      P('So: 18 and over only, written consent reviewed by IE Law Group, introductions brokered by GGP rather than direct contact, right to delete honoured same day, and any consent failure pauses the Pipeline entirely whatever it costs the calendar.');
+  }
+  if(/standup|cadence|meeting|weekly|how do we run|process/.test(s)){
+    return P('Weekly on Tuesday, 30 minutes, right before Weekly Connect: last week, this week, blocked. Monthly steering with Gordon and Joe. Quarterly refresh after launch. Corrections answered within five business days.')+
+      P('The board is the truth, not the meeting.');
+  }
+  if(/change order|change control|scope creep|add scope/.test(s)){
+    return P('After M1, any scope addition needs a written change order naming <b>what leaves to make room</b>, approved by me and by Gordon.')+
+      P('Every move you make on this board is logged on the Change orders tab with its budget and schedule effect, and it exports with the proposals. "It\'s small" is not a size.');
+  }
+  if(/seat|coalition|alan|ea |esa|sponsor|funding gap/.test(s)&&!card){
+    return P('Alan Lewis offered in writing on 18 June to make the introductions at EA through Tammy and at ESA through Aubrey. That offer has been sitting unused for seven weeks.')+
+      P('One coalition seat at '+money(SEAT)+' would take spendable from '+money(sp)+' to '+money(sp+SEAT)+
+        '. You can model that with the seats stepper at the top of the page and watch every number move.');
+  }
+  if(/monday|export|csv/.test(s)){
+    return P('Use Export to Monday in the toolbar. It produces a CSV where the Group column becomes your board groups, so Must, Should, Could and Next release arrive already sorted, with owner, dates, points, cost, dependencies, acceptance criteria and notes mapped across.');
+  }
+  if(/steward/.test(s)){
+    var st=find('ST');
+    return P('Still unnamed, and due at M1 on Friday 21 August, which is '+days(MILESTONES[1].date)+' days out.')+
+      P('Until that seat has a real person in it, our corrections promise has nobody behind it. An Extended Scholar would get resume-grade work out of it, which solves two things at once.')+
+      (st?P('It is '+st.pts+' points and currently sitting in '+PRI[st.pri].name+'.'):'');
+  }
+
+  if(card&&best>=4){
+    var deps=(card.dep||[]).map(function(d){ var p=find(d); return p?p.n+' ('+PRI[p.pri].name+')':d; });
+    return '<p><b>'+esc(card.n)+'</b>, currently in '+PRI[card.pri].name+', owned by '+esc(card.own)+
+      ', due at '+card.ms+'.</p>'+
+      P('<b>What it promises:</b> '+esc(card.promise))+
+      P('<b>Why:</b> '+esc(card.goal))+
+      P('<b>Accepted when:</b> '+(card.ac||[]).map(esc).join('; '))+
+      P('<b>Sizing:</b> '+card.pts+' points, '+money(card.cost)+(card.src?', drawn from '+esc(card.src):''))+
+      (deps.length?P('<b>Depends on:</b> '+deps.map(esc).join('; ')):'')+
+      (card.risk&&card.risk.length?P('<b>Biggest risk:</b> '+esc(card.risk[0].t)):'');
+  }
+  return null;
+}
+
+function renderAsk(){
+  document.getElementById('ask').innerHTML=
+   '<div class="panel"><h3>Ask Darby</h3>'+
+   '<p class="lead">Ask anything about this board and you will get an answer straight away where the board knows it: budgets, dates, owners, why a card exists, what a number is made of. If it is something the board cannot answer, send it to Darby and it comes back with the board state attached so nobody has to guess what I was looking at.</p>'+
+   '<div class="field"><label>Your question</label><textarea id="askQ" placeholder="Try: what is the committed budget, who owns the production site, when is the launch, what happens if we drop Wave Three, what is the consent rule"></textarea></div>'+
+   '<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn pri" id="askGo">Answer it</button>'+
+   '<button class="btn" id="askMail">Send it to Darby instead</button></div>'+
+   '<div id="askA" style="margin-top:14px"></div></div>'+
+
+   '<div class="panel"><h3>Ask someone on the team for clarification</h3>'+
+   '<p class="lead">Pick a person and a card and this writes the note, with the promise, the acceptance criteria and the current numbers already in it. It opens in your own mail so you read it and send it yourself. Nothing goes out from this page.</p>'+
+   '<div class="two"><div class="field"><label>Who</label><select id="clWho">'+
+     TEAM.map(function(p,i){ return '<option value="'+i+'">'+esc(p.n)+', '+esc(p.r)+'</option>'; }).join('')+
+     '</select></div>'+
+   '<div class="field"><label>About which card</label><select id="clCard"><option value="">Not about a specific card</option>'+
+     state.items.map(function(i){ return '<option value="'+i.id+'">'+esc(i.n)+'</option>'; }).join('')+
+     '</select></div></div>'+
+   '<div class="field"><label>What do you need from them</label><textarea id="clAsk" placeholder="The one thing you need answered, in your own words"></textarea></div>'+
+   '<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn pri" id="clGo">Open the email</button>'+
+   '<button class="btn" id="clCopy">Copy it instead</button></div>'+
+   '<p class="hint">Reminder to me as much as anyone: Gordon sends anything that goes to Alan or Sinjin.</p>'+
+   '<div id="clOut" style="margin-top:14px"></div></div>';
+
+  function ans(){
+    var q=document.getElementById('askQ').value;
+    var a=answerLocal(q);
+    document.getElementById('askA').innerHTML=a?
+      '<div class="alert info" style="border-left-color:var(--brand)">'+a+'</div>':
+      '<div class="alert">That one is outside what this board can answer on its own, so I would not want to guess at it. Hit <b>Send it to Darby instead</b> and it will go over with the full board state attached.</div>';
+  }
+  document.getElementById('askGo').addEventListener('click',ans);
+  document.getElementById('askQ').addEventListener('keydown',function(ev){
+    if(ev.key==='Enter'&&(ev.metaKey||ev.ctrlKey)) ans(); });
+  document.getElementById('askMail').addEventListener('click',function(){
+    var q=document.getElementById('askQ').value.trim()||'(no question typed yet)';
+    var body='Hi Darby,\n\n'+q+'\n\nThanks!\nEric\n\n---\n'+snapshot();
+    window.location.href='mailto:'+addr(TEAM[3])+'?subject='+
+      encodeURIComponent('Directory board question from Eric')+'&body='+encodeURIComponent(body);
+  });
+
+  function clText(){
+    var p=TEAM[parseInt(document.getElementById('clWho').value,10)];
+    var id=document.getElementById('clCard').value, c=id?find(id):null;
+    var need=document.getElementById('clAsk').value.trim()||'(what I need goes here)';
+    var L=['Hi '+p.n.split(' ')[0]+'!','','Quick one on the Directory build, and thank you in advance.','',need,''];
+    if(c){
+      L.push('For context, this is about "'+c.n+'":');
+      L.push('  Currently: '+PRI[c.pri].name+', owner '+c.own+', due at '+c.ms);
+      L.push('  What it promises: '+c.promise);
+      L.push('  Accepted when: '+(c.ac||[]).join('; '));
+      L.push('  Sizing: '+c.pts+' points, '+money(c.cost));
+      if(c.src) L.push('  Budget line: '+c.src);
+      L.push('');
+    }
+    L.push('No rush, but it would help to know before Monday.','','Best,','Eric Francksen','Executive Producer, Gay Gaming Professionals','Ph: 608-322-6841');
+    return {to:addr(p),subj:'Directory build'+(c?': '+c.n:'')+', quick question',body:L.join('\n')};
+  }
+  document.getElementById('clGo').addEventListener('click',function(){
+    var m=clText();
+    window.location.href='mailto:'+m.to+'?subject='+encodeURIComponent(m.subj)+'&body='+encodeURIComponent(m.body);
+  });
+  document.getElementById('clCopy').addEventListener('click',function(){
+    var m=clText(), txt='To: '+m.to+'\nSubject: '+m.subj+'\n\n'+m.body;
+    document.getElementById('clOut').innerHTML='<pre class="out">'+esc(txt)+'</pre>';
+    if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(txt);
+  });
+}
+
 function renderAll(){
   renderModel(); renderDash(); fillFilters();
   if(view==='board') renderBoard();
   else if(view==='timeline') renderTimeline();
   else if(view==='team') renderTeam();
   else if(view==='agree') renderAgree();
+  else if(view==='ask') renderAsk();
   else renderChg();
 }
 function fillFilters(){
