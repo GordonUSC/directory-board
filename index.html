@@ -290,7 +290,7 @@ a{color:var(--brand)}
   Best, Eric Francksen &middot; Executive Producer, Gay Gaming Professionals &middot; Ph: 608-322-6841<br>
   <br>
   Source: The Directory &amp; Pipeline Production Plan v1.0 (D1 through D9, RACI, M0 through M7, budget, risk register),
-  the 53-entry verified catalog, and the Take-Two board approval of 18 June 2026.<br>
+  the 53-entry verified catalog, and Alan Lewis's confirmation of the Take-Two Giving Committee decision, 18 June 2026.<br>
   Sizing on anything you add is an estimate produced from your description, so treat it as a starting number and overwrite it.<br>
   Companion page: <a href="https://gordonusc.github.io/ggp-directory/">the Directory, Alex's owner copy</a>
 </footer>
@@ -370,10 +370,10 @@ var SEED=[
  {id:'D5',n:'Pipeline alpha, 20 consented profiles',e:'Pipeline',ms:'M4',own:'Alex',pts:8,cost:3000,pri:'must',dep:[],
   src:'Pipeline legal and consent, $3,000. Counsel review at IE Law Group.',
   promise:'Recruiters can find ready people, and no student is ever exposed without saying yes.',
-  goal:'The Directory answers where dollars go. The Pipeline answers who is ready. That second question is what converts a catalog into placements.',
+  goal:'The Directory answers where dollars go. The Pipeline answers who is ready. That second question is what converts a catalog into placements. Alex, the number is the part I want you to push back on: 20 signed profiles comes out of a pool of roughly 39 people, the 21 CYSTEM scholars plus the 18 alumni you named, so it is about half of everyone we could ask, landing in the same months as the internship push. If 12 is the honest number, say 12 and I will change it.',
   ac:['Consent doc reviewed by IE Law Group','20 signed profiles, 18 and over only','Intro-request flow tested end to end with two real recruiters'],
   res:['Alex, scholar and alumni outreach','Joe, counsel coordination','Legal review budget'],
-  risk:[{t:'Consent or privacy failure exposes a student',l:1,i:3},{t:'Fewer than 20 scholars opt in by December',l:2,i:2}],
+  risk:[{t:'Consent or privacy failure exposes a student',l:1,i:3},{t:'20 signed profiles is roughly half of everyone we could ask, and Alex has to collect them in the same months he is running the September internship push',l:3,i:2}],
   ben:['Turns goodwill into actual introductions','The Casino Night moment has something live to show']},
 
  {id:'D6',n:'Refresh runbook and first refresh',e:'Operations',ms:'M4',own:'Darby',pts:5,cost:0,pri:'must',dep:['D4'],
@@ -939,7 +939,7 @@ function mathPanel(){
       untraced.map(function(i){ return esc(i.n)+' '+money(i.cost); }).join(', ')+'. That is new money, so it needs a change order.</div>':'')+
 
     '<h4 style="margin:18px 0 6px;font-size:15px">What is a fact, and what is my estimate</h4><ul>'+
-    '<li><b>Facts, from the record:</b> the $30,000 and the 18 June unanimous board approval, the 10% contingency convention, the five budget lines above, the milestone dates, the acceptance criteria, and Alan\'s written offer on 18 June to open EA and ESA.</li>'+
+    '<li><b>Facts, from the record:</b> the $30,000 and the 18 June unanimous the Giving Committee decision, the 10% contingency convention, the five budget lines above, the milestone dates, the acceptance criteria, and Alan\'s written offer on 18 June to open EA and ESA.</li>'+
     '<li><b>My estimates, which you should overwrite:</b> every story point, the capacity of '+state.cap+
       ' points to GDC, and how I split shared budget lines across cards. Points are relative sizing, not hours, and I set the capacity by feel rather than by measured velocity. We have never run this team against a points board, so treat '+state.cap+' as a placeholder until we have a sprint or two of real data.</li>'+
     '<li><b>Where the plan is honest about not knowing:</b> full scope was estimated at $40,000 to $50,000 against $30,000 funded. Everything in Could have and Next release is the unfunded remainder, sitting visible rather than hidden.</li>'+
@@ -970,7 +970,20 @@ function payPanel(){
 
   return '<div class="panel" style="border-left:5px solid var(--badc)">'+
     '<h3>Who actually gets paid, and when</h3>'+
-    '<p class="lead">I want to be straight with all of you, because this is the weakest part of the plan and I would rather say so than present a tidy table. <b>Production Plan v1 budgets by category of work, not by payee, and it contains no payment schedule.</b> Exactly one payee is named in the whole document. So the amounts below are solid and the names mostly are not, and that is a gap for me and Joe to close, not something to discover in October.</p>'+
+    '<p class="lead">I want to be straight with all of you, because this is the weakest part of the plan and I would rather say so than present a tidy table. <b>Money coming in is in good shape. Money going out is not.</b> Production Plan v1 budgets by category of work, not by payee, and it contains no payment schedule. Exactly one payee is named in the whole document.</p>'+
+
+    '<h4 style="margin:16px 0 6px;font-size:15px">Money in, which Joe has already moved on</h4>'+
+    '<div class="prog done"><div class="s" style="color:var(--okc)">INVOICED</div>'+
+    '<div class="t">'+money(30000)+' &middot; Take-Two, inaugural Directory donation</div>'+
+    '<div class="d"><b>Decided:</b> Take-Two\'s Giving Committee, unanimously, 18 June. Alan\'s wording was an inaugural donation to fund the development and deployment of the Directory, with Take-Two as lead sponsor.<br>'+
+    '<b>Paperwork:</b> Alan looped in <b>Isabella Begazo</b>, his assistant, to handle the paperwork and the funds. <b>Joe sent Invoice 1099 on 24 June.</b></div>'+
+    '<div class="who">Joe, two questions I cannot answer for you: has it actually landed, and does it arrive in one payment or on a schedule? Everything below assumes we can spend it when we need it.</div></div>'+
+
+    '<div class="flag" style="margin:12px 0"><h4>Joe, the one that changes the arithmetic</h4>'+
+    '<p>Your CYSTEM sheets carry <b>general administration at 10%</b>. Production Plan v1 carries a 10% line too, but it calls it <b>contingency</b>, released only against a written change order. Those are not the same thing, and I have been treating the '+money(state.cont)+' as contingency all the way through this board.</p>'+
+    '<p><b>If that '+money(state.cont)+' is really G and A, then it is spent before we start and the project has no buffer at all.</b> If it is contingency, we have a buffer but no overhead recovery. If it is meant to be both, we are '+money(state.cont)+' short. Tell me which one it is and I will change every number on this page.</p></div>'+
+
+    '<h4 style="margin:18px 0 6px;font-size:15px">Money out, where the gap is</h4>'+
     rows+
     '<h4 style="margin:18px 0 6px;font-size:15px">When the money leaves, by milestone</h4>'+
     '<ul>'+(phaseRows||'<li>Nothing committed carries a cost right now.</li>')+'</ul>'+
@@ -979,7 +992,9 @@ function payPanel(){
     ' has no named payee.</b> That is '+open.length+' of the five lines. Joe and I should close this before M1, and the build partner is the urgent one because it is '+
     money(PLANLINES[0].amt)+' on its own and the engagement has to start for October 9 to be real.</div>'+
     '<h4 style="margin:18px 0 6px;font-size:15px">What I need decided, with Joe</h4><ul>'+
+    '<li><b>Is the '+money(state.cont)+' contingency or general administration?</b> This one changes the spendable figure at the top of the page, so it is first.</li>'+
     '<li>Is the verification line a person, a tool budget, or internal time? I genuinely do not know and the plan does not say.</li>'+
+    '<li>Has the Take-Two money landed against Invoice 1099, and does it arrive in one payment or on a schedule? If it is staged, I need to know before I commit a '+money(12000)+' build engagement.</li>'+
     '<li>Does the data steward get a stipend? Right now that card carries $0 and an unresolved "possible stipend" note, which is not a plan.</li>'+
     '<li>What are the payment terms for the build partner: milestone-based, monthly, or on acceptance? I would argue for acceptance-based against the D3 criteria.</li>'+
     '<li>Who raises the purchase orders and who signs the engagement letters, so nobody is waiting on me to chase a PO number.</li>'+
@@ -1326,7 +1341,7 @@ function proposalText(who){
     L.push('Hi Sinjin!','');
     L.push('Board-ready summary of the Directory, current as of today. Built so you can lift any part of it straight into the Bigglesworth conversation.','');
     L.push('WHERE IT IS');
-    L.push('  Funded at '+money(state.budget)+' by Take-Two as inaugural lead sponsor, board approved unanimously on 18 June.');
+    L.push('  Funded at '+money(state.budget)+' by Take-Two as inaugural lead sponsor, approved unanimously by Take-Two's Giving Committee on 18 June.');
     L.push('  53 verified entries live today, going to 75 by GDC.');
     L.push('  Public launch is Friday 9 October, set deliberately ahead of the Bigglesworth letter of intent window so their board sees a live product rather than a promise.','');
     L.push('WHAT LAUNCHES IN OCTOBER');
@@ -1417,7 +1432,7 @@ function propModal(){
 var TEAM=[
  {n:'Gordon Bellamy',r:'Executive sponsor, approves anything external',u:'gbellamy',d:'gmail.com'},
  {n:'Joe Heally',r:'Finance and compliance, holds the contingency',u:'joeheally',d:'gmail.com'},
- {n:'Alex Rogers',r:'Scholar and alumni liaison, owns the Directory',u:'arogersggp',d:'gmail.com'},
+ {n:'Alex Rogers',r:'Scholar and alumni liaison, owns the Directory. Text him, he is not an email person',u:'arogersggp',d:'gmail.com'},
  {n:'Darby',r:'Research and verification',u:'gbellamyAI',d:'gmail.com'}
 ];
 function addr(p){ return p.u+'@'+p.d; }
@@ -1560,7 +1575,7 @@ function renderAsk(){
    '<div class="field"><label>What do you need from them</label><textarea id="clAsk" placeholder="The one thing you need answered, in your own words"></textarea></div>'+
    '<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn pri" id="clGo">Open the email</button>'+
    '<button class="btn" id="clCopy">Copy it instead</button></div>'+
-   '<p class="hint">Reminder to me as much as anyone: Gordon sends anything that goes to Alan or Sinjin.</p>'+
+   '<p class="hint">Two things worth knowing before you hit send. <b>Alex barely uses email</b>, so if you need him quickly, text him and use this to put the detail somewhere he can find it later. And <b>Gordon sends anything that goes to Alan or Sinjin</b>, always.</p>'+
    '<div id="clOut" style="margin-top:14px"></div></div>';
 
   function ans(){
