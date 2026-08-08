@@ -346,12 +346,12 @@ var SEED=[
   risk:[{t:'Methodology written in jargon nobody outside the team can use',l:2,i:2}],
   ben:['This is what makes the Directory citable rather than merely useful','Directly answers the donor question about rigour']},
 
- {id:'D3',n:'Production site at /directory',e:'Build',ms:'M3',own:'Charlie',pts:13,cost:12000,pri:'must',dep:['D1'],
+ {id:'D3',n:'Production site at /directory',e:'Build',ms:'M3',own:'Build partner',pts:13,cost:12000,pri:'must',dep:['D1'],
   promise:'A real public product at gaygamingpros.org/directory, not a prototype link.',
   goal:'The three-lens experience is the differentiator. Donor, student, and recruiter each get their own front door into the same verified truth.',
   ac:['Lens engine works on mobile Safari and Chrome','Accessibility pass: keyboard, contrast, alt text','All links return 200','Loads in under 3 seconds'],
-  res:['Charlie des Robert, project-scoped engagement','Eric quality gate','Accessibility reviewer'],
-  risk:[{t:'Single-builder dependency if Charlie becomes unavailable',l:2,i:3},{t:'Accessibility pass discovered late and delays launch',l:2,i:2}],
+  res:['A build partner on a project-scoped engagement, to name by M1','Eric quality gate','Accessibility reviewer'],
+  risk:[{t:'Whoever we name becomes a single point of failure if we hand them everything',l:2,i:3},{t:'Accessibility pass discovered late and delays launch',l:2,i:2}],
   ben:['The whole project becomes real and demonstrable','Almost everything else on this board depends on it existing']},
 
  {id:'D4',n:'Catalog from 53 to 75 entries',e:'Content',ms:'M2',own:'Darby',pts:13,cost:6000,pri:'must',dep:['D2'],
@@ -386,11 +386,11 @@ var SEED=[
   risk:[{t:'The offer goes cold from disuse',l:3,i:3}],
   ben:['One seat at $12,500 closes the funding gap outright','Two seats make this a coalition asset, safer for Take-Two and stronger for the field']},
 
- {id:'D8',n:'Launch comms package',e:'Launch',ms:'M3',own:'Mabel',pts:5,cost:1000,pri:'must',dep:['D3'],
+ {id:'D8',n:'Launch comms package',e:'Launch',ms:'M3',own:'Gordon',pts:5,cost:1000,pri:'must',dep:['D3'],
   promise:'Launch day is a moment, not an upload.',
   goal:'Partners amplify when you ask them properly and early. WOTC, G4C, and ASGC all have reasons to carry this.',
   ac:['Announcement thread drafted','Partner amplification asks to WOTC, G4C, ASGC','Scholar-facing walkthrough','Gordon approves all sends'],
-  res:['Mabel on partner comms','Gordon approval on anything external'],
+  res:['Gordon owns this and approves anything external','Mabel on brand voice as a project-scoped contributor, briefed by Gordon'],
   risk:[{t:'Partner asks go out too late to be scheduled',l:2,i:2}],
   ben:['Drives the 1,500 unique visitors in the first 90 days','Unsolicited mentions are one of our stated success metrics']},
 
@@ -434,27 +434,27 @@ var SEED=[
   risk:[{t:'A lane genuinely has nothing to find and the effort returns little',l:2,i:1}],
   ben:['Closes the honest gaps we have already published','Graduate coverage is what CMU and NYU keep asking for']},
 
- {id:'D9',n:'GDC demo moment',e:'Launch',ms:'M6',own:'Mabel',pts:8,cost:2500,pri:'should',dep:['D3'],
+ {id:'D9',n:'GDC demo moment',e:'Launch',ms:'M6',own:'Gordon',pts:8,cost:2500,pri:'should',dep:['D3'],
   promise:'The Directory shown live at GDC with the scholars it serves standing in the room.',
   goal:'GDC is where this field decides what is real. A live demo with scholars present is worth more than any deck.',
   ac:['Shown live in a scheduled GDC-week moment','Scholars in the room','Press one-pager available','Demo rehearsed twice with a static fallback'],
-  res:['Mabel on Informa coordination','Demo build and rehearsal time'],
+  res:['Gordon owns the moment and is the public face of it','Mabel on Informa coordination as a project-scoped contributor, since that relationship is hers','Demo build and rehearsal time'],
   risk:[{t:'Live demo fails on venue wifi',l:2,i:2},{t:'Scheduled slot not secured in time',l:2,i:3}],
   ben:['Converts the product into industry awareness','Feeds directly into the coalition announcements']},
 
- {id:'RF',n:'Quarterly refresh automation',e:'Operations',ms:'M4',own:'Charlie',pts:8,cost:0,pri:'should',dep:['D6'],
+ {id:'RF',n:'Quarterly refresh automation',e:'Operations',ms:'M4',own:'Automation partner',pts:8,cost:0,pri:'should',dep:['D6'],
   promise:'The feeds tell us what changed so a human does not have to look.',
   goal:'ASGC courses API, HEVGA institution list, and job-board sweeps can diff themselves. Feeds propose, humans publish.',
   ac:['Feeds diffed automatically','Proposed changes queued for human verification','Never auto-publishes'],
-  res:['Charlie build time','Darby to define the evidence rules'],
+  res:['Automation build time, separable from the site build on purpose','Darby to define the evidence rules'],
   risk:[{t:'Automation blurs into auto-publishing and a bad entry ships',l:1,i:3}],
   ben:['Cuts refresh labour substantially','Catches deadline changes we would otherwise miss between quarters']},
 
- {id:'AS',n:'ASGC cross-listing and courses layer',e:'Partnerships',ms:'M3',own:'Mabel',pts:5,cost:0,pri:'should',dep:['D3'],
+ {id:'AS',n:'ASGC cross-listing and courses layer',e:'Partnerships',ms:'M3',own:'Brennan',pts:5,cost:0,pri:'should',dep:['D3'],
   promise:'We link and credit the 4,421 free courses rather than rebuilding them.',
   goal:'ASGC serves adult job seekers with no K-12 or scholarship coverage. Perfect complement, not a competitor.',
   ac:['Directory submitted to the ASGC library','Their courses API linked as our free-learning layer with credit'],
-  res:['Mabel on the relationship','Light build for the link layer'],
+  res:['Brennan makes the submission and tracks it','Light build for the link layer, from the build partner'],
   risk:[{t:'Cross-listing takes longer than launch week allows',l:2,i:1}],
   ben:['Adds a large free-learning layer at no build cost','Opens a warm partnership with a complementary organisation']},
 
@@ -533,9 +533,11 @@ var SEED=[
 
 var OWNERS={
   Eric:'Executive Producer',Gordon:'Executive sponsor',Joe:'Finance and compliance',
-  Alex:'Scholar and alumni liaison',Mabel:'Partner comms and GDC',Brennan:'Ops and boards',
-  Charlie:'Technical build, project-scoped',Darby:'Research and verification',
-  'Data steward':'Accuracy between refreshes',TBD:'Unassigned'
+  Alex:'Scholar and alumni liaison',Brennan:'Ops and boards',Darby:'Research and verification',
+  'Build partner':'Site build, to name by M1','Automation partner':'Feeds and refresh, to name by M1',
+  'Data steward':'Accuracy between refreshes',
+  Mabel:'Brand voice and Informa, project-scoped, briefed by Gordon',
+  Charlie:'Technical contributor, project-scoped',TBD:'Unassigned'
 };
 
 var state=null, view='board', fEpic='', fOwner='', openId=null, dragId=null;
@@ -817,7 +819,8 @@ function renderTeam(){
       '<div class="bar"><i style="width:'+pct+'%;background:'+col+'"></i></div>'+
       '<div class="num">'+l.pts+' pts<br>'+l.n+' items</div></div>';
   }).join('');
-  var unassigned=state.items.filter(function(i){ return committed(i)&&(i.own==='TBD'||i.own==='Data steward'); });
+  var OPEN=['TBD','Data steward','Build partner','Automation partner'];
+  var unassigned=state.items.filter(function(i){ return committed(i)&&OPEN.indexOf(i.own)>=0; });
   document.getElementById('team').innerHTML=
     '<div class="panel"><h3>Who I am asking to carry what</h3>'+
     "<p class=\"lead\">Committed work only, so Could and Next release don't flatter the picture. Anything above 25 points I'd want to talk through with that person before we commit, because that's where a schedule quietly turns into one person's availability. If I've put too much on you, please say so on Monday rather than in October.</p>"+
@@ -825,15 +828,24 @@ function renderTeam(){
     '<div class="panel"><h3>RACI, straight from the plan</h3><p class="lead">Unchanged from Production Plan v1, and I am genuinely grateful to every person on this list. If a name here is wrong it is wrong in the plan too, and Monday is where we fix it.</p><ul>'+
     '<li><b>Gordon Bellamy</b>: executive sponsor, public face, final approval on anything external. Accountable on launch and comms.</li>'+
     '<li><b>Eric Francksen</b>: Executive Producer. Schedule, scope, quality gate, and this document. Responsible and accountable on delivery.</li>'+
-    '<li><b>Charlie des Robert</b>: site build, lens engine, feeds integration. Project-scoped per the staffing rule.</li>'+
+    '<li><b>Build partner</b> and <b>automation partner</b>: the site build and the feeds work, written as two scoped packages to fill by M1 rather than assigned by default. Charlie des Robert is a strong candidate for either, and they are one of several people we should be talking to.</li>'+
     '<li><b>Alex Rogers</b>: scholar and alumni liaison, Pipeline recruitment and consent collection. He took ownership of the Directory itself on 7 August.</li>'+
-    '<li><b>Mabel Chung</b>: partner comms, GDC moment, Informa coordination, ASGC cross-listing. Briefed by Gordon, contributing as a peer on brand voice rather than through the EP line.</li>'+
-    '<li><b>Brennan Murphy</b>: ops, boards, refresh reminders, corrections triage.</li>'+
+    '<li><b>Mabel Chung</b>: brand voice on the launch comms, and Informa coordination for the GDC moment, because that relationship is genuinely hers. Project-scoped and briefed by Gordon, which is how we work now.</li>'+
+    '<li><b>Brennan Murphy</b>: ops, boards, refresh reminders, corrections triage, and the ASGC cross-listing submission.</li>'+
     '<li><b>Joe Heally</b>: finance and compliance, budget tracking, sponsor invoicing, counsel coordination. Accountable on budget.</li>'+
     '<li><b>Darby</b>: research and verification engine, wave runs, evidence grading, drafts.</li>'+
     '<li><b>Data steward</b>: to be named by M1. Owns entry accuracy between refreshes and the corrections SLA.</li></ul></div>'+
-    (unassigned.length?'<div class="panel"><h3>Committed work with nobody real on it</h3><p class="lead">These are committed but the owner is still a placeholder, which means they are really still mine until we fix that.</p><ul>'+
-      unassigned.map(function(i){ return '<li><b>'+esc(i.n)+'</b>, '+i.pts+' pts, owner listed as '+esc(i.own)+'</li>'; }).join('')+'</ul></div>':'');
+    (unassigned.length?'<div class="panel"><h3>Seats we still have to fill</h3><p class="lead">These are committed but the owner is a role rather than a person, which means they are really still mine until we fix that. All of them are M0 and M1 conversations, and between them they are '+
+      unassigned.reduce(function(a,b){ return a+(Number(b.pts)||0); },0)+' points of committed work.</p><ul>'+
+      unassigned.map(function(i){ return '<li><b>'+esc(i.n)+'</b>, '+i.pts+' pts'+(i.cost?', '+money(i.cost):'')+', currently sitting with <b>'+esc(i.own)+'</b></li>'; }).join('')+'</ul></div>':'')+
+
+    '<div class="panel"><h3>How I have staffed this, and why</h3>'+
+    "<p class=\"lead\">We staff needs-first and project by project. We scope the work, then we find the right person for that specific piece, rather than making any one person the backbone and quietly building a single point of failure. I have lived through that version and I would rather not run it again.</p>"+
+    '<ul>'+
+    '<li><b>The build is a scoped package, not a name.</b> Handing one person the site, the lens engine, and the feeds automation would be exactly the dependency my own risk register warns about. So it is two separable packages with two seats to fill by M1.</li>'+
+    "<li><b>Brand voice and partner relationships route through Gordon.</b> He briefs them, he approves anything external, and that is already true in practice. Writing it down just makes it honest.</li>"+
+    '<li><b>Named contributors are still named.</b> Scoping work before a name goes on it is not a comment on anybody. Mabel and Charlie are both on this project, and I want both of them on it.</li>'+
+    '</ul></div>';
 }
 
 function renderAgree(){
