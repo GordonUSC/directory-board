@@ -1,0 +1,1289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#5B3DF5">
+<meta property="og:title" content="The Directory - Production Board for Eric">
+<meta property="og:description" content="Scope, timeline, priorities. Every lever yours to pull.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E%F0%9F%8E%AC%3C/text%3E%3C/svg%3E">
+<title>The Directory &middot; Production Board</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#F6F7FB; --card:#FFFFFF; --card2:#FBFBFE; --line:#E3E6F0; --line2:#D3D8E8;
+  --ink:#16182B; --ink2:#4A4F6B; --muted:#7B819B;
+  --must:#E2445C; --should:#FDAB3D; --could:#00C875; --later:#A25DDC;
+  --brand:#5B3DF5; --brand2:#00A9FF; --ok:#00A862; --warn:#C97C10; --bad:#D6304A;
+  --okc:#00C875; --warnc:#FDAB3D; --badc:#E2445C;
+  --shadow:0 1px 2px rgba(22,24,43,.06),0 4px 14px rgba(22,24,43,.06);
+  --shadow2:0 8px 30px rgba(22,24,43,.16);
+  --f:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  --r:12px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#12141F; --card:#1B1E2C; --card2:#202433; --line:#2C3145; --line2:#3A4058;
+    --ink:#EDEFF7; --ink2:#B6BBD0; --muted:#858BA6;
+    --ok:#3EE69B; --warn:#FFC46B; --bad:#FF7A8A;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.3);
+    --shadow2:0 8px 30px rgba(0,0,0,.55);
+  }
+}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f);font-size:15.5px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.rail{height:5px;background:linear-gradient(90deg,#E2445C,#FDAB3D,#00C875,#00A9FF,#5B3DF5,#A25DDC)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 18px 120px}
+
+header{padding:30px 0 18px}
+.hi{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--brand)}
+h1{font-size:clamp(26px,4.5vw,39px);line-height:1.08;letter-spacing:-.022em;margin:11px 0 12px;font-weight:800}
+.sub{color:var(--ink2);max-width:76ch;margin:0}
+.sub b{color:var(--ink)}
+.meta{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:12px;line-height:1.85}
+
+/* model bar */
+.model{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 16px;
+  margin-top:18px;box-shadow:var(--shadow);display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end}
+.mf{display:flex;flex-direction:column;gap:4px}
+.mf label{font-size:10.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.mf input{width:118px}
+.seats{display:flex;gap:5px;align-items:center}
+.seatbtn{width:32px;height:34px;border-radius:8px;border:1px solid var(--line2);background:var(--card);
+  color:var(--ink);font-size:17px;font-weight:800;cursor:pointer;line-height:1;-webkit-appearance:none}
+.seatbtn:hover{border-color:var(--brand);color:var(--brand)}
+.seatval{min-width:112px;text-align:center;font-size:13px;font-weight:700;color:var(--ink2)}
+.mnote{font-size:12px;color:var(--muted);flex:1;min-width:200px;line-height:1.45}
+
+/* dashboard */
+.dash{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:11px;margin:14px 0 6px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:13px 15px;box-shadow:var(--shadow)}
+.tile .lbl{font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.tile .val{font-size:24px;font-weight:800;letter-spacing:-.02em;margin-top:3px;font-variant-numeric:tabular-nums}
+.tile .sub2{font-size:12px;color:var(--muted);margin-top:1px}
+.tile.ok .val{color:var(--ok)} .tile.warn .val{color:var(--warn)} .tile.bad .val{color:var(--bad)}
+.meter{height:6px;background:var(--line);border-radius:99px;margin-top:8px;overflow:hidden}
+.meter i{display:block;height:100%;border-radius:99px;transition:width .3s ease}
+
+.verdict{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--brand);
+  border-radius:var(--r);padding:14px 17px;margin:12px 0 0;box-shadow:var(--shadow);font-size:15px;color:var(--ink2)}
+.verdict b{color:var(--ink)}
+.verdict.ok{border-left-color:var(--okc)} .verdict.warn{border-left-color:var(--warnc)} .verdict.bad{border-left-color:var(--badc)}
+
+.alerts{margin-top:10px;display:grid;gap:7px}
+.alert{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--warnc);border-radius:10px;
+  padding:10px 14px;font-size:14px;color:var(--ink2);box-shadow:var(--shadow)}
+.alert.bad{border-left-color:var(--badc)}
+.alert.info{border-left-color:var(--brand2)}
+.alert b{color:var(--ink)}
+
+/* toolbar */
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:20px 0 14px;
+  position:sticky;top:0;z-index:30;background:var(--bg);padding:12px 0 11px;border-bottom:1px solid var(--line)}
+select,input,textarea{font-family:var(--f);font-size:14px;color:var(--ink);background:var(--card);
+  border:1px solid var(--line2);border-radius:9px;padding:8px 11px;-webkit-appearance:none;appearance:none}
+select:focus,input:focus,textarea:focus{outline:2px solid var(--brand);outline-offset:1px}
+textarea{width:100%;resize:vertical;min-height:66px;line-height:1.5}
+.btn{font-family:var(--f);font-size:13.5px;font-weight:700;padding:9px 15px;border-radius:9px;border:1px solid var(--line2);
+  background:var(--card);color:var(--ink);cursor:pointer;-webkit-appearance:none;white-space:nowrap}
+.btn:hover{border-color:var(--brand);color:var(--brand)}
+.btn.pri{background:var(--brand);border-color:var(--brand);color:#fff}
+.btn.pri:hover{opacity:.9;color:#fff}
+.spacer{flex:1;min-width:6px}
+.viewtabs{display:flex;gap:4px;background:var(--line);padding:4px;border-radius:11px;flex-wrap:wrap}
+.vt{font-size:13px;font-weight:700;padding:8px 13px;border-radius:8px;border:none;background:transparent;
+  color:var(--ink2);cursor:pointer;-webkit-appearance:none}
+.vt.on{background:var(--card);color:var(--ink);box-shadow:var(--shadow)}
+.view{display:none} .view.on{display:block}
+
+/* board */
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-items:start}
+@media (max-width:1020px){.board{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:620px){.board{grid-template-columns:1fr}}
+.col{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:11px;min-height:90px}
+.col.drag{border-color:var(--brand);border-style:dashed}
+.colhead{display:flex;align-items:center;gap:8px;margin-bottom:9px;padding:0 3px}
+.dot{width:11px;height:11px;border-radius:99px;flex:none}
+.colname{font-size:13.5px;font-weight:800}
+.colcount{margin-left:auto;font-size:11.5px;font-weight:700;color:var(--muted);font-family:var(--mono)}
+.colnote{font-size:11.5px;color:var(--muted);padding:0 3px 9px;line-height:1.45}
+.colsum{font-size:11px;font-family:var(--mono);color:var(--muted);padding:0 3px 9px;border-bottom:1px solid var(--line);margin-bottom:9px}
+
+.item{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--muted);border-radius:10px;
+  padding:11px 12px;margin-bottom:8px;cursor:pointer;box-shadow:var(--shadow);transition:transform .12s,box-shadow .12s}
+.item:hover{transform:translateY(-1px);box-shadow:var(--shadow2)}
+.item.dragging{opacity:.45}
+.item .nm{font-size:14px;font-weight:700;line-height:1.32}
+.item .dsc{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.4}
+.item .foot{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px;align-items:center}
+.tag{font-size:10.5px;font-weight:800;letter-spacing:.04em;padding:3px 7px;border-radius:6px;
+  background:var(--line);color:var(--ink2);white-space:nowrap}
+.tag.pts{background:color-mix(in srgb,var(--brand) 14%,transparent);color:var(--brand)}
+.tag.cost{background:color-mix(in srgb,var(--okc) 17%,transparent);color:var(--ok)}
+.tag.ms{background:color-mix(in srgb,var(--brand2) 15%,transparent);color:#0077b6}
+@media (prefers-color-scheme:dark){.tag.ms{color:#6fd0ff}}
+.tag.new{background:var(--brand);color:#fff}
+.tag.blocked{background:color-mix(in srgb,var(--badc) 18%,transparent);color:var(--bad)}
+
+/* timeline */
+.tl{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px 18px;box-shadow:var(--shadow)}
+.ms{display:grid;grid-template-columns:130px 1fr;gap:0 16px;padding:15px 0;border-bottom:1px solid var(--line)}
+.ms:last-child{border-bottom:none}
+.ms.now{background:color-mix(in srgb,var(--brand) 5%,transparent);margin:0 -18px;padding-left:18px;padding-right:18px}
+.ms .when{font-size:13px;font-weight:800;color:var(--brand);line-height:1.35}
+.ms .when small{display:block;color:var(--muted);font-weight:600;font-size:11.5px}
+.ms .when .cd{display:block;font-size:11px;font-weight:800;margin-top:3px}
+.ms .t{font-weight:750;font-size:15.5px}
+.ms .d{font-size:14px;color:var(--ink2);margin-top:3px}
+.ms .gate{font-size:12.5px;color:var(--ok);font-weight:700;margin-top:5px}
+.ms .load{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+
+/* generic panel */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow);margin-bottom:12px}
+.panel h3{margin:0 0 4px;font-size:18px;font-weight:800;letter-spacing:-.015em}
+.panel .lead{color:var(--ink2);font-size:14.5px;margin:0 0 14px}
+.panel ul{margin:0;padding-left:20px} .panel li{color:var(--ink2);font-size:14.5px;margin-bottom:7px}
+.panel ol{margin:0;padding-left:20px} .panel ol li{color:var(--ink2);font-size:14.5px;margin-bottom:7px}
+
+.loadrow{display:grid;grid-template-columns:118px 1fr 92px;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
+.loadrow:last-child{border-bottom:none}
+.loadrow .who{font-weight:750;font-size:14.5px}
+.loadrow .who small{display:block;font-weight:600;color:var(--muted);font-size:11.5px}
+.bar{height:9px;background:var(--line);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:99px}
+.loadrow .num{text-align:right;font-family:var(--mono);font-size:12.5px;color:var(--ink2)}
+
+.chg{padding:11px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink2)}
+.chg:last-child{border-bottom:none}
+.chg .when{font-family:var(--mono);font-size:11px;color:var(--muted);display:block}
+.chg b{color:var(--ink)}
+
+.signline{font-family:var(--mono);font-size:12.5px;color:var(--muted);border-bottom:1px solid var(--line2);padding:16px 0 5px}
+
+/* drawer */
+.scrim{position:fixed;inset:0;background:rgba(16,18,32,.55);opacity:0;pointer-events:none;transition:opacity .2s;z-index:60}
+.scrim.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(560px,100%);background:var(--bg);z-index:61;
+  transform:translateX(101%);transition:transform .26s cubic-bezier(.3,.8,.3,1);overflow-y:auto;
+  box-shadow:-14px 0 40px rgba(16,18,32,.24)}
+.drawer.on{transform:translateX(0)}
+.dhead{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);padding:16px 20px 13px;z-index:2}
+.dbody{padding:16px 20px 70px}
+.dclose{float:right;font-size:21px;line-height:1;background:none;border:none;color:var(--muted);cursor:pointer;padding:2px 5px}
+.dtitle{font-size:20px;font-weight:800;letter-spacing:-.015em;line-height:1.22;padding-right:26px}
+.dsec{margin-top:18px}
+.dsec h4{font-size:11.5px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin:0 0 7px}
+.dsec p{margin:0;color:var(--ink2);font-size:14.5px}
+.dsec ul{margin:0;padding-left:19px}
+.dsec li{color:var(--ink2);font-size:14.5px;margin-bottom:5px}
+.pri-pick{display:flex;flex-wrap:wrap;gap:6px}
+.pp{font-size:13px;font-weight:800;padding:9px 14px;border-radius:9px;border:2px solid var(--line2);
+  background:var(--card);color:var(--ink2);cursor:pointer;-webkit-appearance:none}
+.pp.on{color:#fff}
+.risk{display:grid;grid-template-columns:1fr auto;gap:9px;align-items:start;padding:9px 0;border-bottom:1px solid var(--line)}
+.risk:last-child{border-bottom:none}
+.risk .rt{font-size:14px;color:var(--ink2)}
+.sev{font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:6px;white-space:nowrap;align-self:start}
+.kv{display:grid;grid-template-columns:112px 1fr;gap:3px 12px;font-size:14px}
+.kv .k{color:var(--muted);font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;font-weight:700;padding-top:3px}
+.kv .v{color:var(--ink2)}
+.depwarn{background:color-mix(in srgb,var(--badc) 12%,transparent);border-radius:9px;padding:10px 13px;
+  font-size:13.5px;color:var(--bad);font-weight:600;margin-top:8px}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:70;display:none;align-items:flex-start;justify-content:center;padding:26px 16px;overflow-y:auto}
+.modal.on{display:flex}
+.msheet{background:var(--bg);border:1px solid var(--line);border-radius:16px;width:min(740px,100%);
+  box-shadow:var(--shadow2);padding:20px 22px 24px}
+.msheet h3{margin:0 0 4px;font-size:20px;font-weight:800;letter-spacing:-.015em}
+.msheet .lead{color:var(--ink2);font-size:14.5px;margin:0 0 16px}
+.field{margin-bottom:13px}
+.field label{display:block;font-size:11.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.field input,.field select,.field textarea{width:100%}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+@media (max-width:520px){.two{grid-template-columns:1fr}}
+pre.out{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;
+  font-family:var(--mono);font-size:12.2px;line-height:1.62;white-space:pre-wrap;word-break:break-word;
+  max-height:46vh;overflow:auto;color:var(--ink2);margin:0}
+.hint{font-size:12.5px;color:var(--muted);margin-top:7px;line-height:1.5}
+
+footer{margin-top:40px;border-top:1px solid var(--line);padding-top:16px;font-size:12.5px;color:var(--muted);
+  font-family:var(--mono);line-height:1.8}
+a{color:var(--brand)}
+</style>
+</head>
+<body>
+<div class="rail"></div>
+<div class="wrap">
+
+<header>
+  <p class="hi">GGP &middot; The Directory &amp; Pipeline &middot; Production Board v1</p>
+  <h1>Hi Eric! Here is the whole scope,<br>and every lever is yours to pull.</h1>
+  <p class="sub">This is Production Plan v1 turned into something you can actually work. <b>Move anything between Must, Should, Could, and Next release</b> and the budget, the schedule load, the risk index, the team load, and the verdict all recalculate. Model a coalition seat closing and watch what it unlocks. Add whatever we missed and it will size itself. Then export straight into Monday, or generate the proposal for Alan or Sinjin from wherever you left the board. <b>Nothing here is decided, and this is not your document until you have torn into it.</b> Thank you for taking this on. 😊</p>
+  <p class="meta">
+    Today is Friday 7 August 2026 &middot; M0 kickoff is Monday &middot; Public launch target Friday 9 October 2026<br>
+    Everything saves in this browser only. Nothing is sent anywhere until you export it.
+  </p>
+</header>
+
+<div class="model">
+  <div class="mf"><label>Funded budget</label><input id="mBudget" type="number" step="500" min="0"></div>
+  <div class="mf"><label>Contingency held</label><input id="mCont" type="number" step="500" min="0"></div>
+  <div class="mf"><label>Coalition seats at $12,500</label>
+    <div class="seats">
+      <button class="seatbtn" id="seatDown" aria-label="One fewer seat">&minus;</button>
+      <span class="seatval" id="seatVal">0 seats</span>
+      <button class="seatbtn" id="seatUp" aria-label="One more seat">+</button>
+    </div>
+  </div>
+  <div class="mf"><label>Capacity to GDC, points</label><input id="mCap" type="number" step="5" min="10"></div>
+  <p class="mnote" id="mNote"></p>
+</div>
+
+<div class="dash" id="dash"></div>
+<div class="verdict" id="verdict"></div>
+<div class="alerts" id="alerts"></div>
+
+<div class="toolbar">
+  <div class="viewtabs" role="tablist">
+    <button class="vt on" data-v="board" role="tab">Board</button>
+    <button class="vt" data-v="timeline" role="tab">Timeline</button>
+    <button class="vt" data-v="team" role="tab">Team load</button>
+    <button class="vt" data-v="agree" role="tab">Working agreement</button>
+    <button class="vt" data-v="chg" role="tab">Change orders</button>
+  </div>
+  <select id="fEpic" aria-label="Filter by epic"><option value="">All epics</option></select>
+  <select id="fOwner" aria-label="Filter by owner"><option value="">All owners</option></select>
+  <div class="spacer"></div>
+  <button class="btn pri" id="bAdd">+ Add a feature</button>
+  <button class="btn" id="bMonday">Export to Monday</button>
+  <button class="btn" id="bProp">Make a proposal</button>
+  <button class="btn" id="bReset">Reset</button>
+</div>
+
+<div class="view on" id="view-board"><div class="board" id="board"></div></div>
+<div class="view" id="view-timeline"><div class="tl" id="tl"></div></div>
+<div class="view" id="view-team"><div id="team"></div></div>
+<div class="view" id="view-agree"><div id="agree"></div></div>
+<div class="view" id="view-chg"><div id="chg"></div></div>
+
+<footer>
+  Built for Eric Francksen, Executive Producer, on 7 August 2026.<br>
+  Source: The Directory &amp; Pipeline Production Plan v1.0 (D1 through D9, RACI, M0 through M7, budget, risk register),
+  the 53-entry verified catalog, and the Take-Two board approval of 18 June 2026.<br>
+  Sizing on anything you add is an estimate produced from your description. Treat it as a starting number and overwrite it.<br>
+  Companion page: <a href="https://gordonusc.github.io/ggp-directory/">the Directory, Alex's owner copy</a>
+</footer>
+
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="dhead"><button class="dclose" id="dclose" aria-label="Close">&times;</button><div class="dtitle" id="dtitle"></div></div>
+  <div class="dbody" id="dbody"></div>
+</aside>
+<div class="modal" id="modal"><div class="msheet" id="msheet"></div></div>
+
+<script>
+(function(){
+"use strict";
+
+var KEY='ggp-directory-board-eric-v2';
+var TODAY=new Date(2026,7,7);
+var SEAT=12500;
+
+var PRI={
+  must:{name:'Must have',hex:'#E2445C',note:'Launch does not happen without these. This is the promise we already made.'},
+  should:{name:'Should have',hex:'#FDAB3D',note:'Real value, painful to drop, but launch survives without them.'},
+  could:{name:'Could have',hex:'#00C875',note:'Nice to have. First to go when something has to give.'},
+  later:{name:'Next release',hex:'#A25DDC',note:'Not this release. Parked on the public roadmap, visibly, where funders can see it.'}
+};
+
+var MILESTONES=[
+ {id:'M0',when:'Mon Aug 10',date:new Date(2026,7,10),t:'Kickoff and roles locked',d:'45 minutes, whole team. This plan reviewed, argued, and amended. Data steward candidate named. Weekly standup slotted for Tuesday, 30 minutes, before Weekly Connect.',gate:'Gate: every RACI cell has a name in it'},
+ {id:'M1',when:'Fri Aug 21',date:new Date(2026,7,21),t:'Spec freeze',d:'Canonical doc merged. Lens engine reviewed on real phones. Wave Three research brief approved. Consent flow draft to counsel.',gate:'Gate: no new scope enters after this date without an equal scope exit'},
+ {id:'M2',when:'Fri Sep 18',date:new Date(2026,8,18),t:'Content complete for launch',d:'Catalog at 65 or better, methodology page final, every entry re-checked within 60 days. The Riot September wave lands inside this window and we catch it live, which is the whole point of the product.',gate:'Gate: zero entries without badges; internship entries current within 14 days'},
+ {id:'M3',when:'Fri Oct 9',date:new Date(2026,9,9),t:'PUBLIC LAUNCH',d:'Site accepted, Take-Two credit approved by their office, launch comms out, ASGC cross-listing submitted. Timed deliberately before the Bigglesworth board clock.',gate:'Gate: Gordon go, Joe budget sign-off, Alan office credit approval'},
+ {id:'M4',when:'Fri Dec 11',date:new Date(2026,11,11),t:'Pipeline alpha live, Casino Night moment',d:'20 consented profiles, intro-request flow proven with two friendly recruiters, announced to the donor room where the scholars it serves are standing.',gate:'Gate: counsel-approved consent on file for every profile, no exceptions'},
+ {id:'M5',when:'Feb 2027',date:new Date(2027,1,19),t:'Meet the Scholars integration',d:'Campaign traffic routed through the Directory. Recruiter annual touchpoint number one executed.',gate:'Gate: refresh number two complete before campaign sends'},
+ {id:'M6',when:'GDC Mar 2027',date:new Date(2027,2,19),t:'GDC debut and coalition announcements',d:'Live demo with scholars present, coalition seats announced, press one-pager, CGC finalist profiles featured.',gate:'Gate: demo rehearsed twice, fallback static version on a USB drive because we are professionals'},
+ {id:'M7',when:'Apr 2027',date:new Date(2027,3,16),t:'Retro and v2 decision',d:'Full production retro against the success metrics. Decisions with data, not enthusiasm.',gate:'Gate: retro doc filed; v2 scope drafted from evidence'},
+ {id:'v2',when:'Next release',date:null,t:'The public roadmap',d:'Everything parked, visible to funders. Honesty about what is not funded yet is itself part of the pitch.',gate:''}
+];
+
+var SEED=[
+ {id:'D1',n:'Reconciled canonical spec',e:'Foundations',ms:'M1',own:'Eric',pts:3,cost:0,pri:'must',dep:[],
+  promise:'One document is the truth, and everybody knows which one it is.',
+  goal:'Two Google Docs currently describe this project differently. Until they are merged, every argument gets relitigated from a different page.',
+  ac:['One doc marked CANONICAL, the other archived with a pointer','Gordon signs the merge'],
+  res:['Eric, 2 hours','Gordon, 30 minutes to sign'],
+  risk:[{t:'Merge stalls and the team keeps working from two specs',l:2,i:3}],
+  ben:['Every later decision has one reference point','Change control becomes possible, since you cannot control change against two baselines']},
+
+ {id:'D2',n:'Verification methodology page',e:'Trust',ms:'M2',own:'Darby',pts:5,cost:1000,pri:'must',dep:['D1'],
+  promise:'We publish how we check things, including how we can be wrong.',
+  goal:'The badge system is the brand. If we cannot explain it in plain language, a board cannot trust it.',
+  ac:['Badge definitions published','Evidence-grade rules published','Refresh calendar published','Corrections SLA published in plain language'],
+  res:['Darby research and drafting','Gordon voice pass','Eric approval'],
+  risk:[{t:'Methodology written in jargon nobody outside the team can use',l:2,i:2}],
+  ben:['This is what makes the Directory citable rather than merely useful','Directly answers the donor question about rigour']},
+
+ {id:'D3',n:'Production site at /directory',e:'Build',ms:'M3',own:'Charlie',pts:13,cost:12000,pri:'must',dep:['D1'],
+  promise:'A real public product at gaygamingpros.org/directory, not a prototype link.',
+  goal:'The three-lens experience is the differentiator. Donor, student, and recruiter each get their own front door into the same verified truth.',
+  ac:['Lens engine works on mobile Safari and Chrome','Accessibility pass: keyboard, contrast, alt text','All links return 200','Loads in under 3 seconds'],
+  res:['Charlie des Robert, project-scoped engagement','Eric quality gate','Accessibility reviewer'],
+  risk:[{t:'Single-builder dependency if Charlie becomes unavailable',l:2,i:3},{t:'Accessibility pass discovered late and delays launch',l:2,i:2}],
+  ben:['The whole project becomes real and demonstrable','Almost everything else on this board depends on it existing']},
+
+ {id:'D4',n:'Catalog from 53 to 75 entries',e:'Content',ms:'M2',own:'Darby',pts:13,cost:6000,pri:'must',dep:['D2'],
+  promise:'75 verified entries covering K through graduate, each with evidence and a date.',
+  goal:'53 is a strong start with named gaps. 75 with the Wave Three lanes filled makes it the reference for the field.',
+  ac:['Every entry carries a badge and a last-checked date','Level, type, cost or award, dates or cycle language, application path','Backed-by line where known'],
+  res:['Darby research waves','Verification hours','Primary-source fetches'],
+  risk:[{t:'Careers pages block automated verification and slow the count',l:3,i:2},{t:'Entry count prioritised over entry quality',l:2,i:3}],
+  ben:['Coverage becomes credible across every level, not just undergraduate','Wave Three lanes are exactly where funders keep asking']},
+
+ {id:'D5',n:'Pipeline alpha, 20 consented profiles',e:'Pipeline',ms:'M4',own:'Alex',pts:8,cost:3000,pri:'must',dep:[],
+  promise:'Recruiters can find ready people, and no student is ever exposed without saying yes.',
+  goal:'The Directory answers where dollars go. The Pipeline answers who is ready. That second question is what converts a catalog into placements.',
+  ac:['Consent doc reviewed by IE Law Group','20 signed profiles, 18 and over only','Intro-request flow tested end to end with two real recruiters'],
+  res:['Alex, scholar and alumni outreach','Joe, counsel coordination','Legal review budget'],
+  risk:[{t:'Consent or privacy failure exposes a student',l:1,i:3},{t:'Fewer than 20 scholars opt in by December',l:2,i:2}],
+  ben:['Turns goodwill into actual introductions','The Casino Night moment has something live to show']},
+
+ {id:'D6',n:'Refresh runbook and first refresh',e:'Operations',ms:'M4',own:'Darby',pts:5,cost:0,pri:'must',dep:['D4'],
+  promise:'This survives the person who built it.',
+  goal:'Directories rot. A runbook a second person can execute is the difference between infrastructure and a hobby.',
+  ac:['A team member other than the builder executes refresh number one successfully from the runbook alone'],
+  res:['Darby writes it','Brennan or the data steward proves it'],
+  risk:[{t:'Runbook written but never tested by a second operator',l:2,i:3}],
+  ben:['Removes the single-maintainer risk that kills most directories','Makes the data steward role hireable and teachable']},
+
+ {id:'D7',n:'Coalition kit',e:'Funding',ms:'M3',own:'Gordon',pts:5,cost:1500,pri:'must',dep:['D4'],
+  promise:'Alan can carry our ask into EA and ESA without writing anything himself.',
+  goal:'Alan offered in writing on 18 June to make both introductions with us. Seven weeks unused. The kit is what makes that offer usable.',
+  ac:['One-pager approved by Gordon and Joe','Credit spec approved by the Take-Two contact','EA and ESA materials physically in Alan hands'],
+  res:['Gordon writes the ask','Design for the one-pager','Joe on the numbers'],
+  risk:[{t:'The offer goes cold from disuse',l:3,i:3}],
+  ben:['One seat at $12,500 closes the funding gap outright','Two seats make this a coalition asset, safer for Take-Two and stronger for the field']},
+
+ {id:'D8',n:'Launch comms package',e:'Launch',ms:'M3',own:'Mabel',pts:5,cost:1000,pri:'must',dep:['D3'],
+  promise:'Launch day is a moment, not an upload.',
+  goal:'Partners amplify when you ask them properly and early. WOTC, G4C, and ASGC all have reasons to carry this.',
+  ac:['Announcement thread drafted','Partner amplification asks to WOTC, G4C, ASGC','Scholar-facing walkthrough','Gordon approves all sends'],
+  res:['Mabel on partner comms','Gordon approval on anything external'],
+  risk:[{t:'Partner asks go out too late to be scheduled',l:2,i:2}],
+  ben:['Drives the 1,500 unique visitors in the first 90 days','Unsolicited mentions are one of our stated success metrics']},
+
+ {id:'ST',n:'Data steward named and onboarded',e:'Operations',ms:'M1',own:'Eric',pts:2,cost:0,pri:'must',dep:[],
+  promise:'One human is accountable for accuracy, by name.',
+  goal:'Until this seat is filled the honesty promise has nobody behind it, and honesty is the entire differentiator.',
+  ac:['A named person, not a committee','They own the corrections SLA','Named by M1'],
+  res:['Eric identifies the candidate','Possible stipend, to be decided'],
+  risk:[{t:'Seat stays empty and quietly defaults to whoever is nearest',l:3,i:3}],
+  ben:['Makes the corrections SLA real','Could be resume-grade work for an Extended Scholar, which serves two goals at once']},
+
+ {id:'TT',n:'Take-Two credit implemented and approved',e:'Funding',ms:'M3',own:'Gordon',pts:3,cost:500,pri:'must',dep:['D3'],
+  promise:'Our lead sponsor sees their credit before the public does.',
+  goal:'Credit approved after launch is an apology. Approved before launch is a relationship.',
+  ac:['Sponsor credit screenshot approved in writing by the Take-Two contact','Approval on file before launch, not after'],
+  res:['Gordon to Alan office','Design treatment'],
+  risk:[{t:'Credit ships unapproved and needs a public correction',l:1,i:3}],
+  ben:['Protects the renewal conversation','A deliverable, not a nicety']},
+
+ {id:'OR',n:'Sinjin and Alan origin credit',e:'Funding',ms:'M3',own:'Gordon',pts:1,cost:0,pri:'must',dep:['D8'],
+  promise:'We say out loud where this came from.',
+  goal:'The Directory started in a conversation between Sinjin and Alan. Crediting that publicly costs nothing and compounds two of our most important relationships.',
+  ac:['Origin credited in the launch materials','Both people see the wording before it publishes'],
+  res:['Gordon, one paragraph'],
+  risk:[{t:'Gets cut for length and nobody notices until they do',l:2,i:2}],
+  ben:['Costs nothing','Deepens the two relationships the funding runs through']},
+
+ {id:'CI',n:'Corrections inbox and public changelog',e:'Trust',ms:'M3',own:'Darby',pts:3,cost:0,pri:'must',dep:['D2'],
+  promise:'When we get something wrong, you can watch us fix it.',
+  goal:'Publishing our own gaps is what nobody else in this space does. The changelog is the proof it is not just a claim.',
+  ac:['Corrections inbox tested','Changelog page seeded with the launch entry','Five business day SLA from inbox to resolution or public checking status'],
+  res:['Darby to build','Data steward to run'],
+  risk:[{t:'Inbox goes unwatched and the SLA becomes fiction',l:2,i:3}],
+  ben:['Turns mistakes into visible integrity','Directly supports the zero-unverified-claims metric']},
+
+ {id:'W3',n:'Wave Three research',e:'Content',ms:'M2',own:'Darby',pts:8,cost:2000,pri:'should',dep:['D2'],
+  promise:'The four thin lanes get filled: graduate fellowships, K-8, streaming and creator funds, student competitions.',
+  goal:'Two research waves produced zero surviving claims in these four lanes. They are named gaps, and named gaps in a trust product are debts.',
+  ac:['Each of the four lanes has verified entries or a published reason it does not','Findings merged into the catalog before M2 closes'],
+  res:['Darby research waves','Verification hours'],
+  risk:[{t:'A lane genuinely has nothing to find and the effort returns little',l:2,i:1}],
+  ben:['Closes the honest gaps we have already published','Graduate coverage is what CMU and NYU keep asking for']},
+
+ {id:'D9',n:'GDC demo moment',e:'Launch',ms:'M6',own:'Mabel',pts:8,cost:2500,pri:'should',dep:['D3'],
+  promise:'The Directory shown live at GDC with the scholars it serves standing in the room.',
+  goal:'GDC is where this field decides what is real. A live demo with scholars present is worth more than any deck.',
+  ac:['Shown live in a scheduled GDC-week moment','Scholars in the room','Press one-pager available','Demo rehearsed twice with a static fallback'],
+  res:['Mabel on Informa coordination','Demo build and rehearsal time'],
+  risk:[{t:'Live demo fails on venue wifi',l:2,i:2},{t:'Scheduled slot not secured in time',l:2,i:3}],
+  ben:['Converts the product into industry awareness','Feeds directly into the coalition announcements']},
+
+ {id:'RF',n:'Quarterly refresh automation',e:'Operations',ms:'M4',own:'Charlie',pts:8,cost:0,pri:'should',dep:['D6'],
+  promise:'The feeds tell us what changed so a human does not have to look.',
+  goal:'ASGC courses API, HEVGA institution list, and job-board sweeps can diff themselves. Feeds propose, humans publish.',
+  ac:['Feeds diffed automatically','Proposed changes queued for human verification','Never auto-publishes'],
+  res:['Charlie build time','Darby to define the evidence rules'],
+  risk:[{t:'Automation blurs into auto-publishing and a bad entry ships',l:1,i:3}],
+  ben:['Cuts refresh labour substantially','Catches deadline changes we would otherwise miss between quarters']},
+
+ {id:'AS',n:'ASGC cross-listing and courses layer',e:'Partnerships',ms:'M3',own:'Mabel',pts:5,cost:0,pri:'should',dep:['D3'],
+  promise:'We link and credit the 4,421 free courses rather than rebuilding them.',
+  goal:'ASGC serves adult job seekers with no K-12 or scholarship coverage. Perfect complement, not a competitor.',
+  ac:['Directory submitted to the ASGC library','Their courses API linked as our free-learning layer with credit'],
+  res:['Mabel on the relationship','Light build for the link layer'],
+  risk:[{t:'Cross-listing takes longer than launch week allows',l:2,i:1}],
+  ben:['Adds a large free-learning layer at no build cost','Opens a warm partnership with a complementary organisation']},
+
+ {id:'DC',n:'Deadline calendar and phone download',e:'Content',ms:'M2',own:'Darby',pts:3,cost:0,pri:'should',dep:['D4'],
+  promise:'A student can put every deadline on their phone in one tap.',
+  goal:'This is the piece scholars will actually use in September, when the internship windows open.',
+  ac:['Chronological August 2026 to April 2027','Downloadable calendar file with alarms','Verified and expected dates labelled honestly'],
+  res:['Already built, needs the launch pass'],
+  risk:[{t:'A wrong date reaches a student and costs them a window',l:2,i:3}],
+  ben:['Highest direct student utility on the whole site','Gives Alex something concrete to send the cohort in August']},
+
+ {id:'SA',n:'Supporters Atlas public panel',e:'Funding',ms:'M3',own:'Darby',pts:3,cost:0,pri:'should',dep:['D3'],
+  promise:'Donors can see which companies already fund which programs.',
+  goal:'The reverse index is the clearest evidence of the realignment thesis, and it is already built and source dated.',
+  ac:['Panel live inside the donor lens','Every claim source dated'],
+  res:['Already built, needs the launch pass'],
+  risk:[{t:'A funder objects to how their giving is characterised',l:2,i:2}],
+  ben:['Strongest single asset for the donor conversation','Shows orphaned money looking for a home, which is our whole pitch']},
+
+ {id:'RD',n:'Recruiter directory, aggregate only',e:'Pipeline',ms:'M4',own:'Darby',pts:5,cost:0,pri:'could',dep:['D5'],
+  promise:'The public sees the shape of our recruiter network, never the names.',
+  goal:'33 games recruiters and 4 AI recruiters are real relationship assets. Published as aggregate they show depth without spending anyone goodwill.',
+  ac:['Public version is aggregate only','Individuals appear by name only if they opt in','Internal version stays internal'],
+  res:['Darby to prepare the aggregate view'],
+  risk:[{t:'An individual name leaks into the public view',l:1,i:3}],
+  ben:['Demonstrates pipeline depth to funders','Costs nothing to build, since the research is done']},
+
+ {id:'SP',n:'State of the Pipeline, Report No. 1',e:'Content',ms:'M7',own:'Gordon',pts:8,cost:3000,pri:'could',dep:['D4'],
+  promise:'An annual field report under the GGP name, promised for August 2027.',
+  goal:'A recurring report is what turns a directory into an authority, and it is the natural artefact to hand a funder.',
+  ac:['Greenlit at the M7 retro on evidence, not enthusiasm','Published August 2027'],
+  res:['Research and writing time','Design and production'],
+  risk:[{t:'Promised publicly then missed, which damages the trust product',l:2,i:3}],
+  ben:['Establishes GGP as the field reference','Renewable annual asset for funder conversations']},
+
+ {id:'HV',n:'HEVGA institution expansion',e:'Content',ms:'M7',own:'Darby',pts:13,cost:5000,pri:'could',dep:['D6'],
+  promise:'All 141 HEVGA member institutions covered, with dues waived as the door.',
+  goal:'Higher-education expansion is the largest single coverage jump available, and the HEVGA relationship already exists.',
+  ac:['141 institutions catalogued to the same evidence standard'],
+  res:['Substantial research hours','Verification capacity'],
+  risk:[{t:'Volume tempts us to lower the evidence bar',l:2,i:3}],
+  ben:['Largest available coverage increase','Deepens the higher-education relationships CYSTEM already runs on']},
+
+ {id:'PM',n:'Paid recruiter marketplace',e:'Pipeline',ms:'v2',own:'TBD',pts:13,cost:12500,pri:'later',dep:['D5'],
+  promise:'Nothing yet. This is a v2 revenue question.',
+  goal:'Revenue design waits until the free introduction flow proves demand. The M4 data decides it.',
+  ac:['Decided at M7 with real introduction data, not before'],
+  res:['Build, legal, and sales capacity we do not currently have'],
+  risk:[{t:'Charging changes the trust posture of a consent-first product',l:2,i:3}],
+  ben:['Potential sustaining revenue','Would fund the data steward seat permanently']},
+
+ {id:'INT',n:'Non-US programs',e:'Content',ms:'v2',own:'TBD',pts:13,cost:8000,pri:'later',dep:['D4'],
+  promise:'The promise is a US map. We say so plainly.',
+  goal:'International coverage carries its own verification cost and would dilute the accuracy we are selling.',
+  ac:['A v2 conversation with its own budget'],
+  res:['Verification capacity in other markets'],
+  risk:[{t:'Scope creep from enthusiasm, which we know we are prone to',l:3,i:2}],
+  ben:['Global relevance eventually','Better as a funded expansion than a stretched v1']},
+
+ {id:'APP',n:'Mobile app',e:'Build',ms:'v2',own:'TBD',pts:21,cost:25000,pri:'later',dep:['D3'],
+  promise:'Responsive web only for v1.',
+  goal:'An app adds store review cycles and a second codebase for no additional reach at this stage.',
+  ac:['Revisited only if web analytics show a real need'],
+  res:['A second build track we have not funded'],
+  risk:[{t:'Large spend with no evidence of demand',l:2,i:3}],
+  ben:['Push notifications for deadlines would be genuinely useful','Best justified with a year of web data behind it']},
+
+ {id:'CH',n:'Hosting courses and content',e:'Partnerships',ms:'v2',own:'TBD',pts:21,cost:0,pri:'later',dep:['AS'],
+  promise:'We link and credit. We do not rebuild what ASGC already built well.',
+  goal:'Rebuilding a free-learning library that already exists would spend our budget competing with a friend.',
+  ac:['Stays out unless the ASGC relationship changes'],
+  res:['Would require content operations we do not have'],
+  risk:[{t:'Damages a complementary partnership',l:2,i:3}],
+  ben:['None that linking does not already deliver']}
+];
+
+var OWNERS={
+  Eric:'Executive Producer',Gordon:'Executive sponsor',Joe:'Finance and compliance',
+  Alex:'Scholar and alumni liaison',Mabel:'Partner comms and GDC',Brennan:'Ops and boards',
+  Charlie:'Technical build, project-scoped',Darby:'Research and verification',
+  'Data steward':'Accuracy between refreshes',TBD:'Unassigned'
+};
+
+var state=null, view='board', fEpic='', fOwner='', openId=null, dragId=null;
+
+function defaults(){
+  return {items:SEED.map(clone),budget:30000,cont:3000,seats:0,cap:90,log:[]};
+}
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function load(){
+  var s=null;
+  try{ s=JSON.parse(localStorage.getItem(KEY)||'null'); }catch(e){ s=null; }
+  if(s&&s.items&&s.items.length){ state=s; if(!state.log) state.log=[]; return; }
+  state=defaults();
+}
+function save(){ try{ localStorage.setItem(KEY,JSON.stringify(state)); }catch(e){} }
+function money(n){ return '$'+Number(n||0).toLocaleString('en-US'); }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){
+  return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function find(id){ for(var i=0;i<state.items.length;i++){ if(state.items[i].id===id) return state.items[i]; } return null; }
+function committed(it){ return it.pri==='must'||it.pri==='should'; }
+function spendable(){ return state.budget + state.seats*SEAT - state.cont; }
+function days(d){ if(!d) return null; return Math.round((d-TODAY)/86400000); }
+
+function totals(){
+  var t={cost:{must:0,should:0,could:0,later:0},pts:{must:0,should:0,could:0,later:0},
+         count:{must:0,should:0,could:0,later:0},risk:0,severe:0};
+  state.items.forEach(function(it){
+    var p=it.pri;
+    t.cost[p]+=Number(it.cost)||0; t.pts[p]+=Number(it.pts)||0; t.count[p]+=1;
+    if(committed(it)){
+      (it.risk||[]).forEach(function(r){
+        var s=(Number(r.l)||0)*(Number(r.i)||0);
+        t.risk+=s; if(s>=6) t.severe+=1;
+      });
+    }
+  });
+  t.committedCost=t.cost.must+t.cost.should;
+  t.committedPts=t.pts.must+t.pts.should;
+  t.gap=t.committedCost-spendable();
+  return t;
+}
+
+function brokenDeps(){
+  var out=[];
+  state.items.forEach(function(it){
+    if(!committed(it)) return;
+    (it.dep||[]).forEach(function(d){
+      var p=find(d);
+      if(p&&!committed(p)) out.push({item:it,parent:p});
+    });
+  });
+  return out;
+}
+function ownerLoad(){
+  var m={};
+  state.items.forEach(function(it){
+    if(!committed(it)) return;
+    if(!m[it.own]) m[it.own]={pts:0,n:0,items:[]};
+    m[it.own].pts+=Number(it.pts)||0; m[it.own].n+=1; m[it.own].items.push(it);
+  });
+  return m;
+}
+
+function renderModel(){
+  document.getElementById('mBudget').value=state.budget;
+  document.getElementById('mCont').value=state.cont;
+  document.getElementById('mCap').value=state.cap;
+  document.getElementById('seatVal').textContent=state.seats+' seat'+(state.seats===1?'':'s');
+  var n=document.getElementById('mNote');
+  if(state.seats>0){
+    n.innerHTML='Modelling '+state.seats+' coalition seat'+(state.seats===1?'':'s')+' at '+money(SEAT)+
+      '. Spendable becomes <b>'+money(spendable())+'</b>. Alan offered on 18 June to make the EA and ESA introductions with us, so this is a real scenario, not a hopeful one.';
+  } else {
+    n.innerHTML='Spendable today is <b>'+money(spendable())+'</b>, which is the funded budget less the contingency Joe holds. Add a coalition seat above to see what closing one would unlock.';
+  }
+}
+
+function renderDash(){
+  var t=totals(), sp=spendable();
+  var costPct=sp>0?Math.min(100,Math.round(t.committedCost/sp*100)):100;
+  var ptsPct=Math.min(100,Math.round(t.committedPts/state.cap*100));
+  var costCls=t.committedCost>sp?'bad':(costPct>88?'warn':'ok');
+  var ptsCls=t.committedPts>state.cap?'bad':(ptsPct>88?'warn':'ok');
+  var riskCls=t.risk>=46?'bad':(t.risk>=28?'warn':'ok');
+  var riskWord=t.risk>=46?'High':(t.risk>=28?'Watch':'Held');
+
+  document.getElementById('dash').innerHTML=
+   tile(costCls,'Committed budget',money(t.committedCost),'of '+money(sp)+' spendable',costPct,costCls)+
+   tile(t.gap>0?'bad':'ok','Headroom',(t.gap>0?'-':'')+money(Math.abs(t.gap)),t.gap>0?'over, needs a change order':'under, room to add',null,null)+
+   tile(ptsCls,'Schedule load',t.committedPts+' pts','of '+state.cap+' to GDC',ptsPct,ptsCls)+
+   tile(riskCls,'Risk index',String(t.risk),riskWord+', '+t.severe+' severe live',null,null)+
+   tile('','Must have',String(t.count.must),money(t.cost.must)+', '+t.pts.must+' pts',null,null)+
+   tile('','Next release',String(t.count.later),'parked on the roadmap',null,null);
+
+  var v=document.getElementById('verdict'), msg='', cls='ok';
+  var over=t.gap>0, slow=t.committedPts>state.cap;
+  if(over&&slow){
+    cls='bad';
+    msg='<b>As it stands, this does not fit.</b> You are '+money(t.gap)+' over spendable and '+(t.committedPts-state.cap)+
+      ' points over capacity to GDC. Your own change control rule applies: something leaves to make room. '+
+      'The single fastest fix is one coalition seat at '+money(SEAT)+', which you can model in the bar above.';
+  } else if(over){
+    cls='warn';
+    msg='<b>The schedule fits, the money does not.</b> You are '+money(t.gap)+' over spendable. '+
+      'One coalition seat closes it, or move '+money(t.gap)+' of Should-haves down to Could. Both are defensible, and both are yours to call.';
+  } else if(slow){
+    cls='warn';
+    msg='<b>The money fits, the calendar does not.</b> You are '+(t.committedPts-state.cap)+
+      ' points over capacity to GDC. Either something moves to Next release, or a milestone moves. Better decided now than at M2.';
+  } else if(t.count.must===0){
+    cls='warn'; msg='<b>Nothing is committed yet.</b> Move the things launch cannot happen without into Must have and these numbers will start telling you something.';
+  } else {
+    cls='ok';
+    msg='<b>This fits.</b> '+money(sp-t.committedCost)+' of headroom and '+(state.cap-t.committedPts)+
+      ' points of capacity left. '+(t.severe>0?'You are still carrying '+t.severe+' severe risk'+(t.severe>1?'s':'')+
+      ' in the committed set, which is worth a look before you sign.':'No severe risks live in the committed set.');
+  }
+  v.className='verdict '+cls; v.innerHTML=msg;
+
+  renderAlerts();
+}
+function tile(cls,lbl,val,sub,pct,mcls){
+  var m='';
+  if(pct!==null&&pct!==undefined){
+    var c=mcls==='bad'?'var(--badc)':(mcls==='warn'?'var(--warnc)':'var(--okc)');
+    m='<div class="meter"><i style="width:'+pct+'%;background:'+c+'"></i></div>';
+  }
+  return '<div class="tile '+cls+'"><div class="lbl">'+lbl+'</div><div class="val">'+val+
+    '</div><div class="sub2">'+sub+'</div>'+m+'</div>';
+}
+
+function renderAlerts(){
+  var a=[], t=totals();
+
+  var m0=MILESTONES[0], d0=days(m0.date);
+  if(d0!==null&&d0>=0&&d0<=7){
+    a.push({c:'info',h:'M0 kickoff is in '+(d0===0?'today':d0+' day'+(d0===1?'':'s')),
+      b:'Monday 10 August, 45 minutes, whole team. The gate is that every RACI cell has a name in it, and the data steward candidate is named. That gate is not met yet.'});
+  }
+
+  var steward=find('ST');
+  if(steward&&committed(steward)){
+    a.push({c:'warn',h:'The data steward is still unnamed',
+      b:'It is due at M1, Friday 21 August, which is '+days(MILESTONES[1].date)+' days out. Until that seat has a person in it, the corrections SLA has nobody behind it. An Extended Scholar in this seat would be resume-grade work for one of Alex recent grads.'});
+  }
+
+  var broken=brokenDeps();
+  if(broken.length){
+    a.push({c:'bad',h:broken.length+' dependency '+(broken.length===1?'break':'breaks'),
+      b:broken.map(function(b){ return '<b>'+esc(b.item.n)+'</b> is committed but depends on <b>'+esc(b.parent.n)+
+        '</b>, which you have in '+PRI[b.parent.pri].name+'.'; }).join(' ')});
+  }
+
+  var loads=ownerLoad(), heavy=[];
+  Object.keys(loads).forEach(function(k){ if(loads[k].pts>25) heavy.push(k+' at '+loads[k].pts+' pts across '+loads[k].n+' items'); });
+  if(heavy.length){
+    a.push({c:'warn',h:'Load is concentrated',
+      b:heavy.join(', ')+'. Worth a look on the Team load tab before you commit the plan. Concentration is how a schedule quietly becomes one person availability.'});
+  }
+
+  var d7=find('D7');
+  if(d7&&committed(d7)&&t.gap>0&&state.seats===0){
+    a.push({c:'info',h:'You are carrying a gap and an unused offer at the same time',
+      b:'Alan offered in writing on 18 June to make the EA and ESA introductions with us. That was seven weeks ago. One seat at '+money(SEAT)+' closes '+money(Math.min(t.gap,SEAT))+' of the '+money(t.gap)+' gap.'});
+  }
+
+  document.getElementById('alerts').innerHTML=a.map(function(x){
+    return '<div class="alert '+x.c+'"><b>'+x.h+'.</b> '+x.b+'</div>'; }).join('');
+}
+
+function visible(){
+  return state.items.filter(function(it){
+    if(fEpic&&it.e!==fEpic) return false;
+    if(fOwner&&it.own!==fOwner) return false;
+    return true;
+  });
+}
+
+function renderBoard(){
+  var html='', items=visible(), broken=brokenDeps();
+  var brokenIds={}; broken.forEach(function(b){ brokenIds[b.item.id]=true; });
+  Object.keys(PRI).forEach(function(k){
+    var list=items.filter(function(it){ return it.pri===k; });
+    var pts=list.reduce(function(a,b){ return a+(Number(b.pts)||0); },0);
+    var cost=list.reduce(function(a,b){ return a+(Number(b.cost)||0); },0);
+    html+='<div class="col" data-col="'+k+'"><div class="colhead"><span class="dot" style="background:'+PRI[k].hex+
+      '"></span><span class="colname">'+PRI[k].name+'</span><span class="colcount">'+list.length+'</span></div>'+
+      '<div class="colnote">'+PRI[k].note+'</div>'+
+      '<div class="colsum">'+pts+' pts &middot; '+money(cost)+'</div>';
+    list.forEach(function(it){
+      html+='<div class="item" draggable="true" data-id="'+it.id+'" style="border-left-color:'+PRI[k].hex+'" tabindex="0" role="button">'+
+        '<div class="nm">'+esc(it.n)+'</div><div class="dsc">'+esc(it.promise)+'</div><div class="foot">'+
+        '<span class="tag pts">'+it.pts+' pts</span>'+
+        (Number(it.cost)>0?'<span class="tag cost">'+money(it.cost)+'</span>':'')+
+        '<span class="tag ms">'+it.ms+'</span><span class="tag">'+esc(it.own)+'</span>'+
+        (brokenIds[it.id]?'<span class="tag blocked">dependency</span>':'')+
+        (it.added?'<span class="tag new">added</span>':'')+
+        '</div></div>';
+    });
+    html+='</div>';
+  });
+  document.getElementById('board').innerHTML=html;
+  wireBoard();
+}
+
+function wireBoard(){
+  document.querySelectorAll('.item').forEach(function(el){
+    el.addEventListener('click',function(){ openDrawer(el.dataset.id); });
+    el.addEventListener('keydown',function(ev){
+      if(ev.key==='Enter'||ev.key===' '){ ev.preventDefault(); openDrawer(el.dataset.id); } });
+    el.addEventListener('dragstart',function(ev){
+      dragId=el.dataset.id; el.classList.add('dragging');
+      try{ ev.dataTransfer.setData('text/plain',dragId); ev.dataTransfer.effectAllowed='move'; }catch(e){} });
+    el.addEventListener('dragend',function(){ el.classList.remove('dragging'); dragId=null;
+      document.querySelectorAll('.col').forEach(function(c){ c.classList.remove('drag'); }); });
+  });
+  document.querySelectorAll('.col').forEach(function(col){
+    col.addEventListener('dragover',function(ev){ ev.preventDefault(); col.classList.add('drag');
+      try{ ev.dataTransfer.dropEffect='move'; }catch(e){} });
+    col.addEventListener('dragleave',function(){ col.classList.remove('drag'); });
+    col.addEventListener('drop',function(ev){
+      ev.preventDefault(); col.classList.remove('drag');
+      var id=dragId; try{ id=ev.dataTransfer.getData('text/plain')||dragId; }catch(e){}
+      if(id) setPri(id,col.dataset.col);
+    });
+  });
+}
+
+function setPri(id,pri){
+  var it=find(id); if(!it||it.pri===pri) return;
+  var before=totals();
+  var from=it.pri; it.pri=pri;
+  var after=totals();
+  state.log.unshift({
+    t:new Date().toISOString(), id:id, name:it.n, from:PRI[from].name, to:PRI[pri].name,
+    dCost:after.committedCost-before.committedCost, dPts:after.committedPts-before.committedPts,
+    gap:after.gap, note:''
+  });
+  if(state.log.length>200) state.log.length=200;
+  save(); renderAll();
+  if(openId===id) openDrawer(id);
+}
+
+function renderTimeline(){
+  var html='';
+  MILESTONES.forEach(function(m){
+    var list=state.items.filter(function(it){ return it.ms===m.id&&it.pri!=='later'; });
+    var parked=state.items.filter(function(it){ return it.ms===m.id&&it.pri==='later'; });
+    var pts=list.reduce(function(a,b){ return a+(Number(b.pts)||0); },0);
+    var cost=list.reduce(function(a,b){ return a+(Number(b.cost)||0); },0);
+    var d=days(m.date), cd='', now='';
+    if(d!==null){
+      if(d<0){ cd='<span class="cd" style="color:var(--bad)">'+Math.abs(d)+' days past</span>'; }
+      else if(d===0){ cd='<span class="cd" style="color:var(--bad)">today</span>'; now=' now'; }
+      else if(d<=14){ cd='<span class="cd" style="color:var(--warn)">in '+d+' days</span>'; now=' now'; }
+      else { cd='<span class="cd" style="color:var(--muted)">in '+d+' days</span>'; }
+    }
+    html+='<div class="ms'+now+'"><div class="when">'+m.id+'<small>'+m.when+'</small>'+cd+'</div><div>'+
+      '<div class="t">'+esc(m.t)+'</div><div class="d">'+esc(m.d)+'</div>'+
+      (m.gate?'<div class="gate">'+esc(m.gate)+'</div>':'')+'<div class="load">'+
+      (list.length?'<span class="tag pts">'+pts+' pts</span>':'')+
+      (cost>0?'<span class="tag cost">'+money(cost)+'</span>':'')+
+      list.map(function(it){ return '<span class="tag" style="background:'+PRI[it.pri].hex+'22;color:'+PRI[it.pri].hex+'">'+esc(it.n)+'</span>'; }).join('')+
+      parked.map(function(it){ return '<span class="tag" style="opacity:.5">'+esc(it.n)+', parked</span>'; }).join('')+
+      (list.length===0&&parked.length===0?'<span class="tag">nothing assigned</span>':'')+
+      '</div></div></div>';
+  });
+  document.getElementById('tl').innerHTML=html;
+}
+
+function renderTeam(){
+  var loads=ownerLoad(), t=totals();
+  var keys=Object.keys(OWNERS).filter(function(k){ return loads[k]; });
+  var max=1; keys.forEach(function(k){ if(loads[k].pts>max) max=loads[k].pts; });
+  var rows=keys.sort(function(a,b){ return loads[b].pts-loads[a].pts; }).map(function(k){
+    var l=loads[k], pct=Math.round(l.pts/max*100);
+    var col=l.pts>25?'var(--badc)':(l.pts>16?'var(--warnc)':'var(--okc)');
+    return '<div class="loadrow"><div class="who">'+esc(k)+'<small>'+esc(OWNERS[k]||'')+'</small></div>'+
+      '<div class="bar"><i style="width:'+pct+'%;background:'+col+'"></i></div>'+
+      '<div class="num">'+l.pts+' pts<br>'+l.n+' items</div></div>';
+  }).join('');
+  var unassigned=state.items.filter(function(i){ return committed(i)&&(i.own==='TBD'||i.own==='Data steward'); });
+  document.getElementById('team').innerHTML=
+    '<div class="panel"><h3>Who is carrying what</h3>'+
+    '<p class="lead">Committed work only, so Could and Next release do not flatter the picture. Anything above 25 points is worth a conversation before you commit the plan, because that is where a schedule quietly turns into one person availability.</p>'+
+    rows+'</div>'+
+    '<div class="panel"><h3>RACI, straight from the plan</h3><p class="lead">Unchanged from Production Plan v1. If a name here is wrong, it is wrong in the plan too, and M0 is where you fix it.</p><ul>'+
+    '<li><b>Gordon Bellamy</b>: executive sponsor, public face, final approval on anything external. Accountable on launch and comms.</li>'+
+    '<li><b>Eric Francksen</b>: Executive Producer. Schedule, scope, quality gate, and this document. Responsible and accountable on delivery.</li>'+
+    '<li><b>Charlie des Robert</b>: site build, lens engine, feeds integration. Project-scoped per the staffing rule.</li>'+
+    '<li><b>Alex Rogers</b>: scholar and alumni liaison, Pipeline recruitment and consent collection. He took ownership of the Directory itself on 7 August.</li>'+
+    '<li><b>Mabel Chung</b>: partner comms, GDC moment, Informa coordination, ASGC cross-listing. Briefed by Gordon, contributing as a peer on brand voice rather than through the EP line.</li>'+
+    '<li><b>Brennan Murphy</b>: ops, boards, refresh reminders, corrections triage.</li>'+
+    '<li><b>Joe Heally</b>: finance and compliance, budget tracking, sponsor invoicing, counsel coordination. Accountable on budget.</li>'+
+    '<li><b>Darby</b>: research and verification engine, wave runs, evidence grading, drafts.</li>'+
+    '<li><b>Data steward</b>: to be named by M1. Owns entry accuracy between refreshes and the corrections SLA.</li></ul></div>'+
+    (unassigned.length?'<div class="panel"><h3>Committed work with nobody real on it</h3><p class="lead">These are committed but the owner is still a placeholder.</p><ul>'+
+      unassigned.map(function(i){ return '<li><b>'+esc(i.n)+'</b>, '+i.pts+' pts, owner listed as '+esc(i.own)+'</li>'; }).join('')+'</ul></div>':'');
+}
+
+function renderAgree(){
+  document.getElementById('agree').innerHTML=
+   '<div class="panel"><h3>Definition of Done</h3><p class="lead">One bar, applied to everything on the board. Nothing moves to done without all five.</p><ol>'+
+   '<li>The acceptance criteria on the card are all met, checked by someone who did not do the work.</li>'+
+   '<li>Any public claim carries a badge and a last-checked date. <b>Zero unverified claims ship as fact.</b> This one is non-negotiable.</li>'+
+   '<li>Anyone named publicly has approved being named.</li>'+
+   '<li>It works on mobile Safari and Android Chrome, and it is keyboard navigable.</li>'+
+   '<li>The next person can run it from the runbook, not from asking whoever built it.</li></ol></div>'+
+
+   '<div class="panel"><h3>Cadence</h3><p class="lead">Straight from Section 7 of the plan. This is the part that makes the board true rather than decorative.</p><ul>'+
+   '<li><b>Weekly:</b> Tuesday 30-minute standup, before Weekly Connect. Last week, this week, blocked. Brennan keeps the board current, and the board is the truth, not the meeting.</li>'+
+   '<li><b>Monthly:</b> steering with Gordon and Joe. Budget against actuals, metric trend, risk review. One page, ten minutes of reading, thirty of deciding.</li>'+
+   '<li><b>Quarterly after launch:</b> refresh cycle per the runbook. Feeds diffed, entries re-verified oldest first, changelog published.</li>'+
+   '<li><b>Corrections SLA:</b> five business days from inbox to resolution, or to a public checking status.</li></ul></div>'+
+
+   '<div class="panel"><h3>Change control</h3><p class="lead">Your rule, and this board enforces it rather than just quoting it.</p><ul>'+
+   '<li>After M1, any scope addition needs a written change order naming <b>what leaves to make room</b>, approved by the EP and the sponsor.</li>'+
+   '<li>Every priority move you make here is logged with its budget and schedule effect. The Change orders tab is your paper trail, and it exports.</li>'+
+   '<li><b>"It is small" is not a size.</b></li></ul></div>'+
+
+   '<div class="panel"><h3>The risk I would want on the record</h3>'+
+   '<p class="lead" style="color:var(--ink2)"><b>Pipeline consent.</b> If a scholar information ever reaches a recruiter without that scholar explicit yes, the trust that makes this work is gone and does not come back. The standing rule: any consent failure pauses the Pipeline entirely, whatever it costs the calendar. Shipping late beats shipping that wrong.</p></div>'+
+
+   '<div class="panel"><h3>Sign-off</h3><p class="lead">This becomes real when the actual humans sign it. You will have amendments, which is the entire point of having you.</p>'+
+   '<div class="signline">Executive Producer &middot; Eric Francksen &middot; date</div>'+
+   '<div class="signline">Executive Sponsor &middot; Gordon Bellamy &middot; date</div>'+
+   '<div class="signline">Finance and Compliance &middot; Joe Heally &middot; date</div></div>';
+}
+
+function renderChg(){
+  var el=document.getElementById('chg');
+  if(!state.log.length){
+    el.innerHTML='<div class="panel"><h3>No change orders yet</h3><p class="lead">Move something between columns on the board and it gets logged here with what it did to the budget and the schedule. After M1 this is the paper trail your own change control rule asks for, and it exports with everything else.</p></div>';
+    return;
+  }
+  el.innerHTML='<div class="panel"><h3>Change orders, newest first</h3>'+
+    '<p class="lead">Every move you have made, with its effect. Export it with the proposal so nobody has to reconstruct why the scope looks the way it does.</p>'+
+    state.log.map(function(c){
+      var d=new Date(c.t);
+      var cost=c.dCost===0?'no budget change':(c.dCost>0?'added '+money(c.dCost):'freed '+money(-c.dCost));
+      var pts=c.dPts===0?'no schedule change':(c.dPts>0?'added '+c.dPts+' pts':'freed '+(-c.dPts)+' pts');
+      return '<div class="chg"><span class="when">'+d.toLocaleString()+'</span>'+
+        '<b>'+esc(c.name)+'</b> moved from '+esc(c.from)+' to '+esc(c.to)+'. '+cost+', '+pts+'. '+
+        'Headroom after: '+(c.gap>0?money(c.gap)+' over':money(-c.gap)+' under')+'.</div>';
+    }).join('')+
+    '<div style="margin-top:14px"><button class="btn" id="chgClear">Clear the log</button></div></div>';
+  document.getElementById('chgClear').addEventListener('click',function(){
+    if(!confirm('Clear the change order log? The board itself stays as it is.')) return;
+    state.log=[]; save(); renderAll();
+  });
+}
+
+function openDrawer(id){
+  var it=find(id); if(!it) return;
+  openId=id;
+  document.getElementById('dtitle').innerHTML=esc(it.n);
+  var riskHtml=(it.risk||[]).map(function(r){
+    var s=(Number(r.l)||0)*(Number(r.i)||0);
+    var lbl=s>=6?'Severe':(s>=4?'Watch':'Low');
+    var col=s>=6?'var(--badc)':(s>=4?'var(--warnc)':'var(--okc)');
+    return '<div class="risk"><div class="rt">'+esc(r.t)+'</div><span class="sev" style="background:'+col+
+      '22;color:'+col+'">'+lbl+'</span></div>';
+  }).join('')||'<p style="color:var(--muted);font-size:14px;margin:0">None recorded. If you can think of one, add it when you edit.</p>';
+
+  var deps=(it.dep||[]).map(function(d){ return find(d); }).filter(Boolean);
+  var depHtml=deps.length?'<div class="dsec"><h4>Depends on</h4><ul>'+deps.map(function(p){
+      return '<li>'+esc(p.n)+', currently in '+PRI[p.pri].name+'</li>'; }).join('')+'</ul>'+
+      (committed(it)&&deps.some(function(p){ return !committed(p); })?
+        '<div class="depwarn">This is committed but something it depends on is not. That is a dependency break, and it will bite at the milestone rather than today.</div>':'')+
+      '</div>':'';
+  var blocks=state.items.filter(function(x){ return (x.dep||[]).indexOf(it.id)>=0; });
+  var blockHtml=blocks.length?'<div class="dsec"><h4>Other work waiting on this</h4><ul>'+blocks.map(function(b){
+      return '<li>'+esc(b.n)+', in '+PRI[b.pri].name+'</li>'; }).join('')+'</ul></div>':'';
+
+  document.getElementById('dbody').innerHTML=
+    '<div class="dsec"><h4>Priority, drag on the board or set it here</h4><div class="pri-pick">'+
+      Object.keys(PRI).map(function(k){
+        return '<button class="pp'+(it.pri===k?' on':'')+'" data-p="'+k+'" style="'+
+          (it.pri===k?'background:'+PRI[k].hex+';border-color:'+PRI[k].hex:'')+'">'+PRI[k].name+'</button>'; }).join('')+
+      '</div></div>'+
+    '<div class="dsec"><h4>What we promise</h4><p>'+esc(it.promise)+'</p></div>'+
+    '<div class="dsec"><h4>Why, the goal behind it</h4><p>'+esc(it.goal)+'</p></div>'+
+    '<div class="dsec"><h4>Accepted when</h4><ul>'+(it.ac||[]).map(function(a){ return '<li>'+esc(a)+'</li>'; }).join('')+'</ul></div>'+
+    depHtml+blockHtml+
+    '<div class="dsec"><h4>Resources it needs</h4><ul>'+(it.res||[]).map(function(a){ return '<li>'+esc(a)+'</li>'; }).join('')+'</ul></div>'+
+    '<div class="dsec"><h4>Risks</h4>'+riskHtml+'</div>'+
+    '<div class="dsec"><h4>Benefits if we do it</h4><ul>'+(it.ben||[]).map(function(a){ return '<li>'+esc(a)+'</li>'; }).join('')+'</ul></div>'+
+    '<div class="dsec"><h4>The numbers</h4><div class="kv">'+
+      '<div class="k">Epic</div><div class="v">'+esc(it.e)+'</div>'+
+      '<div class="k">Milestone</div><div class="v">'+esc(it.ms)+'</div>'+
+      '<div class="k">Owner</div><div class="v">'+esc(it.own)+'</div>'+
+      '<div class="k">Effort</div><div class="v">'+it.pts+' story points</div>'+
+      '<div class="k">Cost</div><div class="v">'+money(it.cost)+'</div></div></div>'+
+    '<div class="dsec"><h4>Your notes</h4><textarea id="dnote" placeholder="Anything you want recorded against this. Saves as you type, and it rides along into the Monday export.">'+esc(it.note||'')+'</textarea></div>'+
+    '<div class="dsec"><button class="btn" id="dEdit">Edit the numbers</button></div>';
+
+  document.querySelectorAll('.pp').forEach(function(b){ b.addEventListener('click',function(){ setPri(id,b.dataset.p); }); });
+  var n=document.getElementById('dnote');
+  n.addEventListener('input',function(){ it.note=n.value; save(); });
+  document.getElementById('dEdit').addEventListener('click',function(){ addModal(it); });
+
+  document.getElementById('drawer').classList.add('on');
+  document.getElementById('drawer').setAttribute('aria-hidden','false');
+  document.getElementById('scrim').classList.add('on');
+}
+function closeDrawer(){
+  openId=null;
+  document.getElementById('drawer').classList.remove('on');
+  document.getElementById('drawer').setAttribute('aria-hidden','true');
+  document.getElementById('scrim').classList.remove('on');
+}
+
+var RULES=[
+ {k:/consent|privacy|minor|under.?18|personal data|student data/i,pts:5,cost:2500,
+  res:['Counsel review, IE Law Group','Written consent instrument','Right-to-delete process'],
+  risk:[{t:'Consent or privacy failure exposes a student, which pauses the Pipeline entirely',l:1,i:3}],
+  ben:['Protects the trust that makes the whole product work']},
+ {k:/build|site|page|engine|code|integrat|api|automat|tool|dashboard|app/i,pts:8,cost:4000,
+  res:['Technical build time, project-scoped','Accessibility pass','QA on mobile Safari and Chrome'],
+  risk:[{t:'Single-builder dependency',l:2,i:3},{t:'Scope grows during build without a change order',l:2,i:2}],
+  ben:['Becomes a durable asset rather than a one-off effort']},
+ {k:/research|verify|verification|catalog|entr(y|ies)|audit|wave|source/i,pts:8,cost:2000,
+  res:['Darby research waves','Verification hours','Primary-source fetches'],
+  risk:[{t:'Sources block automated verification and the count slows',l:3,i:2},{t:'Volume tempts a lower evidence bar',l:2,i:3}],
+  ben:['Directly grows the coverage that makes the Directory citable']},
+ {k:/design|brand|logo|one.?pager|print|visual|template/i,pts:3,cost:1500,
+  res:['Design hours','GGP brand application','Gordon voice pass'],
+  risk:[{t:'Design review cycles run past the milestone',l:2,i:2}],
+  ben:['Makes the work forwardable, which is how it travels']},
+ {k:/event|gdc|demo|casino|night|booth|panel|workshop|talk/i,pts:8,cost:2500,
+  res:['Venue and scheduling coordination','Rehearsal time','Static fallback build'],
+  risk:[{t:'Live demo fails on venue wifi',l:2,i:2},{t:'Slot not secured in time',l:2,i:3}],
+  ben:['Industry awareness a webpage cannot buy on its own']},
+ {k:/comms|announce|press|social|email|campaign|newsletter|outreach/i,pts:5,cost:1000,
+  res:['Comms drafting','Partner amplification asks','Gordon approves anything external'],
+  risk:[{t:'Partner asks go out too late to be scheduled',l:2,i:2}],
+  ben:['Drives the visitor and unsolicited-mention metrics we committed to']},
+ {k:/sponsor|funder|coalition|grant|proposal|budget|invoice|revenue/i,pts:5,cost:1000,
+  res:['Gordon on the relationship','Joe on the numbers','Credit spec approval before anything publishes'],
+  risk:[{t:'Credit or terms ship unapproved and need a public correction',l:1,i:3}],
+  ben:['Money in, or a relationship deepened, or both']},
+ {k:/runbook|process|steward|maintain|refresh|sla|training|handover/i,pts:5,cost:0,
+  res:['Written runbook','A second operator to prove it','Named accountable human'],
+  risk:[{t:'Written but never tested by a second operator',l:2,i:3}],
+  ben:['This is what makes the project survive the person who built it']},
+ {k:/recruit|hiring|intro|placement|employer|studio|job/i,pts:5,cost:0,
+  res:['Relationship owner for each recruiter','Introduction brokering time'],
+  risk:[{t:'A student name reaches a recruiter without explicit consent',l:1,i:3}],
+  ben:['Converts the catalog into actual placements, which is the point']}
+];
+function autoSize(text){
+  var t=String(text||''),pts=3,cost=0,res=[],risk=[],ben=[],hits=0;
+  RULES.forEach(function(r){
+    if(r.k.test(t)){
+      hits++; pts=Math.max(pts,r.pts); cost+=r.cost;
+      r.res.forEach(function(x){ if(res.indexOf(x)<0) res.push(x); });
+      r.risk.forEach(function(x){ if(!risk.some(function(y){ return y.t===x.t; })) risk.push(x); });
+      r.ben.forEach(function(x){ if(ben.indexOf(x)<0) ben.push(x); });
+    }
+  });
+  if(hits>1) pts=Math.min(21,pts+3*(hits-1));
+  if(!res.length) res=['Time from a named owner','A slot in a milestone'];
+  if(!risk.length) risk=[{t:'Unsized work tends to expand into whatever room it is given',l:2,i:2}];
+  if(!ben.length) ben=['Worth stating plainly before this gets committed'];
+  return {pts:pts,cost:cost,res:res,risk:risk,ben:ben,hits:hits};
+}
+
+function addModal(existing){
+  var it=existing||null;
+  var s=document.getElementById('msheet');
+  var epics=['Foundations','Trust','Build','Content','Pipeline','Operations','Funding','Launch','Partnerships'];
+  var owners=Object.keys(OWNERS);
+  s.innerHTML=
+    '<h3>'+(it?'Edit, '+esc(it.n):'Add a feature or an intention')+'</h3>'+
+    '<p class="lead">'+(it?'Change anything. The board recalculates the moment you save.':
+      'Describe it in your own words and it will size itself: effort, cost, the resources it needs, the risks it carries, and what we get out of it. Every number is a starting point you can overwrite.')+'</p>'+
+    '<div class="field"><label>Name</label><input id="fN" value="'+esc(it?it.n:'')+'" placeholder="Short, the way it would read on a Monday board"></div>'+
+    '<div class="field"><label>What we promise, in one line</label><input id="fP" value="'+esc(it?it.promise:'')+'" placeholder="What someone outside GGP would get from this"></div>'+
+    '<div class="field"><label>Why it matters, the goal behind it</label><textarea id="fG" placeholder="What problem does this solve, and what happens if we skip it">'+esc(it?it.goal:'')+'</textarea></div>'+
+    '<div class="two"><div class="field"><label>Epic</label><select id="fE">'+epics.map(function(e){
+      return '<option'+(it&&it.e===e?' selected':'')+'>'+e+'</option>'; }).join('')+'</select></div>'+
+    '<div class="field"><label>Owner</label><select id="fO">'+owners.map(function(o){
+      return '<option'+(it&&it.own===o?' selected':'')+'>'+o+'</option>'; }).join('')+'</select></div></div>'+
+    '<div class="two"><div class="field"><label>Milestone</label><select id="fM">'+MILESTONES.map(function(x){
+      return '<option value="'+x.id+'"'+(it&&it.ms===x.id?' selected':'')+'>'+x.id+', '+x.when+'</option>'; }).join('')+'</select></div>'+
+    '<div class="field"><label>Priority</label><select id="fPr">'+Object.keys(PRI).map(function(k){
+      return '<option value="'+k+'"'+(it&&it.pri===k?' selected':'')+'>'+PRI[k].name+'</option>'; }).join('')+'</select></div></div>'+
+    '<div class="two"><div class="field"><label>Effort, story points</label><input id="fPts" type="number" min="1" max="21" value="'+(it?it.pts:'')+'" placeholder="auto"></div>'+
+    '<div class="field"><label>Cost, dollars</label><input id="fC" type="number" min="0" step="500" value="'+(it?it.cost:'')+'" placeholder="auto"></div></div>'+
+    '<div class="hint" id="sizeHint">'+(it?'':'Leave effort and cost blank and they will be calculated from your description.')+'</div>'+
+    '<div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap">'+
+      '<button class="btn pri" id="fSave">'+(it?'Save changes':'Add it and size it')+'</button>'+
+      '<button class="btn" id="fCancel">Cancel</button>'+
+      (it&&it.added?'<button class="btn" id="fDel" style="margin-left:auto;color:var(--bad);border-color:var(--bad)">Delete</button>':'')+
+    '</div>';
+  document.getElementById('modal').classList.add('on');
+
+  function preview(){
+    if(it) return;
+    var txt=[val('fN'),val('fP'),val('fG'),val('fE')].join(' ');
+    var h=document.getElementById('sizeHint');
+    if(txt.trim().length<6){ h.textContent='Leave effort and cost blank and they will be calculated from your description.'; return; }
+    var a=autoSize(txt);
+    var t=totals(), after=t.committedCost+(val('fPr')==='must'||val('fPr')==='should'?a.cost:0);
+    h.innerHTML='Reading that, this looks like about <b>'+a.pts+' points</b> and <b>'+money(a.cost)+
+      '</b>, carrying <b>'+a.risk.length+' risk'+(a.risk.length>1?'s':'')+'</b> and needing <b>'+a.res.length+
+      ' resource'+(a.res.length>1?'s':'')+'</b>. '+
+      (after>spendable()?'<b style="color:var(--bad)">Committing this puts you '+money(after-spendable())+
+        ' over spendable, so your change control rule asks what leaves to make room.</b>':'Override either number if you disagree.');
+  }
+  ['fN','fP','fG'].forEach(function(id){ document.getElementById(id).addEventListener('input',preview); });
+  document.getElementById('fE').addEventListener('change',preview);
+  document.getElementById('fPr').addEventListener('change',preview);
+  document.getElementById('fCancel').addEventListener('click',closeModal);
+  var del=document.getElementById('fDel');
+  if(del) del.addEventListener('click',function(){
+    state.items=state.items.filter(function(x){ return x.id!==it.id; });
+    save(); closeModal(); closeDrawer(); renderAll(); });
+
+  document.getElementById('fSave').addEventListener('click',function(){
+    var name=val('fN').trim();
+    if(!name){ document.getElementById('fN').focus(); return; }
+    var a=autoSize([name,val('fP'),val('fG'),val('fE')].join(' '));
+    var pts=parseInt(val('fPts'),10); if(isNaN(pts)||pts<1) pts=a.pts;
+    var cost=parseInt(val('fC'),10); if(isNaN(cost)||cost<0) cost=a.cost;
+    if(it){
+      it.n=name; it.promise=val('fP')||it.promise; it.goal=val('fG')||it.goal;
+      it.e=val('fE'); it.own=val('fO'); it.ms=val('fM'); it.pri=val('fPr'); it.pts=pts; it.cost=cost;
+      save(); closeModal(); renderAll(); openDrawer(it.id);
+    } else {
+      var nid='X'+Date.now().toString(36).slice(-5).toUpperCase();
+      state.items.push({id:nid,n:name,e:val('fE'),ms:val('fM'),own:val('fO'),pts:pts,cost:cost,pri:val('fPr'),
+        dep:[],promise:val('fP')||'To be written.',goal:val('fG')||'To be written.',
+        ac:['To be agreed at the next standup'],res:a.res,risk:a.risk,ben:a.ben,added:true,note:''});
+      state.log.unshift({t:new Date().toISOString(),id:nid,name:name,from:'not on the board',to:PRI[val('fPr')].name,
+        dCost:(val('fPr')==='must'||val('fPr')==='should')?cost:0,
+        dPts:(val('fPr')==='must'||val('fPr')==='should')?pts:0,gap:totals().gap,note:'added'});
+      save(); closeModal(); renderAll(); openDrawer(nid);
+    }
+  });
+}
+function val(id){ var e=document.getElementById(id); return e?e.value:''; }
+function closeModal(){ document.getElementById('modal').classList.remove('on'); }
+
+function csvCell(s){ s=String(s==null?'':s); return /[",\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s; }
+function mondayCSV(){
+  var head=['Name','Group','Status','Priority','Owner','Milestone','Due date','Story points','Cost','Epic',
+            'Depends on','What we promise','Accepted when','Risks','Benefits','Notes'];
+  var rows=[head], order={must:0,should:1,could:2,later:3};
+  state.items.slice().sort(function(a,b){
+    if(order[a.pri]!==order[b.pri]) return order[a.pri]-order[b.pri];
+    return a.ms.localeCompare(b.ms);
+  }).forEach(function(it){
+    var m=MILESTONES.filter(function(x){ return x.id===it.ms; })[0];
+    rows.push([it.n,PRI[it.pri].name,it.pri==='later'?'Next release':'Not started',PRI[it.pri].name,it.own,
+      it.ms+' '+(m?m.t:''),m?m.when:'',it.pts,it.cost,it.e,
+      (it.dep||[]).map(function(d){ var p=find(d); return p?p.n:d; }).join(' | '),
+      it.promise,(it.ac||[]).join(' | '),
+      (it.risk||[]).map(function(r){ return r.t+' (L'+r.l+'/I'+r.i+')'; }).join(' | '),
+      (it.ben||[]).join(' | '),it.note||'']);
+  });
+  return rows.map(function(r){ return r.map(csvCell).join(','); }).join('\n');
+}
+
+function proposalText(who){
+  var t=totals(), sp=spendable();
+  var must=state.items.filter(function(i){ return i.pri==='must'; });
+  var should=state.items.filter(function(i){ return i.pri==='should'; });
+  var could=state.items.filter(function(i){ return i.pri==='could'; });
+  var later=state.items.filter(function(i){ return i.pri==='later'; });
+  var L=[];
+  if(who==='alan'){
+    L.push('Hi Alan!','');
+    L.push('Thank you again for Take-Two backing this as inaugural lead sponsor. Here is exactly where the Directory stands, what your $30,000 is buying, and the one thing that would finish it.','');
+    L.push('WHAT IS COMMITTED FOR LAUNCH ON 9 OCTOBER');
+    must.forEach(function(i){ L.push('  - '+i.n+': '+i.promise); });
+    L.push('','  Committed build cost: '+money(t.cost.must)+' of '+money(sp)+' spendable, with '+money(state.cont)+' contingency held by Joe against written change orders only.','');
+    if(should.length){
+      L.push('WHAT WE WOULD ADD IF THE COALITION COMES TOGETHER');
+      should.forEach(function(i){ L.push('  - '+i.n+(i.cost?' ('+money(i.cost)+')':'')+': '+i.promise); });
+      L.push('');
+    }
+    if(t.gap>0){
+      L.push('THE ASK, SAID PLAINLY');
+      L.push('  Full committed scope prices at '+money(t.committedCost+state.cont)+'. We are funded to '+money(state.budget+state.seats*SEAT)+'.');
+      L.push('  The gap is '+money(t.gap)+'.');
+      L.push('  One coalition seat at '+money(SEAT)+' closes it. You offered on 18 June to make the introductions at EA through Tammy and at ESA through Aubrey, and we would love to take you up on that.');
+      L.push('  Two seats would make this a coalition asset rather than a single-sponsor one, which is safer for Take-Two and stronger for the field.');
+    } else if(state.seats>0){
+      L.push('WHERE THE COALITION SEATS LAND');
+      L.push('  With '+state.seats+' seat'+(state.seats===1?'':'s')+' at '+money(SEAT)+', the committed scope fits with '+money(sp-t.committedCost)+' of headroom.');
+      L.push('  That is what the EA and ESA introductions you offered on 18 June would buy, item by item, in the section above.');
+    } else {
+      L.push('THE ASK');
+      L.push('  The committed scope fits inside the funded budget with '+money(sp-t.committedCost)+' of headroom.');
+      L.push('  The EA and ESA introductions you offered on 18 June would fund the roadmap below rather than the launch itself.');
+    }
+    L.push('');
+    if(could.length||later.length){
+      L.push('ON THE PUBLIC ROADMAP, HONESTLY LABELLED AS NOT YET FUNDED');
+      could.concat(later).forEach(function(i){ L.push('  - '+i.n+(i.cost?' ('+money(i.cost)+')':'')); });
+      L.push('');
+    }
+    L.push('TWO THINGS THAT ARE DELIVERABLES, NOT NICETIES');
+    L.push('  1. Your credit gets approved by your office before launch, not after.');
+    L.push('  2. The launch story publicly credits the Sinjin and Alan conversation this came from.','');
+    L.push('Happy to walk through any of it whenever suits you. Thank you, genuinely, for being first in.','');
+    L.push('Best,','Eric Francksen','Executive Producer, Gay Gaming Professionals');
+  } else {
+    L.push('Hi Sinjin!','');
+    L.push('Board-ready summary of the Directory, current as of today. Built so you can lift any part of it straight into the Bigglesworth conversation.','');
+    L.push('WHERE IT IS');
+    L.push('  Funded at '+money(state.budget)+' by Take-Two as inaugural lead sponsor, board approved unanimously on 18 June.');
+    L.push('  53 verified entries live today, going to 75 by GDC.');
+    L.push('  Public launch is Friday 9 October, set deliberately ahead of the Bigglesworth letter of intent window so their board sees a live product rather than a promise.','');
+    L.push('WHAT LAUNCHES IN OCTOBER');
+    must.forEach(function(i){ L.push('  - '+i.n+': '+i.promise); });
+    L.push('','HOW WE KNOW IT WORKED, BY GDC WEEK');
+    L.push('  1,500 unique visitors in the first 90 days, and at least three inbound mentions we did not solicit.');
+    L.push('  20 consenting scholar and alumni profiles, and 10 or more brokered recruiter introductions.');
+    L.push('  One coalition seat closed at '+money(SEAT)+' or more, or the Bigglesworth expansion decision in writing.');
+    L.push('  Zero unverified claims shipped as fact. That one is non-negotiable.','');
+    L.push('THE MONEY, STATED THE WAY WE STATED IT TO ALAN');
+    L.push('  Committed scope: '+money(t.committedCost)+' against '+money(sp)+' spendable, '+money(state.cont)+' contingency held by Joe.');
+    if(t.gap>0){
+      L.push('  Gap: '+money(t.gap)+'. One coalition seat at '+money(SEAT)+' closes it.');
+      L.push('  Being honest about the gap is what won us Take-Two. We are not changing that habit now.');
+    } else {
+      L.push('  Headroom: '+money(sp-t.committedCost)+'. The roadmap below is what additional funding would buy.');
+    }
+    L.push('');
+    if(could.length||later.length){
+      L.push('WHAT THE EXPANSION WOULD FUND');
+      could.concat(later).forEach(function(i){ L.push('  - '+i.n+(i.cost?' ('+money(i.cost)+')':'')+': '+i.promise); });
+      L.push('');
+    }
+    L.push('THE RISK I WOULD WANT THE BOARD TO SEE');
+    L.push('  Pipeline consent. If a scholar reaches a recruiter without their explicit yes, the trust that makes this work is gone and does not come back. Standing rule: one consent failure pauses the Pipeline entirely, whatever it costs the calendar.','');
+    L.push('Tell me what the board needs that is not here and I will get it to you.','');
+    L.push('Best,','Eric Francksen','Executive Producer, Gay Gaming Professionals');
+  }
+  if(state.log.length){
+    L.push('','---','CHANGE ORDERS SINCE THE BASELINE PLAN');
+    state.log.slice(0,12).forEach(function(c){
+      L.push('  - '+c.name+': '+c.from+' to '+c.to+
+        (c.dCost?', '+(c.dCost>0?'added ':'freed ')+money(Math.abs(c.dCost)):'')+
+        (c.dPts?', '+(c.dPts>0?'added ':'freed ')+Math.abs(c.dPts)+' pts':''));
+    });
+  }
+  return L.join('\n');
+}
+
+function outModal(title,lead,text,filename){
+  var s=document.getElementById('msheet');
+  s.innerHTML='<h3>'+title+'</h3><p class="lead">'+lead+'</p><pre class="out">'+esc(text)+'</pre>'+
+    '<div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">'+
+    '<button class="btn pri" id="oCopy">Copy</button>'+
+    '<button class="btn" id="oDl">Download '+esc(filename)+'</button>'+
+    '<button class="btn" id="oClose">Close</button></div>';
+  document.getElementById('modal').classList.add('on');
+  document.getElementById('oClose').addEventListener('click',closeModal);
+  document.getElementById('oCopy').addEventListener('click',function(){
+    var b=this;
+    function done(){ b.textContent='Copied!'; setTimeout(function(){ b.textContent='Copy'; },2200); }
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done,fb); } else fb();
+    function fb(){
+      var ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); done(); }catch(e){}
+      document.body.removeChild(ta);
+    }
+  });
+  document.getElementById('oDl').addEventListener('click',function(){
+    var blob=new Blob([text],{type:'text/plain;charset=utf-8'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=filename;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(a.href); },1500);
+  });
+}
+function propModal(){
+  var s=document.getElementById('msheet');
+  s.innerHTML='<h3>Make a proposal</h3><p class="lead">Written from the board exactly as it stands right now, '+
+    'so the numbers in it are the numbers you just set, and your change orders ride along at the bottom. Pick who it is for.</p>'+
+    '<div style="display:flex;gap:9px;flex-wrap:wrap">'+
+    '<button class="btn pri" id="pAlan">For Alan Lewis, Take-Two</button>'+
+    '<button class="btn pri" id="pSinjin">For Sinjin Bain, board-ready</button>'+
+    '<button class="btn" id="pCancel">Cancel</button></div>'+
+    '<p class="hint">Alan gets the sponsor and coalition framing with the gap stated plainly, which is the habit that won Take-Two. '+
+    'Sinjin gets the board-ready version built for the Bigglesworth letter of intent window. '+
+    'Gordon sends anything that goes to either of them.</p>';
+  document.getElementById('modal').classList.add('on');
+  document.getElementById('pCancel').addEventListener('click',closeModal);
+  document.getElementById('pAlan').addEventListener('click',function(){
+    outModal('Proposal for Alan Lewis','Take-Two, inaugural lead sponsor. Reads from the board as it stands. Gordon sends anything that goes to Alan.',
+      proposalText('alan'),'directory-proposal-alan.txt'); });
+  document.getElementById('pSinjin').addEventListener('click',function(){
+    outModal('Board-ready summary for Sinjin Bain','Built for the Bigglesworth letter of intent window. Reads from the board as it stands.',
+      proposalText('sinjin'),'directory-proposal-sinjin.txt'); });
+}
+
+function renderAll(){
+  renderModel(); renderDash(); fillFilters();
+  if(view==='board') renderBoard();
+  else if(view==='timeline') renderTimeline();
+  else if(view==='team') renderTeam();
+  else if(view==='agree') renderAgree();
+  else renderChg();
+}
+function fillFilters(){
+  var eSel=document.getElementById('fEpic'), oSel=document.getElementById('fOwner');
+  var epics=[],owners=[];
+  state.items.forEach(function(i){
+    if(epics.indexOf(i.e)<0) epics.push(i.e);
+    if(owners.indexOf(i.own)<0) owners.push(i.own);
+  });
+  epics.sort(); owners.sort();
+  eSel.innerHTML='<option value="">All epics</option>'+epics.map(function(e){
+    return '<option'+(fEpic===e?' selected':'')+'>'+esc(e)+'</option>'; }).join('');
+  oSel.innerHTML='<option value="">All owners</option>'+owners.map(function(o){
+    return '<option'+(fOwner===o?' selected':'')+'>'+esc(o)+'</option>'; }).join('');
+}
+
+document.querySelectorAll('.vt').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.vt').forEach(function(x){ x.classList.remove('on'); });
+    b.classList.add('on'); view=b.dataset.v;
+    ['board','timeline','team','agree','chg'].forEach(function(v){
+      document.getElementById('view-'+v).classList.toggle('on',view===v); });
+    renderAll();
+  });
+});
+document.getElementById('mBudget').addEventListener('input',function(){
+  state.budget=Math.max(0,parseInt(this.value,10)||0); save(); renderDash(); });
+document.getElementById('mCont').addEventListener('input',function(){
+  state.cont=Math.max(0,parseInt(this.value,10)||0); save(); renderDash(); });
+document.getElementById('mCap').addEventListener('input',function(){
+  state.cap=Math.max(10,parseInt(this.value,10)||10); save(); renderDash(); });
+document.getElementById('seatUp').addEventListener('click',function(){
+  state.seats=Math.min(4,state.seats+1); save(); renderModel(); renderDash(); });
+document.getElementById('seatDown').addEventListener('click',function(){
+  state.seats=Math.max(0,state.seats-1); save(); renderModel(); renderDash(); });
+document.getElementById('fEpic').addEventListener('change',function(){ fEpic=this.value; renderAll(); });
+document.getElementById('fOwner').addEventListener('change',function(){ fOwner=this.value; renderAll(); });
+document.getElementById('bAdd').addEventListener('click',function(){ addModal(null); });
+document.getElementById('bProp').addEventListener('click',propModal);
+document.getElementById('bMonday').addEventListener('click',function(){
+  outModal('Export to Monday','Save this as a .csv, then in Monday choose Import data and then CSV. '+
+    'The Group column becomes your board groups, so Must, Should, Could, and Next release arrive as four groups already sorted, '+
+    'with owner, dates, points, cost, dependencies, and acceptance criteria mapped to columns.',
+    mondayCSV(),'ggp-directory-board.csv');
+});
+document.getElementById('bReset').addEventListener('click',function(){
+  if(!confirm('Reset to the Production Plan v1 baseline? Anything you added, moved, or logged will be lost.')) return;
+  try{ localStorage.removeItem(KEY); }catch(e){}
+  load(); closeDrawer(); renderAll();
+});
+document.getElementById('dclose').addEventListener('click',closeDrawer);
+document.getElementById('scrim').addEventListener('click',closeDrawer);
+document.getElementById('modal').addEventListener('click',function(ev){ if(ev.target===this) closeModal(); });
+document.addEventListener('keydown',function(ev){ if(ev.key==='Escape'){ closeModal(); closeDrawer(); } });
+
+load(); renderAll();
+})();
+</script>
+</body>
+</html>
